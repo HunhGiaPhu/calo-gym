@@ -3,6 +3,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../db'
 import { today, nutrients } from '../calc'
 import { recognize } from '../gemini'
+import Camera from '../Camera'
 
 const MEALS = ['Sáng', 'Trưa', 'Tối', 'Phụ']
 const EMPTY = { name: '', unit: 'g', kcal: '', p: '', c: '', f: '' }
@@ -23,10 +24,10 @@ function PhotoLog({ date, meal }) {
   const [items, setItems] = useState(null)
   const [err, setErr] = useState('')
 
-  const onFile = async (e) => {
-    const file = e.target.files[0]
-    e.target.value = ''
-    if (!file) return
+  const [cam, setCam] = useState(false)
+
+  const onFile = async (file) => {
+    setCam(false)
     setBusy(true); setErr(''); setItems(null)
     try {
       const found = await recognize(file)
@@ -50,10 +51,8 @@ function PhotoLog({ date, meal }) {
   return (
     <section>
       <h2>Chụp món</h2>
-      <label className="btn" style={{ alignItems: 'center', color: 'var(--on-accent)' }}>
-        {busy ? 'Đang nhận diện…' : '📷 Chụp / chọn ảnh'}
-        <input type="file" accept="image/*" hidden disabled={busy} onChange={onFile} />
-      </label>
+      <button disabled={busy} onClick={() => setCam(true)}>{busy ? 'Đang nhận diện…' : '📷 Chụp món'}</button>
+      {cam && <Camera onPick={onFile} onClose={() => setCam(false)} />}
       {err && <p className="note">{err}</p>}
       {items?.length > 0 && (
         <>
