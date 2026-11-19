@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, Tooltip, ReferenceLine, ResponsiveContainer } from 'recharts'
 import { db, setSetting, useSetting, exportAll, importAll } from '../db'
 import { today, toDate, targets, streak, ACTIVITY } from '../calc'
 import { getKey, setKey, getModel, setModel, DEFAULT_MODEL } from '../gemini'
+import { loadGis, getToken, uploadBackup } from '../drive'
 
 function GeminiForm() {
   const [key, setK] = useState(getKey())
@@ -88,6 +89,20 @@ export default function Progress() {
     await setSetting('lastBackup', Date.now())
   }
 
+  // Tải sẵn thư viện Google để lúc bấm nút mở được cửa sổ đăng nhập ngay.
+  const [driveMsg, setDriveMsg] = useState('')
+  useEffect(() => { loadGis().catch(() => {}) }, [])
+  const doDrive = () => {
+    setDriveMsg('Đang lưu lên Drive…')
+    getToken()
+      .then(async () => {
+        await uploadBackup(JSON.stringify(await exportAll()))
+        await setSetting('lastBackup', Date.now())
+        setDriveMsg(`Đã lưu lên Drive lúc ${new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })} ✓`)
+      })
+      .catch((err) => setDriveMsg(`Chưa lưu được: ${err.message}`))
+  }
+
   const doImport = async (e) => {
     const file = e.target.files[0]
     e.target.value = ''
@@ -146,9 +161,11 @@ export default function Progress() {
 
       <section>
         <h2>Backup</h2>
-        <p className="muted">Dữ liệu chỉ nằm trong máy này. Bấm Backup rồi chọn Drive hoặc "Lưu vào Tệp".</p>
+        <p className="muted">Dữ liệu chỉ nằm trong máy này. "Lưu vào Drive" ghi đè file calo-gym-backup.json trong Drive của bạn.</p>
+        <button onClick={doDrive} style={{ width: '100%' }}>Lưu vào Drive</button>
+        {driveMsg && <p className="muted">{driveMsg}</p>}
         <div className="row">
-          <button onClick={doExport}>Backup</button>
+          <button className="ghost" onClick={doExport}>Chia sẻ file</button>
           <label className="btn ghost">Nhập backup<input type="file" accept=".json" hidden onChange={doImport} /></label>
         </div>
       </section>
