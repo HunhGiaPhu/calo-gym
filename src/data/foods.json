@@ -1,0 +1,2690 @@
+[
+{
+"name": "whole milk",
+"unit": "g",
+"kcal": 496.7,
+"p": 25.7,
+"c": 40.0,
+"f": 26.3
+},
+{
+"name": "vegetable oil",
+"unit": "g",
+"kcal": 589.3,
+"p": 0.0,
+"c": 0.0,
+"f": 66.7
+},
+{
+"name": "uncooked rice",
+"unit": "g",
+"kcal": 358.0,
+"p": 6.5,
+"c": 79.0,
+"f": 0.5
+},
+{
+"name": "sunlower oil",
+"unit": "g",
+"kcal": 885.7,
+"p": 0.0,
+"c": 0.0,
+"f": 100.0
+},
+{
+"name": "summer roll",
+"unit": "g",
+"kcal": 118.1,
+"p": 10.1,
+"c": 11.9,
+"f": 3.3
+},
+{
+"name": "steak",
+"unit": "g",
+"kcal": 250.0,
+"p": 26.0,
+"c": 0.0,
+"f": 20.0
+},
+{
+"name": "spring roll",
+"unit": "g",
+"kcal": 154.5,
+"p": 16.4,
+"c": 4.4,
+"f": 8.0
+},
+{
+"name": "sesame oil",
+"unit": "g",
+"kcal": 857.1,
+"p": 0.0,
+"c": 0.0,
+"f": 100.0
+},
+{
+"name": "salmon",
+"unit": "g",
+"kcal": 206.2,
+"p": 22.0,
+"c": 0.0,
+"f": 12.3
+},
+{
+"name": "popcorn",
+"unit": "g",
+"kcal": 557.0,
+"p": 7.5,
+"c": 55.7,
+"f": 34.2
+},
+{
+"name": "peanut oil",
+"unit": "g",
+"kcal": 850.0,
+"p": 0.0,
+"c": 0.0,
+"f": 100.0
+},
+{
+"name": "peanut butter",
+"unit": "g",
+"kcal": 587.5,
+"p": 21.9,
+"c": 24.1,
+"f": 50.0
+},
+{
+"name": "olive oil",
+"unit": "g",
+"kcal": 884.0,
+"p": 0.0,
+"c": 0.0,
+"f": 100.0
+},
+{
+"name": "maple grove sugar ree syrup",
+"unit": "g",
+"kcal": 16.7,
+"p": 0.0,
+"c": 10.0,
+"f": 0.0
+},
+{
+"name": "low at milk",
+"unit": "g",
+"kcal": 41.8,
+"p": 3.4,
+"c": 4.9,
+"f": 1.0
+},
+{
+"name": "japanese mayonnaise",
+"unit": "g",
+"kcal": 373.3,
+"p": 1.3,
+"c": 11.3,
+"f": 36.0
+},
+{
+"name": "hersheys zero sugar syrup",
+"unit": "g",
+"kcal": 33.3,
+"p": 0.0,
+"c": 20.0,
+"f": 0.0
+},
+{
+"name": "ground pork",
+"unit": "g",
+"kcal": 296.5,
+"p": 25.9,
+"c": 0.0,
+"f": 21.2
+},
+{
+"name": "ground bee",
+"unit": "g",
+"kcal": 272.6,
+"p": 27.4,
+"c": 0.0,
+"f": 17.7
+},
+{
+"name": "ghee",
+"unit": "g",
+"kcal": 861.5,
+"p": 0.3,
+"c": 0.0,
+"f": 100.0
+},
+{
+"name": "egg white",
+"unit": "g",
+"kcal": 51.5,
+"p": 10.9,
+"c": 0.6,
+"f": 0.3
+},
+{
+"name": "egg",
+"unit": "g",
+"kcal": 144.0,
+"p": 12.6,
+"c": 0.8,
+"f": 9.6
+},
+{
+"name": "cream",
+"unit": "g",
+"kcal": 336.7,
+"p": 3.0,
+"c": 2.7,
+"f": 36.7
+},
+{
+"name": "coconut oil",
+"unit": "g",
+"kcal": 864.3,
+"p": 0.0,
+"c": 0.0,
+"f": 92.9
+},
+{
+"name": "ground",
+"unit": "g",
+"kcal": 213.8,
+"p": 23.8,
+"c": 0.1,
+"f": 13.8
+},
+{
+"name": "cheddar cheese",
+"unit": "g",
+"kcal": 410.7,
+"p": 23.2,
+"c": 3.2,
+"f": 33.6
+},
+{
+"name": "canola oil",
+"unit": "g",
+"kcal": 885.7,
+"p": 0.0,
+"c": 0.0,
+"f": 100.0
+},
+{
+"name": "butter",
+"unit": "g",
+"kcal": 728.6,
+"p": 0.7,
+"c": 0.0,
+"f": 85.7
+},
+{
+"name": "bread",
+"unit": "g",
+"kcal": 265.5,
+"p": 9.0,
+"c": 48.3,
+"f": 3.4
+},
+{
+"name": "bagel",
+"unit": "g",
+"kcal": 263.8,
+"p": 10.5,
+"c": 52.4,
+"f": 1.3
+},
+{
+"name": "avocado oil",
+"unit": "g",
+"kcal": 885.7,
+"p": 0.0,
+"c": 0.0,
+"f": 100.0
+},
+{
+"name": "alpro almond no sugar",
+"unit": "g",
+"kcal": 13.0,
+"p": 0.4,
+"c": 0.0,
+"f": 1.1
+},
+{
+"name": "cucumber",
+"unit": "g",
+"kcal": 14.9,
+"p": 0.6,
+"c": 3.6,
+"f": 0.1
+},
+{
+"name": "tomato",
+"unit": "g",
+"kcal": 17.9,
+"p": 0.9,
+"c": 3.9,
+"f": 0.2
+},
+{
+"name": "chicken thighs skinless",
+"unit": "g",
+"kcal": 164.3,
+"p": 24.1,
+"c": 0.0,
+"f": 7.8
+},
+{
+"name": "alpro almond milk",
+"unit": "g",
+"kcal": 23.0,
+"p": 0.0,
+"c": 2.3,
+"f": 1.2
+},
+{
+"name": "eta",
+"unit": "g",
+"kcal": 267.9,
+"p": 14.3,
+"c": 4.3,
+"f": 21.4
+},
+{
+"name": "tzatziki",
+"unit": "g",
+"kcal": 90.0,
+"p": 2.3,
+"c": 4.3,
+"f": 7.3
+},
+{
+"name": "bell pepper",
+"unit": "g",
+"kcal": 28.1,
+"p": 1.0,
+"c": 6.6,
+"f": 0.2
+},
+{
+"name": "lime",
+"unit": "g",
+"kcal": 29.9,
+"p": 0.7,
+"c": 10.6,
+"f": 0.1
+},
+{
+"name": "harrisa",
+"unit": "g",
+"kcal": 328.6,
+"p": 6.4,
+"c": 27.1,
+"f": 25.0
+},
+{
+"name": "cous cous",
+"unit": "g",
+"kcal": 112.1,
+"p": 3.8,
+"c": 22.9,
+"f": 0.2
+},
+{
+"name": "mozarella",
+"unit": "g",
+"kcal": 303.6,
+"p": 22.5,
+"c": 2.1,
+"f": 22.5
+},
+{
+"name": "nutriboost bluberry",
+"unit": "g",
+"kcal": 53.5,
+"p": 1.0,
+"c": 10.6,
+"f": 0.8
+},
+{
+"name": "my nutrition whey protein",
+"unit": "g",
+"kcal": 344.0,
+"p": 84.0,
+"c": 0.8,
+"f": 1.6
+},
+{
+"name": "lactose ree yogurt",
+"unit": "g",
+"kcal": 78.0,
+"p": 5.3,
+"c": 6.7,
+"f": 3.3
+},
+{
+"name": "Ba Granola",
+"unit": "g",
+"kcal": 378.0,
+"p": 8.0,
+"c": 70.0,
+"f": 9.4
+},
+{
+"name": "banana",
+"unit": "g",
+"kcal": 89.0,
+"p": 1.1,
+"c": 22.9,
+"f": 0.3
+},
+{
+"name": "morico sashimi salad",
+"unit": "phần",
+"kcal": 285.7,
+"p": 34.5,
+"c": 6.0,
+"f": 13.1
+},
+{
+"name": "Konjac Collagen",
+"unit": "phần",
+"kcal": 10.0,
+"p": 0,
+"c": 1.0,
+"f": 0
+},
+{
+"name": "broccoli",
+"unit": "g",
+"kcal": 34.0,
+"p": 2.8,
+"c": 4.0,
+"f": 0.4
+},
+{
+"name": "ries",
+"unit": "g",
+"kcal": 128.0,
+"p": 2.5,
+"c": 20.7,
+"f": 4.1
+},
+{
+"name": "cantaloupe",
+"unit": "g",
+"kcal": 34.0,
+"p": 0.8,
+"c": 7.3,
+"f": 0.2
+},
+{
+"name": "tuna",
+"unit": "g",
+"kcal": 132.0,
+"p": 28.0,
+"c": 0.0,
+"f": 1.3
+},
+{
+"name": "catish",
+"unit": "g",
+"kcal": 144.0,
+"p": 18.0,
+"c": 0.0,
+"f": 7.2
+},
+{
+"name": "A4 Wagyu",
+"unit": "g",
+"kcal": 296.0,
+"p": 0.0,
+"c": 25.0,
+"f": 19.0
+},
+{
+"name": "lounder",
+"unit": "g",
+"kcal": 85.8,
+"p": 15.0,
+"c": 0.0,
+"f": 2.4
+},
+{
+"name": "Karbaby",
+"unit": "phần",
+"kcal": 1087.6,
+"p": 77.1,
+"c": 16.1,
+"f": 84.6
+},
+{
+"name": "Hu Tieu Nam Vang",
+"unit": "phần",
+"kcal": 650.0,
+"p": 34.8,
+"c": 54.5,
+"f": 10.7
+},
+{
+"name": "ground pork at extracted",
+"unit": "g",
+"kcal": 169.6,
+"p": 20.5,
+"c": 0.0,
+"f": 9.8
+},
+{
+"name": "asparagus",
+"unit": "g",
+"kcal": 20.0,
+"p": 2.2,
+"c": 3.9,
+"f": 0.1
+},
+{
+"name": "pomello",
+"unit": "g",
+"kcal": 38.0,
+"p": 0.8,
+"c": 8.2,
+"f": 0.0
+},
+{
+"name": "starbucks creamer",
+"unit": "g",
+"kcal": 133.3,
+"p": 0.7,
+"c": 0.7,
+"f": 10.0
+},
+{
+"name": "amur ish",
+"unit": "g",
+"kcal": 206.0,
+"p": 22.0,
+"c": 0.0,
+"f": 12.0
+},
+{
+"name": "zuchinni",
+"unit": "g",
+"kcal": 17.0,
+"p": 1.2,
+"c": 3.1,
+"f": 0.3
+},
+{
+"name": "enoki mushroom",
+"unit": "g",
+"kcal": 37.0,
+"p": 2.7,
+"c": 8.0,
+"f": 0.3
+},
+{
+"name": "dragon ruit",
+"unit": "g",
+"kcal": 52.0,
+"p": 0.3,
+"c": 9.0,
+"f": 0.2
+},
+{
+"name": "cooked chicken",
+"unit": "g",
+"kcal": 213.8,
+"p": 23.8,
+"c": 0.1,
+"f": 13.8
+},
+{
+"name": "cooked lamb",
+"unit": "g",
+"kcal": 294.1,
+"p": 24.7,
+"c": 0.0,
+"f": 21.2
+},
+{
+"name": "cucumber tomato salad",
+"unit": "g",
+"kcal": 100.0,
+"p": 1.0,
+"c": 4.0,
+"f": 10.0
+},
+{
+"name": "shrimp",
+"unit": "g",
+"kcal": 119.0,
+"p": 23.0,
+"c": 0.2,
+"f": 1.7
+},
+{
+"name": "smoked salmon",
+"unit": "g",
+"kcal": 117.0,
+"p": 18.0,
+"c": 0.0,
+"f": 4.3
+},
+{
+"name": "knorr",
+"unit": "g",
+"kcal": 190.5,
+"p": 12.7,
+"c": 32.0,
+"f": 1.1
+},
+{
+"name": "peanuts",
+"unit": "g",
+"kcal": 567.0,
+"p": 26.0,
+"c": 16.0,
+"f": 49.0
+},
+{
+"name": "cucumbers",
+"unit": "g",
+"kcal": 14.9,
+"p": 0.6,
+"c": 3.1,
+"f": 0.1
+},
+{
+"name": "romaine lettuce",
+"unit": "g",
+"kcal": 17.0,
+"p": 1.2,
+"c": 3.3,
+"f": 0.3
+},
+{
+"name": "tou taki",
+"unit": "g",
+"kcal": 20.8,
+"p": 0.9,
+"c": 0.0,
+"f": 0.0
+},
+{
+"name": "ish sauce",
+"unit": "g",
+"kcal": 35.0,
+"p": 5.0,
+"c": 3.6,
+"f": 0.0
+},
+{
+"name": "ried shallots",
+"unit": "g",
+"kcal": 400.0,
+"p": 2.0,
+"c": 10.0,
+"f": 40.0
+},
+{
+"name": "ben style: chicken parm burrito",
+"unit": "phần",
+"kcal": 354.0,
+"p": 49.0,
+"c": 15.0,
+"f": 9.0
+},
+{
+"name": "ben style: egg white bee burrito",
+"unit": "phần",
+"kcal": 300.0,
+"p": 40.0,
+"c": 11.0,
+"f": 13.0
+},
+{
+"name": "meadow resh skim milk",
+"unit": "g",
+"kcal": 34.0,
+"p": 3.4,
+"c": 4.9,
+"f": 0.1
+},
+{
+"name": "poke theory meal",
+"unit": "phần",
+"kcal": 1015.0,
+"p": 104.0,
+"c": 30.0,
+"f": 53.1
+},
+{
+"name": "jello sugar ree pudding",
+"unit": "g",
+"kcal": 53.4,
+"p": 3.2,
+"c": 9.9,
+"f": 0.1
+},
+{
+"name": "hirame",
+"unit": "g",
+"kcal": 92.9,
+"p": 19.6,
+"c": 0.0,
+"f": 1.1
+},
+{
+"name": "kimchi",
+"unit": "g",
+"kcal": 15.3,
+"p": 1.1,
+"c": 0.8,
+"f": 0.5
+},
+{
+"name": "snickers zero sugar",
+"unit": "phần",
+"kcal": 202.0,
+"p": 4.2,
+"c": 18.0,
+"f": 12.4
+},
+{
+"name": "collagen peptides",
+"unit": "g",
+"kcal": 477.8,
+"p": 100.0,
+"c": 0.0,
+"f": 0.0
+},
+{
+"name": "bok choy",
+"unit": "g",
+"kcal": 11.8,
+"p": 1.6,
+"c": 0.8,
+"f": 0.2
+},
+{
+"name": "mushrooms",
+"unit": "g",
+"kcal": 28.3,
+"p": 2.2,
+"c": 3.1,
+"f": 0.5
+},
+{
+"name": "cheese ish tou",
+"unit": "g",
+"kcal": 166.7,
+"p": 10.0,
+"c": 8.3,
+"f": 10.0
+},
+{
+"name": "ried tou",
+"unit": "g",
+"kcal": 275.0,
+"p": 18.9,
+"c": 5.0,
+"f": 20.4
+},
+{
+"name": "haidilao thai soup packet",
+"unit": "g",
+"kcal": 271.0,
+"p": 17.1,
+"c": 20.7,
+"f": 4.0
+},
+{
+"name": "cooked chicken breast",
+"unit": "g",
+"kcal": 165.0,
+"p": 30.8,
+"c": 0.0,
+"f": 3.6
+},
+{
+"name": "boost juice protein supreme",
+"unit": "phần",
+"kcal": 531.0,
+"p": 88.0,
+"c": 20.0,
+"f": 2.0
+},
+{
+"name": "caulilower",
+"unit": "g",
+"kcal": 25.0,
+"p": 1.9,
+"c": 5.0,
+"f": 0.3
+},
+{
+"name": "shabu shabu pork belly",
+"unit": "g",
+"kcal": 296.4,
+"p": 23.2,
+"c": 0.0,
+"f": 21.8
+},
+{
+"name": "sugar",
+"unit": "g",
+"kcal": 381.0,
+"p": 0.0,
+"c": 100.0,
+"f": 0.0
+},
+{
+"name": "all purpose lour",
+"unit": "g",
+"kcal": 364.0,
+"p": 10.0,
+"c": 76.0,
+"f": 1.0
+},
+{
+"name": "broccolini",
+"unit": "g",
+"kcal": 35.0,
+"p": 3.0,
+"c": 7.0,
+"f": 0.5
+},
+{
+"name": "potatoes",
+"unit": "g",
+"kcal": 77.0,
+"p": 2.0,
+"c": 17.0,
+"f": 0.1
+},
+{
+"name": "sweet potatoes",
+"unit": "g",
+"kcal": 86.0,
+"p": 1.6,
+"c": 20.0,
+"f": 0.1
+},
+{
+"name": "blueberries",
+"unit": "g",
+"kcal": 57.0,
+"p": 0.7,
+"c": 14.0,
+"f": 0.3
+},
+{
+"name": "apples",
+"unit": "g",
+"kcal": 52.0,
+"p": 0.3,
+"c": 14.0,
+"f": 0.2
+},
+{
+"name": "oranges",
+"unit": "g",
+"kcal": 47.0,
+"p": 0.9,
+"c": 12.0,
+"f": 0.1
+},
+{
+"name": "grapes",
+"unit": "g",
+"kcal": 69.0,
+"p": 0.7,
+"c": 18.0,
+"f": 0.2
+},
+{
+"name": "avocados",
+"unit": "g",
+"kcal": 160.0,
+"p": 2.0,
+"c": 9.0,
+"f": 15.0
+},
+{
+"name": "apricots",
+"unit": "g",
+"kcal": 48.0,
+"p": 1.4,
+"c": 12.0,
+"f": 0.1
+},
+{
+"name": "blackberries",
+"unit": "g",
+"kcal": 43.0,
+"p": 1.4,
+"c": 10.0,
+"f": 0.5
+},
+{
+"name": "cherries",
+"unit": "g",
+"kcal": 63.0,
+"p": 1.1,
+"c": 16.0,
+"f": 0.2
+},
+{
+"name": "guava",
+"unit": "g",
+"kcal": 68.0,
+"p": 2.6,
+"c": 14.0,
+"f": 0.6
+},
+{
+"name": "pears",
+"unit": "g",
+"kcal": 57.0,
+"p": 0.4,
+"c": 15.0,
+"f": 0.1
+},
+{
+"name": "carrots",
+"unit": "g",
+"kcal": 41.0,
+"p": 0.9,
+"c": 10.0,
+"f": 0.2
+},
+{
+"name": "daikon",
+"unit": "g",
+"kcal": 18.0,
+"p": 0.6,
+"c": 4.0,
+"f": 0.1
+},
+{
+"name": "white vinegar",
+"unit": "g",
+"kcal": 3.0,
+"p": 0.0,
+"c": 0.1,
+"f": 0.0
+},
+{
+"name": "pork belly",
+"unit": "g",
+"kcal": 518.0,
+"p": 9.0,
+"c": 0.0,
+"f": 53.0
+},
+{
+"name": "scallions",
+"unit": "g",
+"kcal": 32.0,
+"p": 1.8,
+"c": 7.0,
+"f": 0.2
+},
+{
+"name": "water",
+"unit": "g",
+"kcal": 0.0,
+"p": 0.0,
+"c": 0.0,
+"f": 0.0
+},
+{
+"name": "splenda",
+"unit": "g",
+"kcal": 0.0,
+"p": 0.0,
+"c": 0.0,
+"f": 0.0
+},
+{
+"name": "black pepper",
+"unit": "g",
+"kcal": 0.0,
+"p": 0.0,
+"c": 0.0,
+"f": 0.0
+},
+{
+"name": "meat marinade sauce",
+"unit": "g",
+"kcal": 200.0,
+"p": 3.0,
+"c": 30.0,
+"f": 10.0
+},
+{
+"name": "garlic",
+"unit": "g",
+"kcal": 149.0,
+"p": 6.4,
+"c": 33.0,
+"f": 0.5
+},
+{
+"name": "chili peppers",
+"unit": "g",
+"kcal": 40.0,
+"p": 1.9,
+"c": 9.0,
+"f": 0.4
+},
+{
+"name": "thịt chả hà nội ít calo",
+"unit": "phần",
+"kcal": 4464.3,
+"p": 179.7,
+"c": 20.7,
+"f": 404.3
+},
+{
+"name": "ensure bottle milk",
+"unit": "phần",
+"kcal": 350.0,
+"p": 11.0,
+"c": 50.0,
+"f": 11.0
+},
+{
+"name": "au parc chicken salad",
+"unit": "phần",
+"kcal": 603.0,
+"p": 47.0,
+"c": 0,
+"f": 33.0
+},
+{
+"name": "pork jowl",
+"unit": "g",
+"kcal": 518.0,
+"p": 17.0,
+"c": 0.0,
+"f": 48.0
+},
+{
+"name": "pork shoulder",
+"unit": "g",
+"kcal": 250.0,
+"p": 19.0,
+"c": 0.0,
+"f": 20.0
+},
+{
+"name": "shallots",
+"unit": "g",
+"kcal": 72.0,
+"p": 2.0,
+"c": 17.0,
+"f": 0.1
+},
+{
+"name": "coconut water",
+"unit": "g",
+"kcal": 19.0,
+"p": 0.7,
+"c": 4.0,
+"f": 0.2
+},
+{
+"name": "wood ear mushrooms",
+"unit": "g",
+"kcal": 36.0,
+"p": 2.2,
+"c": 7.4,
+"f": 0.2
+},
+{
+"name": "vermicelli noodles",
+"unit": "g",
+"kcal": 110.0,
+"p": 2.0,
+"c": 25.0,
+"f": 0.2
+},
+{
+"name": "chicken bouillon",
+"unit": "g",
+"kcal": 262.0,
+"p": 48.0,
+"c": 8.4,
+"f": 5.6
+},
+{
+"name": "salt",
+"unit": "g",
+"kcal": 0.0,
+"p": 0.0,
+"c": 0.0,
+"f": 0.0
+},
+{
+"name": "kiwi",
+"unit": "g",
+"kcal": 61.0,
+"p": 1.1,
+"c": 15.0,
+"f": 0.5
+},
+{
+"name": "white bread",
+"unit": "g",
+"kcal": 265.0,
+"p": 9.0,
+"c": 49.0,
+"f": 3.2
+},
+{
+"name": "croissant",
+"unit": "g",
+"kcal": 406.0,
+"p": 8.0,
+"c": 45.0,
+"f": 21.0
+},
+{
+"name": "pain au chocolat",
+"unit": "g",
+"kcal": 465.0,
+"p": 8.0,
+"c": 49.0,
+"f": 25.0
+},
+{
+"name": "rice paper",
+"unit": "g",
+"kcal": 330.0,
+"p": 3.0,
+"c": 80.0,
+"f": 0.5
+},
+{
+"name": "taro",
+"unit": "g",
+"kcal": 142.0,
+"p": 1.5,
+"c": 34.0,
+"f": 0.2
+},
+{
+"name": "milo powder",
+"unit": "g",
+"kcal": 380.0,
+"p": 8.0,
+"c": 75.0,
+"f": 6.0
+},
+{
+"name": "onions",
+"unit": "g",
+"kcal": 40.0,
+"p": 1.1,
+"c": 9.3,
+"f": 0.1
+},
+{
+"name": "oyster sauce",
+"unit": "g",
+"kcal": 80.0,
+"p": 1.0,
+"c": 18.0,
+"f": 0.4
+},
+{
+"name": "soy sauce",
+"unit": "g",
+"kcal": 53.0,
+"p": 8.0,
+"c": 4.9,
+"f": 0.0
+},
+{
+"name": "dark soy sauce",
+"unit": "g",
+"kcal": 65.0,
+"p": 6.0,
+"c": 9.0,
+"f": 0.0
+},
+{
+"name": "low calorie mayo",
+"unit": "g",
+"kcal": 70.0,
+"p": 1.0,
+"c": 7.0,
+"f": 5.0
+},
+{
+"name": "rying powder",
+"unit": "g",
+"kcal": 400.0,
+"p": 10.0,
+"c": 80.0,
+"f": 3.0
+},
+{
+"name": "corn",
+"unit": "g",
+"kcal": 96.0,
+"p": 3.4,
+"c": 21.0,
+"f": 1.5
+},
+{
+"name": "dried shrimp",
+"unit": "g",
+"kcal": 250.0,
+"p": 50.0,
+"c": 0.0,
+"f": 3.0
+},
+{
+"name": "bee brisket",
+"unit": "g",
+"kcal": 250.0,
+"p": 26.0,
+"c": 0.0,
+"f": 20.0
+},
+{
+"name": "chili paste",
+"unit": "g",
+"kcal": 100.0,
+"p": 2.0,
+"c": 12.0,
+"f": 5.0
+},
+{
+"name": "bean sprouts",
+"unit": "g",
+"kcal": 30.0,
+"p": 3.0,
+"c": 6.0,
+"f": 0.2
+},
+{
+"name": "cream cheese",
+"unit": "g",
+"kcal": 342.0,
+"p": 6.0,
+"c": 4.0,
+"f": 34.0
+},
+{
+"name": "at ree cream cheese",
+"unit": "g",
+"kcal": 70.0,
+"p": 6.0,
+"c": 11.0,
+"f": 0.5
+},
+{
+"name": "gouda",
+"unit": "g",
+"kcal": 356.0,
+"p": 25.0,
+"c": 2.2,
+"f": 27.0
+},
+{
+"name": "emmental",
+"unit": "g",
+"kcal": 349.0,
+"p": 27.0,
+"c": 1.5,
+"f": 28.0
+},
+{
+"name": "parmesan",
+"unit": "g",
+"kcal": 431.0,
+"p": 38.0,
+"c": 4.0,
+"f": 29.0
+},
+{
+"name": "pecorino romano",
+"unit": "g",
+"kcal": 387.0,
+"p": 28.0,
+"c": 0.3,
+"f": 32.0
+},
+{
+"name": "macaroni",
+"unit": "g",
+"kcal": 157.0,
+"p": 5.8,
+"c": 31.0,
+"f": 0.9
+},
+{
+"name": "mozzarella",
+"unit": "g",
+"kcal": 280.0,
+"p": 28.0,
+"c": 3.1,
+"f": 17.0
+},
+{
+"name": "gruyere",
+"unit": "g",
+"kcal": 413.0,
+"p": 29.0,
+"c": 0.4,
+"f": 32.0
+},
+{
+"name": "comte",
+"unit": "g",
+"kcal": 398.0,
+"p": 28.0,
+"c": 0.3,
+"f": 31.0
+},
+{
+"name": "Bún Chả Hà Nội",
+"unit": "phần",
+"kcal": 822.5,
+"p": 61.3,
+"c": 5.5,
+"f": 57.6
+},
+{
+"name": "babybel low at cheese",
+"unit": "g",
+"kcal": 250.0,
+"p": 25.0,
+"c": 2.0,
+"f": 16.0
+},
+{
+"name": "oodlands Spicy Hawaiian Ahi Poke",
+"unit": "g",
+"kcal": 200.0,
+"p": 25.0,
+"c": 6.0,
+"f": 10.0
+},
+{
+"name": "oodlands Shoyu Ahi Poke",
+"unit": "g",
+"kcal": 180.0,
+"p": 24.0,
+"c": 5.0,
+"f": 8.0
+},
+{
+"name": "oodlands Seaweed Salad",
+"unit": "g",
+"kcal": 150.0,
+"p": 5.0,
+"c": 10.0,
+"f": 7.0
+},
+{
+"name": "Whole oods Milk Guacamole (No Tomato)",
+"unit": "g",
+"kcal": 210.0,
+"p": 3.0,
+"c": 10.0,
+"f": 18.0
+},
+{
+"name": "Whole oods Egg Salad",
+"unit": "g",
+"kcal": 250.0,
+"p": 12.0,
+"c": 8.0,
+"f": 20.0
+},
+{
+"name": "protein bar chocolate",
+"unit": "phần",
+"kcal": 179.0,
+"p": 16.0,
+"c": 9.2,
+"f": 8.6
+},
+{
+"name": "spinach",
+"unit": "g",
+"kcal": 23.0,
+"p": 2.9,
+"c": 3.6,
+"f": 0.4
+},
+{
+"name": "salami",
+"unit": "g",
+"kcal": 263.2,
+"p": 42.1,
+"c": 2.6,
+"f": 7.0
+},
+{
+"name": "roasted pork",
+"unit": "g",
+"kcal": 291.0,
+"p": 25.0,
+"c": 0.0,
+"f": 21.0
+},
+{
+"name": "char siu pork",
+"unit": "g",
+"kcal": 295.0,
+"p": 23.0,
+"c": 12.0,
+"f": 18.0
+},
+{
+"name": "roasted chicken",
+"unit": "g",
+"kcal": 239.0,
+"p": 27.0,
+"c": 0.0,
+"f": 14.0
+},
+{
+"name": "steamed bok choy",
+"unit": "g",
+"kcal": 13.0,
+"p": 1.5,
+"c": 2.2,
+"f": 0.2
+},
+{
+"name": "stir ry bean sprouts",
+"unit": "g",
+"kcal": 31.0,
+"p": 3.0,
+"c": 6.0,
+"f": 0.2
+},
+{
+"name": "royo",
+"unit": "g",
+"kcal": 95.0,
+"p": 9.4,
+"c": 6.4,
+"f": 3.1
+},
+{
+"name": "pasta",
+"unit": "g",
+"kcal": 158.0,
+"p": 5.8,
+"c": 30.9,
+"f": 0.9
+},
+{
+"name": "cooked rice",
+"unit": "g",
+"kcal": 130.0,
+"p": 2.7,
+"c": 28.2,
+"f": 0.3
+},
+{
+"name": "ben style: the burritos supreme",
+"unit": "phần",
+"kcal": 375.0,
+"p": 35.0,
+"c": 31.0,
+"f": 14.0
+},
+{
+"name": "ben style: sweet & sour chicken",
+"unit": "phần",
+"kcal": 289.0,
+"p": 31.0,
+"c": 28.0,
+"f": 5.6
+},
+{
+"name": "ben style: chili cheesy chicken",
+"unit": "phần",
+"kcal": 295.0,
+"p": 35.0,
+"c": 17.0,
+"f": 9.0
+},
+{
+"name": "ben style: pad thai",
+"unit": "phần",
+"kcal": 435.0,
+"p": 38.0,
+"c": 29.0,
+"f": 19.0
+},
+{
+"name": "ben style: mushroom omelet",
+"unit": "phần",
+"kcal": 247.0,
+"p": 21.0,
+"c": 7.0,
+"f": 15.0
+},
+{
+"name": "xôi má ba (big)",
+"unit": "phần",
+"kcal": 1469.0,
+"p": 57.5,
+"c": 196.4,
+"f": 48.4
+},
+{
+"name": "xôi má ba (protein)",
+"unit": "phần",
+"kcal": 619.4,
+"p": 39.9,
+"c": 10.3,
+"f": 46.3
+},
+{
+"name": "xôi má ba (rice only)",
+"unit": "phần",
+"kcal": 850.0,
+"p": 17.6,
+"c": 186.1,
+"f": 2.0
+},
+{
+"name": "Varna Lie",
+"unit": "g",
+"kcal": 62.5,
+"p": 3.3,
+"c": 5.0,
+"f": 3.3
+},
+{
+"name": "ben style: breakast burrito",
+"unit": "phần",
+"kcal": 282.0,
+"p": 30.0,
+"c": 18.0,
+"f": 10.0
+},
+{
+"name": "ben style: chicken egg panini",
+"unit": "phần",
+"kcal": 459.0,
+"p": 48.0,
+"c": 13.0,
+"f": 25.0
+},
+{
+"name": "ben style: bbq chicken pizza",
+"unit": "phần",
+"kcal": 318.0,
+"p": 36.0,
+"c": 31.0,
+"f": 5.6
+},
+{
+"name": "marukame udon: small tonkotsu",
+"unit": "phần",
+"kcal": 626.0,
+"p": 42.0,
+"c": 71.0,
+"f": 45.0
+},
+{
+"name": "ben style: egg white potato omelette",
+"unit": "phần",
+"kcal": 225.0,
+"p": 22.0,
+"c": 4.5,
+"f": 23.0
+},
+{
+"name": "ben style: oatmeal cookie",
+"unit": "phần",
+"kcal": 175.0,
+"p": 10.0,
+"c": 18.0,
+"f": 7.0
+},
+{
+"name": "ben style: philli cheese steak",
+"unit": "phần",
+"kcal": 350.0,
+"p": 35.0,
+"c": 23.0,
+"f": 19.0
+},
+{
+"name": "coconut milk",
+"unit": "g",
+"kcal": 230.0,
+"p": 2.3,
+"c": 6.0,
+"f": 24.0
+},
+{
+"name": "gong cha wintermelon tea",
+"unit": "phần",
+"kcal": 113.0,
+"p": 0,
+"c": 0,
+"f": 0
+},
+{
+"name": "phê la tấm",
+"unit": "phần",
+"kcal": 160.0,
+"p": 0,
+"c": 0,
+"f": 0
+},
+{
+"name": "vinamilk coconut water",
+"unit": "g",
+"kcal": 15.2,
+"p": 0.0,
+"c": 3.8,
+"f": 0.0
+},
+{
+"name": "quán bụi meal",
+"unit": "phần",
+"kcal": 570.0,
+"p": 41.0,
+"c": 26.0,
+"f": 33.5
+},
+{
+"name": "burrito bowl",
+"unit": "phần",
+"kcal": 890.0,
+"p": 65.0,
+"c": 86.0,
+"f": 39.0
+},
+{
+"name": "koi black tea macchiato",
+"unit": "phần",
+"kcal": 118.0,
+"p": 1.6,
+"c": 19.7,
+"f": 3.9
+},
+{
+"name": "mini trimax ish oil",
+"unit": "phần",
+"kcal": 7.0,
+"p": 0,
+"c": 0,
+"f": 0.5
+},
+{
+"name": "carne asada quesadilla",
+"unit": "phần",
+"kcal": 650.0,
+"p": 45.0,
+"c": 38.0,
+"f": 34.0
+},
+{
+"name": "carne asada tacos",
+"unit": "phần",
+"kcal": 440.0,
+"p": 32.0,
+"c": 36.0,
+"f": 18.0
+},
+{
+"name": "birria tacos",
+"unit": "phần",
+"kcal": 600.0,
+"p": 38.0,
+"c": 42.0,
+"f": 28.0
+},
+{
+"name": "lamb",
+"unit": "g",
+"kcal": 294.0,
+"p": 25.0,
+"c": 0.0,
+"f": 21.0
+},
+{
+"name": "protein ice cream",
+"unit": "g",
+"kcal": 96.1,
+"p": 14.2,
+"c": 4.3,
+"f": 2.6
+},
+{
+"name": "honey",
+"unit": "g",
+"kcal": 304.8,
+"p": 0.5,
+"c": 81.0,
+"f": 0.0
+},
+{
+"name": "edam cheese stick",
+"unit": "g",
+"kcal": 350.0,
+"p": 26.4,
+"c": 0.0,
+"f": 26.7
+},
+{
+"name": "marou chocolate 78%",
+"unit": "g",
+"kcal": 596.0,
+"p": 8.6,
+"c": 46.1,
+"f": 41.9
+},
+{
+"name": "marou chocolate 70%",
+"unit": "g",
+"kcal": 605.0,
+"p": 8.7,
+"c": 45.5,
+"f": 43.1
+},
+{
+"name": "cooked chuck roll (50% at removed)",
+"unit": "g",
+"kcal": 205.0,
+"p": 26.0,
+"c": 0.0,
+"f": 11.0
+},
+{
+"name": "cooked top blade (50% at removed)",
+"unit": "g",
+"kcal": 195.0,
+"p": 25.0,
+"c": 0.0,
+"f": 10.0
+},
+{
+"name": "cooked rib eye (50% at removed)",
+"unit": "g",
+"kcal": 225.0,
+"p": 25.0,
+"c": 0.0,
+"f": 13.0
+},
+{
+"name": "cooked asparagus",
+"unit": "g",
+"kcal": 22.0,
+"p": 2.0,
+"c": 4.0,
+"f": 0.0
+},
+{
+"name": "cooked chuck roll (ull at)",
+"unit": "g",
+"kcal": 295.0,
+"p": 24.0,
+"c": 0.0,
+"f": 23.0
+},
+{
+"name": "cooked top blade (ull at)",
+"unit": "g",
+"kcal": 250.0,
+"p": 25.0,
+"c": 0.0,
+"f": 18.0
+},
+{
+"name": "cooked rib eye (ull at)",
+"unit": "g",
+"kcal": 310.0,
+"p": 25.0,
+"c": 0.0,
+"f": 25.0
+},
+{
+"name": "pb it",
+"unit": "g",
+"kcal": 380.0,
+"p": 45.0,
+"c": 34.0,
+"f": 9.0
+},
+{
+"name": "ben style: sweet potato smoked bee omlet",
+"unit": "phần",
+"kcal": 377.0,
+"p": 51.0,
+"c": 19.0,
+"f": 10.0
+},
+{
+"name": "ben style: extra crispy crust BBQ Chicken Pizza",
+"unit": "phần",
+"kcal": 318.0,
+"p": 36.0,
+"c": 31.0,
+"f": 5.6
+},
+{
+"name": "pho broth",
+"unit": "g",
+"kcal": 26.0,
+"p": 3.2,
+"c": 2.3,
+"f": 0.5
+},
+{
+"name": "pho noodles",
+"unit": "g",
+"kcal": 110.0,
+"p": 2.0,
+"c": 25.0,
+"f": 0.3
+},
+{
+"name": "cod",
+"unit": "g",
+"kcal": 82.0,
+"p": 18.0,
+"c": 0.0,
+"f": 0.7
+},
+{
+"name": "cooked shrimp",
+"unit": "g",
+"kcal": 99.0,
+"p": 24.0,
+"c": 0.2,
+"f": 0.3
+},
+{
+"name": "cooked ground pork",
+"unit": "g",
+"kcal": 290.0,
+"p": 25.0,
+"c": 0.0,
+"f": 21.0
+},
+{
+"name": "cooked pork shoulder",
+"unit": "g",
+"kcal": 295.0,
+"p": 26.0,
+"c": 0.0,
+"f": 21.0
+},
+{
+"name": "hu tieu nam vang broth",
+"unit": "g",
+"kcal": 35.0,
+"p": 4.0,
+"c": 2.0,
+"f": 1.5
+},
+{
+"name": "cooked quail eggs",
+"unit": "g",
+"kcal": 158.0,
+"p": 13.0,
+"c": 0.4,
+"f": 11.0
+},
+{
+"name": "ried garlic",
+"unit": "g",
+"kcal": 530.0,
+"p": 9.0,
+"c": 36.0,
+"f": 41.0
+},
+{
+"name": "hu tieu nam vang noodles",
+"unit": "g",
+"kcal": 108.0,
+"p": 2.6,
+"c": 25.0,
+"f": 0.3
+},
+{
+"name": "serrano ham",
+"unit": "g",
+"kcal": 241.0,
+"p": 31.0,
+"c": 0.0,
+"f": 13.0
+},
+{
+"name": "manchego",
+"unit": "g",
+"kcal": 410.0,
+"p": 24.0,
+"c": 0.0,
+"f": 34.0
+},
+{
+"name": "morico teriyaki chicken salad",
+"unit": "phần",
+"kcal": 320.0,
+"p": 32.0,
+"c": 24.0,
+"f": 11.0
+},
+{
+"name": "cooked brisket",
+"unit": "g",
+"kcal": 280.0,
+"p": 27.0,
+"c": 0.0,
+"f": 19.0
+},
+{
+"name": "cooked oxtail",
+"unit": "g",
+"kcal": 262.0,
+"p": 22.0,
+"c": 0.0,
+"f": 20.0
+},
+{
+"name": "pho broth at extracted",
+"unit": "g",
+"kcal": 8.0,
+"p": 1.1,
+"c": 0.5,
+"f": 0.2
+},
+{
+"name": "grilled chicken",
+"unit": "g",
+"kcal": 165.0,
+"p": 31.0,
+"c": 0.0,
+"f": 3.6
+},
+{
+"name": "teriyaki chicken",
+"unit": "g",
+"kcal": 178.0,
+"p": 25.0,
+"c": 7.1,
+"f": 5.1
+},
+{
+"name": "salad",
+"unit": "g",
+"kcal": 20.0,
+"p": 1.5,
+"c": 4.0,
+"f": 0.2
+},
+{
+"name": "morico salad sauce",
+"unit": "g",
+"kcal": 90.0,
+"p": 1.5,
+"c": 10.0,
+"f": 4.0
+},
+{
+"name": "tteoboki ried",
+"unit": "g",
+"kcal": 275.0,
+"p": 5.0,
+"c": 42.0,
+"f": 9.0
+},
+{
+"name": "daikon radish",
+"unit": "g",
+"kcal": 18.0,
+"p": 0.6,
+"c": 4.0,
+"f": 0.1
+},
+{
+"name": "macaron",
+"unit": "g",
+"kcal": 527.8,
+"p": 8.3,
+"c": 55.6,
+"f": 27.8
+},
+{
+"name": "grana pandana",
+"unit": "g",
+"kcal": 398.0,
+"p": 33.0,
+"c": 0.0,
+"f": 29.0
+},
+{
+"name": "barilla basilico",
+"unit": "g",
+"kcal": 64.1,
+"p": 1.6,
+"c": 7.6,
+"f": 2.6
+},
+{
+"name": "tomato paste",
+"unit": "g",
+"kcal": 82.0,
+"p": 4.3,
+"c": 19.0,
+"f": 0.5
+},
+{
+"name": "crab meat",
+"unit": "g",
+"kcal": 82.0,
+"p": 18.1,
+"c": 0.0,
+"f": 1.1
+},
+{
+"name": "mm",
+"unit": "g",
+"kcal": 500.0,
+"p": 5.0,
+"c": 70.0,
+"f": 24.0
+},
+{
+"name": "murray cod",
+"unit": "g",
+"kcal": 153.0,
+"p": 18.0,
+"c": 1.0,
+"f": 9.2
+},
+{
+"name": "rokeby vanilla waer",
+"unit": "phần",
+"kcal": 242.0,
+"p": 30.0,
+"c": 19.0,
+"f": 6.4
+},
+{
+"name": "rokeby espresso/chocolate",
+"unit": "phần",
+"kcal": 286.0,
+"p": 30.0,
+"c": 27.2,
+"f": 6.4
+},
+{
+"name": "chicken breast",
+"unit": "g",
+"kcal": 165.0,
+"p": 31.0,
+"c": 0.0,
+"f": 3.6
+},
+{
+"name": "ground bee at extracted",
+"unit": "g",
+"kcal": 176.0,
+"p": 26.0,
+"c": 0.0,
+"f": 8.1
+},
+{
+"name": "stirried white cabbage",
+"unit": "g",
+"kcal": 70.0,
+"p": 2.0,
+"c": 7.0,
+"f": 4.0
+},
+{
+"name": "cooked white ish",
+"unit": "g",
+"kcal": 110.0,
+"p": 23.0,
+"c": 0.0,
+"f": 2.0
+},
+{
+"name": "lank steak",
+"unit": "g",
+"kcal": 192.0,
+"p": 27.0,
+"c": 0.0,
+"f": 2.0
+},
+{
+"name": "miso soup",
+"unit": "phần",
+"kcal": 40.0,
+"p": 3.0,
+"c": 5.0,
+"f": 3.0
+},
+{
+"name": "rice",
+"unit": "g",
+"kcal": 130.0,
+"p": 2.0,
+"c": 28.0,
+"f": 2.0
+},
+{
+"name": "smoked ham",
+"unit": "g",
+"kcal": 145.0,
+"p": 20.9,
+"c": 5.5,
+"f": 1.5
+},
+{
+"name": "pistachios",
+"unit": "g",
+"kcal": 562.0,
+"p": 20.2,
+"c": 45.4,
+"f": 27.2
+},
+{
+"name": "chicken jerky",
+"unit": "g",
+"kcal": 301.0,
+"p": 46.0,
+"c": 4.0,
+"f": 20.0
+},
+{
+"name": "philadelphia light",
+"unit": "g",
+"kcal": 170.0,
+"p": 7.9,
+"c": 4.0,
+"f": 13.7
+},
+{
+"name": "grenade protein bar",
+"unit": "phần",
+"kcal": 208.0,
+"p": 21.0,
+"c": 2.0,
+"f": 20.0
+},
+{
+"name": "lasagne noodles",
+"unit": "g",
+"kcal": 375.0,
+"p": 13.0,
+"c": 75.0,
+"f": 2.0
+},
+{
+"name": "low at cottage cheese",
+"unit": "g",
+"kcal": 97.3,
+"p": 11.5,
+"c": 4.4,
+"f": 4.4
+},
+{
+"name": "corn starch",
+"unit": "g",
+"kcal": 381.0,
+"p": 0.3,
+"c": 91.0,
+"f": 0.1
+},
+{
+"name": "riccota cheese",
+"unit": "g",
+"kcal": 174.0,
+"p": 11.3,
+"c": 3.0,
+"f": 12.9
+},
+{
+"name": "glutamine",
+"unit": "phần",
+"kcal": 4.0,
+"p": 1.0,
+"c": 0,
+"f": 0
+},
+{
+"name": "creatine",
+"unit": "phần",
+"kcal": 0.0,
+"p": 0,
+"c": 0,
+"f": 0
+},
+{
+"name": "passata",
+"unit": "g",
+"kcal": 29.0,
+"p": 1.3,
+"c": 5.5,
+"f": 0.2
+},
+{
+"name": "reeze dried cheddar",
+"unit": "g",
+"kcal": 607.0,
+"p": 36.2,
+"c": 9.5,
+"f": 47.4
+},
+{
+"name": "reduced at salami",
+"unit": "g",
+"kcal": 256.7,
+"p": 30.0,
+"c": 0.5,
+"f": 15.0
+},
+{
+"name": "kirkland protein bar",
+"unit": "phần",
+"kcal": 190.0,
+"p": 21.0,
+"c": 10.0,
+"f": 7.0
+},
+{
+"name": "white mushrooms",
+"unit": "g",
+"kcal": 22.0,
+"p": 3.1,
+"c": 3.3,
+"f": 0.3
+},
+{
+"name": "shabu shabu bee",
+"unit": "g",
+"kcal": 170.0,
+"p": 20.0,
+"c": 0.0,
+"f": 10.0
+},
+{
+"name": "shabu shabu chicken",
+"unit": "g",
+"kcal": 120.0,
+"p": 22.0,
+"c": 0.0,
+"f": 2.5
+},
+{
+"name": "chicken collagen broth (ull at)",
+"unit": "g",
+"kcal": 45.0,
+"p": 6.0,
+"c": 0.0,
+"f": 3.5
+},
+{
+"name": "white cabbage",
+"unit": "g",
+"kcal": 25.0,
+"p": 1.3,
+"c": 5.8,
+"f": 0.1
+},
+{
+"name": "protein style cheeseburger",
+"unit": "phần",
+"kcal": 235.0,
+"p": 18.0,
+"c": 3.0,
+"f": 17.0
+},
+{
+"name": "protein style double cheeseburger",
+"unit": "phần",
+"kcal": 360.0,
+"p": 29.0,
+"c": 3.0,
+"f": 28.0
+},
+{
+"name": "chipotle chicken salad (no cheese)",
+"unit": "phần",
+"kcal": 420.0,
+"p": 38.0,
+"c": 28.0,
+"f": 18.0
+},
+{
+"name": "G Chicken",
+"unit": "g",
+"kcal": 135.0,
+"p": 27.7,
+"c": 2.5,
+"f": 1.6
+},
+{
+"name": "shrimp paste squeeze",
+"unit": "g",
+"kcal": 61.1,
+"p": 12.2,
+"c": 0.9,
+"f": 0.9
+},
+{
+"name": "cheese tou",
+"unit": "g",
+"kcal": 250.0,
+"p": 10.0,
+"c": 7.5,
+"f": 20.0
+},
+{
+"name": "prawn paste",
+"unit": "g",
+"kcal": 92.3,
+"p": 12.3,
+"c": 7.7,
+"f": 0.8
+},
+{
+"name": "ish roe and soy",
+"unit": "g",
+"kcal": 107.1,
+"p": 10.7,
+"c": 12.5,
+"f": 1.8
+},
+{
+"name": "venti starbucks low at coee",
+"unit": "phần",
+"kcal": 130.0,
+"p": 9.0,
+"c": 15.0,
+"f": 3.0
+},
+{
+"name": "vietnamese sausage",
+"unit": "g",
+"kcal": 180.0,
+"p": 25.0,
+"c": 5.0,
+"f": 4.0
+},
+{
+"name": "lean hotpot bee",
+"unit": "g",
+"kcal": 120.0,
+"p": 22.0,
+"c": 0.0,
+"f": 3.0
+},
+{
+"name": "scallops",
+"unit": "g",
+"kcal": 69.0,
+"p": 12.0,
+"c": 3.2,
+"f": 0.5
+},
+{
+"name": "starbs",
+"unit": "phần",
+"kcal": 270.0,
+"p": 43.0,
+"c": 15.0,
+"f": 4.0
+},
+{
+"name": "cappuccino",
+"unit": "g",
+"kcal": 40.0,
+"p": 2.0,
+"c": 3.5,
+"f": 1.8
+},
+{
+"name": "steamed egg",
+"unit": "g",
+"kcal": 140.0,
+"p": 12.0,
+"c": 1.0,
+"f": 10.0
+},
+{
+"name": "potato soup",
+"unit": "g",
+"kcal": 100.0,
+"p": 2.0,
+"c": 11.0,
+"f": 6.0
+},
+{
+"name": "whole wheat bread",
+"unit": "g",
+"kcal": 240.0,
+"p": 10.0,
+"c": 45.0,
+"f": 4.0
+},
+{
+"name": "davids protein bar",
+"unit": "phần",
+"kcal": 150.0,
+"p": 28.0,
+"c": 12.0,
+"f": 2.0
+},
+{
+"name": "muscle milk protein shake",
+"unit": "phần",
+"kcal": 170.0,
+"p": 25.0,
+"c": 11.0,
+"f": 5.0
+},
+{
+"name": "chipotle chicken salad (no cheese/sourcream)",
+"unit": "phần",
+"kcal": 230.0,
+"p": 34.0,
+"c": 6.0,
+"f": 16.0
+},
+{
+"name": "silk almond milk",
+"unit": "g",
+"kcal": 12.5,
+"p": 0.4,
+"c": 0.4,
+"f": 1.2
+},
+{
+"name": "starbucks iced coee bottle",
+"unit": "g",
+"kcal": 4.2,
+"p": 0.3,
+"c": 0.6,
+"f": 0.0
+},
+{
+"name": "starbucks protein matcha tall",
+"unit": "phần",
+"kcal": 220.0,
+"p": 22.0,
+"c": 22.0,
+"f": 4.0
+},
+{
+"name": "malibu mango smoothie",
+"unit": "phần",
+"kcal": 450.0,
+"p": 12.0,
+"c": 50.0,
+"f": 5.0
+},
+{
+"name": "low at bee",
+"unit": "g",
+"kcal": 170.0,
+"p": 27.0,
+"c": 0.0,
+"f": 4.0
+},
+{
+"name": "slate protein shake",
+"unit": "phần",
+"kcal": 130.0,
+"p": 30.0,
+"c": 2.0,
+"f": 0
+},
+{
+"name": "yasso",
+"unit": "phần",
+"kcal": 90.0,
+"p": 5.0,
+"c": 16.0,
+"f": 1.0
+},
+{
+"name": "low cal popcorn",
+"unit": "phần",
+"kcal": 110.0,
+"p": 3.0,
+"c": 24.0,
+"f": 2.0
+},
+{
+"name": "chipotle chicken salad (single chicken everything)",
+"unit": "phần",
+"kcal": 530.0,
+"p": 44.0,
+"c": 29.0,
+"f": 26.0
+},
+{
+"name": "chipotle chicken salad (double chicken everything)",
+"unit": "phần",
+"kcal": 710.0,
+"p": 76.0,
+"c": 29.0,
+"f": 33.0
+},
+{
+"name": "pistachio snack bag",
+"unit": "phần",
+"kcal": 120.0,
+"p": 5.0,
+"c": 6.0,
+"f": 10.0
+},
+{
+"name": "quest bar (cookies dough)",
+"unit": "phần",
+"kcal": 190.0,
+"p": 21.0,
+"c": 4.0,
+"f": 7.0
+},
+{
+"name": "smoked tri tip steak",
+"unit": "g",
+"kcal": 190.0,
+"p": 26.0,
+"c": 0.0,
+"f": 10.0
+},
+{
+"name": "gỏi gà",
+"unit": "g",
+"kcal": 130.0,
+"p": 12.0,
+"c": 12.0,
+"f": 4.0
+},
+{
+"name": "in n out (single protein style)",
+"unit": "phần",
+"kcal": 240.0,
+"p": 14.0,
+"c": 8.0,
+"f": 17.0
+},
+{
+"name": "in n out (double protein style)",
+"unit": "phần",
+"kcal": 390.0,
+"p": 21.0,
+"c": 8.0,
+"f": 27.0
+},
+{
+"name": "chipotle chicken steak salad",
+"unit": "phần",
+"kcal": 760.0,
+"p": 65.0,
+"c": 34.0,
+"f": 38.0
+},
+{
+"name": "cava chicken salad",
+"unit": "phần",
+"kcal": 600.0,
+"p": 50.0,
+"c": 38.0,
+"f": 33.0
+},
+{
+"name": "built protein bar",
+"unit": "phần",
+"kcal": 150.0,
+"p": 17.0,
+"c": 14.0,
+"f": 3.0
+},
+{
+"name": "lukes lobster roll",
+"unit": "phần",
+"kcal": 300.0,
+"p": 26.0,
+"c": 25.0,
+"f": 10.0
+},
+{
+"name": "starlux main course",
+"unit": "phần",
+"kcal": 450.0,
+"p": 40.0,
+"c": 35.0,
+"f": 22.0
+},
+{
+"name": "starlux rice",
+"unit": "phần",
+"kcal": 200.0,
+"p": 5.0,
+"c": 40.0,
+"f": 4.0
+},
+{
+"name": "starlux bread + butter",
+"unit": "phần",
+"kcal": 180.0,
+"p": 4.0,
+"c": 22.0,
+"f": 9.0
+},
+{
+"name": "starlux appetizer",
+"unit": "phần",
+"kcal": 120.0,
+"p": 6.0,
+"c": 10.0,
+"f": 6.0
+},
+{
+"name": "starlux ruit platter",
+"unit": "phần",
+"kcal": 120.0,
+"p": 1.0,
+"c": 30.0,
+"f": 0
+},
+{
+"name": "starlux dessert",
+"unit": "phần",
+"kcal": 250.0,
+"p": 4.0,
+"c": 28.0,
+"f": 14.0
+},
+{
+"name": "starlux yogurt/cheese",
+"unit": "phần",
+"kcal": 150.0,
+"p": 7.0,
+"c": 6.0,
+"f": 8.0
+},
+{
+"name": "chipotle chicken salad (with rice)",
+"unit": "phần",
+"kcal": 740.0,
+"p": 48.0,
+"c": 65.0,
+"f": 32.0
+},
+{
+"name": "quest bar (chocolate brownie)",
+"unit": "phần",
+"kcal": 170.0,
+"p": 20.0,
+"c": 4.0,
+"f": 6.0
+},
+{
+"name": "gỏi",
+"unit": "g",
+"kcal": 90.0,
+"p": 9.0,
+"c": 6.0,
+"f": 3.0
+},
+{
+"name": "illet mignon",
+"unit": "g",
+"kcal": 120.0,
+"p": 22.0,
+"c": 0.0,
+"f": 3.0
+},
+{
+"name": "uncooked pasta",
+"unit": "g",
+"kcal": 371.0,
+"p": 13.0,
+"c": 75.0,
+"f": 1.5
+},
+{
+"name": "garlic naan",
+"unit": "g",
+"kcal": 330.0,
+"p": 9.0,
+"c": 50.0,
+"f": 12.0
+},
+{
+"name": "butter chicken",
+"unit": "g",
+"kcal": 220.0,
+"p": 5.0,
+"c": 12.0,
+"f": 18.0
+},
+{
+"name": "McDonalds Large ries",
+"unit": "phần",
+"kcal": 480.0,
+"p": 7.0,
+"c": 65.0,
+"f": 23.0
+}
+]
