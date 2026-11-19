@@ -5,6 +5,40 @@ export const toDate = (d = new Date()) =>
 
 export const today = () => toDate()
 
+const parse = (s) => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d) }
+export const addDays = (s, n) => { const d = parse(s); d.setDate(d.getDate() + n); return toDate(d) }
+
+const mean = (a) => a.reduce((s, w) => s + w.kg, 0) / a.length
+
+// Cân trung bình 7 ngày (gồm ngày đó) cho từng lần cân. weights đã sắp theo ngày.
+export const rolling7 = (weights) => weights.map((w) => {
+  const from = addDays(w.date, -6)
+  return { ...w, avg: Math.round(mean(weights.filter((x) => x.date >= from && x.date <= w.date)) * 10) / 10 }
+})
+
+// So TB 7 ngày gần nhất với 7 ngày trước đó. Giảm mỡ giữ cơ: khoảng 0.25–1% cân nặng mỗi tuần.
+// adjust = số kcal nên cộng vào mức thâm hụt.
+export function weightAdvice(weights, now = today()) {
+  const win = (a, b) => weights.filter((w) => w.date > addDays(now, -a) && w.date <= addDays(now, -b))
+  const cur = win(7, 0)
+  const prev = win(14, 7)
+  if (cur.length < 3 || prev.length < 3) return null
+  const change = mean(cur) - mean(prev)
+  const pct = (change / mean(prev)) * 100
+  const r = { change: Math.round(change * 100) / 100, pct: Math.round(pct * 100) / 100 }
+  if (pct > -0.25) return { ...r, adjust: 150, msg: 'Gần như không giảm' }
+  if (pct < -1) return { ...r, adjust: -150, msg: 'Giảm hơi nhanh, dễ mất cơ' }
+  return { ...r, adjust: 0, msg: 'Đúng hướng' }
+}
+
+// Lần trước làm đủ số set và đủ rep mọi set -> gợi ý +2.5kg.
+export function nextKg(plan, last) {
+  if (!last?.sets?.length || last.sets.length < plan.sets) return null
+  if (!last.sets.every((s) => s.reps >= plan.reps)) return null
+  const top = Math.max(...last.sets.map((s) => s.kg))
+  return top > 0 ? top + 2.5 : null
+}
+
 export function nutrients(food, qty) {
   const k = food.unit === 'g' ? qty / 100 : qty
   const r = (x) => Math.round((x || 0) * k * 10) / 10

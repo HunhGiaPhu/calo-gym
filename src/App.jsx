@@ -4,6 +4,7 @@ import Eat from './pages/Eat'
 import Gym from './pages/Gym'
 import Progress from './pages/Progress'
 import ErrorBoundary from './ErrorBoundary'
+import RestTimer, { useRest } from './RestTimer'
 
 // Icon nét đơn giản, vẽ tay để khỏi thêm thư viện icon.
 const I = (d) => (
@@ -18,10 +19,12 @@ const TABS = [
 
 export default function App() {
   const [tab, setTab] = useState('today')
+  const { rest, start, stop } = useRest()
   const Page = TABS.find((t) => t[0] === tab)[2]
   return (
     <>
-      <main><ErrorBoundary key={tab} onReset={() => setTab('today')}><Page go={setTab} /></ErrorBoundary></main>
+      <main><ErrorBoundary key={tab} onReset={() => setTab('today')}><Page go={setTab} startRest={start} /></ErrorBoundary></main>
+      {rest && <RestTimer rest={rest} onStop={stop} onAdd={(s) => start(Math.max(0, (rest.end - Date.now()) / 1000) + s)} />}
       <nav>
         {TABS.map(([id, label, , icon]) => (
           <button key={id} className={tab === id ? 'on' : ''} aria-current={tab === id ? 'page' : undefined} onClick={() => setTab(id)}>

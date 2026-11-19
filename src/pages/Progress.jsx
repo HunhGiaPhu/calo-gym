@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, Tooltip, ReferenceLine, ResponsiveContainer } from 'recharts'
 import { db, setSetting, useSetting, exportAll, importAll } from '../db'
-import { today, toDate, targets, streak, ACTIVITY } from '../calc'
+import { today, toDate, targets, streak, ACTIVITY, rolling7, weightAdvice } from '../calc'
 import { getKey, setKey, getModel, setModel, DEFAULT_MODEL } from '../gemini'
 import { loadGis, getToken, uploadBackup } from '../drive'
 
@@ -53,6 +53,8 @@ export default function Progress() {
   const profile = useSetting('profile', null)
   const schedule = useSetting('schedule', {})
   const weights = useLiveQuery(() => db.weights.orderBy('date').toArray()) ?? []
+  const advice = weightAdvice(weights)
+  const applyAdvice = () => setSetting('profile', { ...profile, deficit: Math.min(1000, Math.max(0, profile.deficit + advice.adjust)) })
   // Không dùng uniqueKeys(): Safari iOS lỗi "Unable to open cursor" với key cursor.
   const sessionDates = useLiveQuery(async () => new Set((await db.sessions.toArray()).map((s) => s.date))) ?? new Set()
   const [kg, setKg] = useState('')
@@ -132,13 +134,27 @@ export default function Progress() {
         </div>
         {weights.length > 1 && (
           <div className="chart"><ResponsiveContainer width="100%" height={200}>
-            <LineChart data={weights}>
-              <XAxis dataKey="date" tickFormatter={(d) => d.slice(5)} fontSize={11} />
-              <YAxis domain={['dataMin - 1', 'dataMax + 1']} fontSize={11} width={32} />
+            <LineChart data={rolling7(weights)}>
+              <XAxis dataKey="date" tickFormatter={(d) => d.slice(5)} fontSize={11} axisLine={false} tickLine={false} />
+              <YAxis domain={['dataMin - 1', 'dataMax + 1']} fontSize={11} width={32} axisLine={false} tickLine={false} />
               <Tooltip />
-              <Line dataKey="kg" stroke="currentColor" dot={false} strokeWidth={2.5} />
+              {/* chấm mờ = cân từng ngày, đường đậm = trung bình 7 ngày (mới là xu hướng thật) */}
+              <Line dataKey="kg" name="Cân" stroke="currentColor" strokeOpacity={0.35} dot={{ r: 2 }} strokeWidth={1} />
+              <Line dataKey="avg" name="TB 7 ngày" stroke="currentColor" dot={false} strokeWidth={2.5} />
             </LineChart>
           </ResponsiveContainer></div>
+        )}
+        {advice ? (
+          <div className="tip">
+            <p>TB 7 ngày: {advice.change > 0 ? '+' : ''}{advice.change}kg/tuần ({advice.pct}%). {advice.msg}.</p>
+            {advice.adjust !== 0 && profile && (
+              <button onClick={applyAdvice}>
+                {advice.adjust > 0 ? `Ăn bớt 150 kcal/ngày` : `Ăn thêm 150 kcal/ngày`}
+              </button>
+            )}
+          </div>
+        ) : (
+          <p className="muted">Cân buổi sáng, ít nhất 3 lần/tuần. Đủ 2 tuần thì app gợi ý chỉnh kcal.</p>
         )}
       </section>
 

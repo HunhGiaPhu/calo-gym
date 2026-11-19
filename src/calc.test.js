@@ -1,5 +1,35 @@
 import { expect, test } from 'vitest'
-import { nutrients, targets, parsePlan, streak } from './calc'
+import { nutrients, targets, parsePlan, streak, addDays, rolling7, weightAdvice, nextKg } from './calc'
+
+test('addDays qua tháng', () => {
+  expect(addDays('2026-11-30', 1)).toBe('2026-12-01')
+  expect(addDays('2026-03-01', -1)).toBe('2026-02-28')
+})
+
+test('rolling7 chỉ lấy 7 ngày gần', () => {
+  const r = rolling7([{ date: '2026-11-01', kg: 80 }, { date: '2026-11-05', kg: 70 }, { date: '2026-11-09', kg: 72 }])
+  expect(r.map((x) => x.avg)).toEqual([80, 75, 71])
+})
+
+const series = (start, kgs) => kgs.map((kg, i) => ({ date: addDays(start, i), kg }))
+test('weightAdvice', () => {
+  const now = '2026-11-19'
+  expect(weightAdvice(series('2026-11-17', [70, 70, 70]), now)).toBeNull() // thiếu dữ liệu tuần trước
+  const flat = series('2026-11-06', Array(14).fill(70))
+  expect(weightAdvice(flat, now).adjust).toBe(150)
+  const good = series('2026-11-06', [...Array(7).fill(70), ...Array(7).fill(69.6)]) // -0.57%/tuần
+  expect(weightAdvice(good, now).adjust).toBe(0)
+  const fast = series('2026-11-06', [...Array(7).fill(70), ...Array(7).fill(69)]) // -1.4%/tuần
+  expect(weightAdvice(fast, now).adjust).toBe(-150)
+})
+
+test('nextKg', () => {
+  const plan = { sets: 3, reps: 10 }
+  expect(nextKg(plan, { sets: [{ kg: 40, reps: 10 }, { kg: 40, reps: 10 }, { kg: 40, reps: 11 }] })).toBe(42.5)
+  expect(nextKg(plan, { sets: [{ kg: 40, reps: 10 }, { kg: 40, reps: 8 }, { kg: 40, reps: 10 }] })).toBeNull()
+  expect(nextKg(plan, { sets: [{ kg: 40, reps: 10 }, { kg: 40, reps: 10 }] })).toBeNull() // thiếu set
+  expect(nextKg(plan, undefined)).toBeNull()
+})
 
 test('nutrients theo gram và theo phần', () => {
   expect(nutrients({ unit: 'g', kcal: 165, p: 31, c: 0, f: 3.6 }, 400)).toEqual({ kcal: 660, p: 124, c: 0, f: 14.4 })

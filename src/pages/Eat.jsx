@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../db'
-import { today, nutrients } from '../calc'
+import { today, nutrients, addDays } from '../calc'
 import { recognize } from '../gemini'
 import Camera from '../Camera'
 
@@ -132,6 +132,13 @@ export default function Eat() {
     if (missing) alert(`${missing} món trong combo không còn, đã bỏ qua`)
   }
 
+  const copyYesterday = async () => {
+    const prev = await db.logs.where('date').equals(addDays(date, -1)).toArray()
+    if (!prev.length) return alert('Hôm trước chưa ghi gì')
+    if (logs.length && !confirm(`Ngày ${date} đã có món. Vẫn chép thêm ${prev.length} món của hôm trước?`)) return
+    await db.logs.bulkAdd(prev.map(({ id: _id, ...l }) => ({ ...l, date })))
+  }
+
   // Lưu bữa đang chọn (hoặc cả ngày) thành combo. Combo cả ngày nhớ luôn bữa của từng món.
   const saveCombo = async (wholeDay) => {
     const src = wholeDay ? logs : logs.filter((l) => l.meal === meal)
@@ -203,6 +210,7 @@ export default function Eat() {
             <span>{Math.round(l.kcal)} kcal <button className="x" onClick={() => db.logs.delete(l.id)}>✕</button></span>
           </div>
         ))}
+        <button className="ghost" onClick={copyYesterday} style={{ width: '100%', marginTop: 8 }}>Ăn lại như hôm trước</button>
         <div className="row">
           <button className="ghost" onClick={() => saveCombo(false)}>Lưu bữa {meal} thành combo</button>
           <button className="ghost" onClick={() => saveCombo(true)}>Lưu cả ngày thành combo</button>
