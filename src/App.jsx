@@ -3,6 +3,7 @@ import Today from './pages/Today'
 import Eat from './pages/Eat'
 import Gym from './pages/Gym'
 import Progress from './pages/Progress'
+import ErrorBoundary from './ErrorBoundary'
 
 // Icon nét đơn giản, vẽ tay để khỏi thêm thư viện icon.
 const I = (d) => (
@@ -20,7 +21,7 @@ export default function App() {
   const Page = TABS.find((t) => t[0] === tab)[2]
   return (
     <>
-      <main><Page go={setTab} /></main>
+      <main><ErrorBoundary key={tab} onReset={() => setTab('today')}><Page go={setTab} /></ErrorBoundary></main>
       <nav>
         {TABS.map(([id, label, , icon]) => (
           <button key={id} className={tab === id ? 'on' : ''} aria-current={tab === id ? 'page' : undefined} onClick={() => setTab(id)}>
