@@ -93,6 +93,13 @@ export default function Gym({ startRest }) {
   // Bài đã ghi hôm nay, để đánh dấu ✓ buổi đã tập.
   const doneToday = useLiveQuery(async () => new Set((await db.sessions.where('date').equals(date).toArray()).map((s) => s.exercise)), [date]) ?? new Set()
 
+  // Bỏ tick = xoá số liệu set hôm nay của các bài trong buổi đó.
+  const undoToday = async (x) => {
+    if (!confirm(`Bỏ đánh dấu đã tập ${x.name} hôm nay?\nSố liệu set đã ghi hôm nay của buổi này sẽ bị xoá.`)) return
+    const names = new Set(x.items.map((ex) => ex.name))
+    await db.sessions.where('date').equals(date).filter((s) => names.has(s.exercise)).delete()
+  }
+
   if (editing) return <WorkoutForm initial={editing} onDone={() => setEditing(null)} />
 
   const w = workouts.find((x) => x.id === openId)
@@ -111,8 +118,10 @@ export default function Gym({ startRest }) {
                 <button className="combo" onClick={() => setOpenId(x.id)}>
                   {x.name} <small className="muted">· {x.items.length} bài</small>
                   {x.id === todayId && <span className="badge">Hôm nay</span>}
-                  {done && <span className="badge done">✓ Đã tập</span>}
                 </button>
+                {done && (
+                  <button className="ghost" onClick={() => undoToday(x)} aria-label={`Bỏ đánh dấu đã tập ${x.name}`}>✓ Đã tập</button>
+                )}
                 <button className="ghost" onClick={() => setEditing(x)}>Sửa</button>
               </div>
             )
