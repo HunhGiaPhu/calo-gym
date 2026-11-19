@@ -33,7 +33,8 @@ export default function Progress() {
   const profile = useSetting('profile', null)
   const schedule = useSetting('schedule', {})
   const weights = useLiveQuery(() => db.weights.orderBy('date').toArray()) ?? []
-  const sessionDates = useLiveQuery(async () => new Set(await db.sessions.orderBy('date').uniqueKeys())) ?? new Set()
+  // Không dùng uniqueKeys(): Safari iOS lỗi "Unable to open cursor" với key cursor.
+  const sessionDates = useLiveQuery(async () => new Set((await db.sessions.toArray()).map((s) => s.date))) ?? new Set()
   const [kg, setKg] = useState('')
 
   // Kcal 14 ngày gần nhất
