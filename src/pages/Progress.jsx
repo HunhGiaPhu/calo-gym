@@ -3,6 +3,25 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, Tooltip, ReferenceLine, ResponsiveContainer } from 'recharts'
 import { db, setSetting, useSetting, exportAll, importAll } from '../db'
 import { today, toDate, targets, streak, ACTIVITY } from '../calc'
+import { getKey, setKey, getModel, setModel, DEFAULT_MODEL } from '../gemini'
+
+function GeminiForm() {
+  const [key, setK] = useState(getKey())
+  const [model, setM] = useState(getModel())
+  const [saved, setSaved] = useState(false)
+  return (
+    <section>
+      <h2>Chụp món (Gemini)</h2>
+      <p className="muted">Lấy key ở aistudio.google.com/apikey. Key chỉ lưu trong máy này, không nằm trong file backup.</p>
+      <label>API key<input type="password" autoComplete="off" value={key} onChange={(e) => { setK(e.target.value); setSaved(false) }} /></label>
+      <label>Model<input value={model} placeholder={DEFAULT_MODEL} onChange={(e) => { setM(e.target.value); setSaved(false) }} /></label>
+      <div className="row">
+        <button onClick={() => { setKey(key); setModel(model); setSaved(true) }}>{saved ? 'Đã lưu ✓' : 'Lưu'}</button>
+        {key && <button className="ghost" onClick={() => { setKey(''); setK(''); setSaved(false) }}>Xoá key</button>}
+      </div>
+    </section>
+  )
+}
 
 const DEFAULT_PROFILE = { sex: 'nam', age: 20, height: 170, weight: 65, activity: 1.55, deficit: 400 }
 
@@ -111,6 +130,8 @@ export default function Progress() {
       </section>
 
       <ProfileForm key={profile ? 'p' : 'new'} profile={profile} />
+
+      <GeminiForm />
 
       <section>
         <h2>Backup</h2>

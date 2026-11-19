@@ -2,12 +2,78 @@ import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../db'
 import { today, nutrients } from '../calc'
+import { recognize } from '../gemini'
 
 const MEALS = ['Sáng', 'Trưa', 'Tối', 'Phụ']
 const EMPTY = { name: '', unit: 'g', kcal: '', p: '', c: '', f: '' }
 
 const addLog = (date, meal, food, qty) =>
   db.logs.add({ date, meal, foodId: food.id, name: food.name, unit: food.unit, qty, ...nutrients(food, qty) })
+
+// Món AI đoán: dùng lại món cùng tên nếu có, không thì thêm mới để combo dùng được.
+async function foodFor(it) {
+  const same = await db.foods.filter((f) => f.name.toLowerCase() === it.name.toLowerCase()).first()
+  if (same) return same
+  const food = { name: it.name, unit: 'g', kcal: it.kcal, p: it.p, c: it.c, f: it.f }
+  return { ...food, id: await db.foods.add(food) }
+}
+
+function PhotoLog({ date, meal }) {
+  const [busy, setBusy] = useState(false)
+  const [items, setItems] = useState(null)
+  const [err, setErr] = useState('')
+
+  const onFile = async (e) => {
+    const file = e.target.files[0]
+    e.target.value = ''
+    if (!file) return
+    setBusy(true); setErr(''); setItems(null)
+    try {
+      const found = await recognize(file)
+      if (!found.length) setErr('Không nhận ra món nào, thử chụp gần và rõ hơn.')
+      setItems(found.map((it) => ({ ...it, on: true })))
+    } catch (ex) {
+      setErr(ex.message)
+    } finally {
+      setBusy(false)
+    }
+  }
+  const edit = (i, patch) => setItems(items.map((it, j) => (j === i ? { ...it, ...patch } : it)))
+  const saveAll = async () => {
+    for (const it of items.filter((x) => x.on && +x.grams > 0)) {
+      // Lưu món theo số AI đoán, rồi ghi theo gram người dùng đã sửa.
+      await addLog(date, meal, await foodFor(it), +it.grams)
+    }
+    setItems(null)
+  }
+
+  return (
+    <section>
+      <h2>Chụp món</h2>
+      <label className="btn" style={{ alignItems: 'center', color: 'var(--on-accent)' }}>
+        {busy ? 'Đang nhận diện…' : '📷 Chụp / chọn ảnh'}
+        <input type="file" accept="image/*" hidden disabled={busy} onChange={onFile} />
+      </label>
+      {err && <p className="note">{err}</p>}
+      {items?.length > 0 && (
+        <>
+          <p className="muted">AI chỉ ước lượng, sửa lại số gram cho đúng rồi ghi.</p>
+          {items.map((it, i) => (
+            <div key={i} className="row item">
+              <input type="checkbox" checked={it.on} onChange={(e) => edit(i, { on: e.target.checked })} style={{ width: 22, minHeight: 22, flex: 'none' }} />
+              <span>{it.name} <small className="muted">{Math.round((it.kcal * (+it.grams || 0)) / 100)} kcal</small></span>
+              <input type="number" inputMode="decimal" value={it.grams} onChange={(e) => edit(i, { grams: e.target.value })} style={{ maxWidth: 90, flex: 'none' }} aria-label={`Gram ${it.name}`} />
+            </div>
+          ))}
+          <div className="row">
+            <button onClick={saveAll}>Ghi vào bữa {meal}</button>
+            <button className="ghost" onClick={() => setItems(null)}>Huỷ</button>
+          </div>
+        </>
+      )}
+    </section>
+  )
+}
 
 function FoodForm({ initial, onDone }) {
   const [f, setF] = useState(initial)
@@ -101,6 +167,8 @@ export default function Eat() {
           </div>
         ))}
       </section>
+
+      <PhotoLog date={date} meal={meal} />
 
       <section>
         <h2>Thêm món</h2>

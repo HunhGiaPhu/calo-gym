@@ -1,0 +1,82 @@
+// Nhận diện món từ ảnh bằng Gemini API, gọi thẳng từ trình duyệt bằng key của người dùng.
+// shortcut: key nằm trong localStorage của máy, chỉ hợp app cá nhân; app nhiều người thì phải qua server.
+
+const KEY = 'geminiKey'
+const MODEL = 'geminiModel'
+export const DEFAULT_MODEL = 'gemini-flash-latest'
+
+const read = (k) => { try { return localStorage.getItem(k) || '' } catch { return '' } }
+const write = (k, v) => {
+  try {
+    if (v) localStorage.setItem(k, v)
+    else localStorage.removeItem(k)
+  } catch { /* private mode */ }
+}
+export const getKey = () => read(KEY)
+export const setKey = (v) => write(KEY, v.trim())
+export const getModel = () => read(MODEL) || DEFAULT_MODEL
+export const setModel = (v) => write(MODEL, v.trim())
+
+const PROMPT = `Ảnh là bữa ăn của một người Việt đang giảm mỡ tăng cơ.
+Liệt kê từng món/thành phần nhìn thấy, ước lượng khối lượng ăn được (gram) và dinh dưỡng CHO ĐÚNG LƯỢNG ĐÓ:
+kcal, p (protein g), c (carb g), f (fat g). Tên món bằng tiếng Việt, ngắn gọn (vd "Cơm trắng", "Ức gà luộc").
+Không thấy đồ ăn thì trả items rỗng.`
+
+const SCHEMA = {
+  type: 'OBJECT',
+  properties: {
+    items: {
+      type: 'ARRAY',
+      items: {
+        type: 'OBJECT',
+        properties: {
+          name: { type: 'STRING' }, grams: { type: 'NUMBER' },
+          kcal: { type: 'NUMBER' }, p: { type: 'NUMBER' }, c: { type: 'NUMBER' }, f: { type: 'NUMBER' },
+        },
+        required: ['name', 'grams', 'kcal', 'p', 'c', 'f'],
+      },
+    },
+  },
+  required: ['items'],
+}
+
+// Dữ liệu từ AI là dữ liệu ngoài: lọc kỹ, đổi về "trên 100g" để người dùng sửa gram thì số tự tính lại.
+export function parseItems(text) {
+  let data
+  try { data = JSON.parse(text) } catch { throw new Error('Gemini trả về không đọc được') }
+  const n = (x) => (Number.isFinite(+x) && +x > 0 ? +x : 0)
+  return (Array.isArray(data?.items) ? data.items : [])
+    .filter((it) => typeof it?.name === 'string' && it.name.trim() && n(it.grams) > 0)
+    .slice(0, 15)
+    .map((it) => {
+      const g = n(it.grams)
+      const per = (x) => Math.round((n(x) / g) * 1000) / 10
+      return { name: it.name.trim().slice(0, 60), grams: Math.round(g), kcal: per(it.kcal), p: per(it.p), c: per(it.c), f: per(it.f) }
+    })
+}
+
+// Thu nhỏ ảnh về cạnh dài 1024px: gửi nhanh hơn, tốn ít quota hơn.
+async function toJpegBase64(file, max = 1024) {
+  const bmp = await createImageBitmap(file)
+  const s = Math.min(1, max / Math.max(bmp.width, bmp.height))
+  const cv = Object.assign(document.createElement('canvas'), { width: Math.round(bmp.width * s), height: Math.round(bmp.height * s) })
+  cv.getContext('2d').drawImage(bmp, 0, 0, cv.width, cv.height)
+  return cv.toDataURL('image/jpeg', 0.8).split(',')[1]
+}
+
+export async function recognize(file) {
+  const key = getKey()
+  if (!key) throw new Error('Chưa có API key. Nhập ở tab Tiến độ.')
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(getModel())}:generateContent`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
+    body: JSON.stringify({
+      contents: [{ parts: [{ inline_data: { mime_type: 'image/jpeg', data: await toJpegBase64(file) } }, { text: PROMPT }] }],
+      generationConfig: { responseMimeType: 'application/json', responseSchema: SCHEMA },
+    }),
+  })
+  const body = await res.json().catch(() => ({}))
+  if (!res.ok) throw new Error(body?.error?.message || `Lỗi ${res.status}`)
+  const text = (body.candidates?.[0]?.content?.parts ?? []).map((p) => p.text ?? '').join('')
+  return parseItems(text)
+}
