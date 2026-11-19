@@ -70,10 +70,21 @@ export default function Progress() {
   }
 
   const doExport = async () => {
-    const blob = new Blob([JSON.stringify(await exportAll())], { type: 'application/json' })
-    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `calo-gym-backup-${today()}.json` })
-    a.click()
-    URL.revokeObjectURL(a.href)
+    const file = new File([JSON.stringify(await exportAll())], `calo-gym-backup-${today()}.json`, { type: 'application/json' })
+    // iPhone: mở bảng Chia sẻ để chọn Drive / Lưu vào Tệp. Máy không hỗ trợ thì tải file về.
+    if (navigator.canShare?.({ files: [file] })) {
+      try {
+        await navigator.share({ files: [file], title: 'Backup Calo Gym' })
+      } catch (err) {
+        if (err.name === 'AbortError') return // người dùng bấm huỷ: chưa tính là đã backup
+        alert(`Không chia sẻ được: ${err.message}`)
+        return
+      }
+    } else {
+      const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(file), download: file.name })
+      a.click()
+      URL.revokeObjectURL(a.href)
+    }
     await setSetting('lastBackup', Date.now())
   }
 
@@ -135,9 +146,9 @@ export default function Progress() {
 
       <section>
         <h2>Backup</h2>
-        <p className="muted">Dữ liệu chỉ nằm trong máy này. Backup ra file rồi lưu lên Drive cho chắc.</p>
+        <p className="muted">Dữ liệu chỉ nằm trong máy này. Bấm Backup rồi chọn Drive hoặc "Lưu vào Tệp".</p>
         <div className="row">
-          <button onClick={doExport}>Xuất backup</button>
+          <button onClick={doExport}>Backup</button>
           <label className="btn ghost">Nhập backup<input type="file" accept=".json" hidden onChange={doImport} /></label>
         </div>
       </section>
