@@ -5,7 +5,7 @@ import { today, parsePlan, planToText, nextKg } from '../calc'
 
 const DAYS = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7']
 
-function ExerciseLog({ ex, date, startRest, restSec }) {
+function ExerciseLog({ ex, date, startRest, restSec, onSkip }) {
   const hist = useLiveQuery(() => db.sessions.where('exercise').equals(ex.name).sortBy('date'), [ex.name]) ?? []
   const todayRow = hist.find((h) => h.date === date)
   const last = hist.filter((h) => h.date < date).at(-1)
@@ -34,7 +34,10 @@ function ExerciseLog({ ex, date, startRest, restSec }) {
 
   return (
     <section>
-      <h2>{ex.name} <small className="muted">{ex.sets}x{ex.reps}</small></h2>
+      <div className="row" style={{ margin: 0 }}>
+        <h2 style={{ margin: 0 }}>{ex.name} <small className="muted">{ex.sets}x{ex.reps}</small></h2>
+        <button className="x" onClick={onSkip} aria-label={`Bỏ bài ${ex.name} hôm nay`}>✕</button>
+      </div>
       {last && <p className="muted">Lần trước ({last.date}): {last.sets.map((s) => `${s.kg}kg×${s.reps}`).join(', ')}</p>}
       {sug && <p className="tip">Lần trước đủ rep, thử {sug}kg</p>}
       {sets.map((s, i) => (
@@ -58,7 +61,7 @@ function WorkoutForm({ initial, onDone }) {
   const [text, setText] = useState(planToText(initial.items ?? []))
   const save = async () => {
     const items = parsePlan(text)
-    if (!name.trim() || !items.length) return alert('Cần tên buổi và ít nhất 1 bài')
+    if (!name.trim()) return alert('Cần tên buổi tập')
     await db.workouts.put({ ...(initial.id && { id: initial.id }), name: name.trim(), items })
     onDone()
   }
@@ -81,6 +84,10 @@ export default function Gym({ startRest }) {
   const workouts = useLiveQuery(() => db.workouts.toArray()) ?? []
   const schedule = useSetting('schedule', {})
   const restSec = useSetting('restSec', 120)
+  // Bài bỏ qua chỉ tính cho hôm nay: sang ngày khác tự hiện lại.
+  const skipRow = useSetting('skip', null)
+  const skipped = skipRow?.date === date ? skipRow.names : []
+  const setSkipped = (names) => setSetting('skip', { date, names })
   const [chosen, setChosen] = useState(null)
   const [editing, setEditing] = useState(null)
 
@@ -106,7 +113,27 @@ export default function Gym({ startRest }) {
           </div>
         </div>
       )}
-      {w?.items.map((ex) => <ExerciseLog key={`${w.id}-${ex.name}`} ex={ex} date={date} startRest={startRest} restSec={restSec} />)}
+      {w && w.items.length === 0 && (
+        <section>
+          <p className="muted">Buổi {w.name} chưa có bài nào.</p>
+          <button onClick={() => setEditing(w)}>+ Thêm bài cho {w.name}</button>
+        </section>
+      )}
+      {w?.items.filter((ex) => !skipped.includes(ex.name)).map((ex) => (
+        <ExerciseLog key={`${w.id}-${ex.name}`} ex={ex} date={date} startRest={startRest} restSec={restSec}
+          onSkip={() => setSkipped([...skipped, ex.name])} />
+      ))}
+      {w && skipped.some((n) => w.items.some((ex) => ex.name === n)) && (
+        <section>
+          <h2>Bỏ hôm nay</h2>
+          {skipped.filter((n) => w.items.some((ex) => ex.name === n)).map((n) => (
+            <div key={n} className="row item">
+              <span className="muted">{n}</span>
+              <button className="ghost" onClick={() => setSkipped(skipped.filter((x) => x !== n))}>Hiện lại</button>
+            </div>
+          ))}
+        </section>
+      )}
 
       <section>
         <h2>Lịch theo thứ</h2>

@@ -12,7 +12,20 @@ db.version(1).stores({
   weights: 'date',
   settings: 'key',
 })
-db.on('populate', (tx) => tx.table('foods').bulkAdd(seedFoods))
+const SPLIT = ['Push', 'Pull', 'Leg', 'Back + Chest', 'Arm + Vai + Abs']
+
+// Thêm các buổi tập mặc định còn thiếu (so theo tên), bài tập để người dùng tự nhập.
+async function addSplit(tx) {
+  const have = new Set((await tx.table('workouts').toArray()).map((w) => w.name.toLowerCase()))
+  await tx.table('workouts').bulkAdd(SPLIT.filter((n) => !have.has(n.toLowerCase())).map((name) => ({ name, items: [] })))
+}
+
+// v2: không đổi bảng, chỉ để chạy addSplit một lần trên máy đã cài từ trước.
+db.version(2).stores({}).upgrade(addSplit)
+db.on('populate', async (tx) => {
+  await tx.table('foods').bulkAdd(seedFoods)
+  await addSplit(tx)
+})
 
 // Xin trình duyệt đừng tự xoá dữ liệu khi máy đầy bộ nhớ.
 navigator.storage?.persist?.()
