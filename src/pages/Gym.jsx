@@ -88,22 +88,59 @@ export default function Gym({ startRest }) {
   const skipRow = useSetting('skip', null)
   const skipped = skipRow?.date === date ? skipRow.names : []
   const setSkipped = (names) => setSetting('skip', { date, names })
-  const [chosen, setChosen] = useState(null)
+  const [openId, setOpenId] = useState(null)
   const [editing, setEditing] = useState(null)
+  // Bài đã ghi hôm nay, để đánh dấu ✓ buổi đã tập.
+  const doneToday = useLiveQuery(async () => new Set((await db.sessions.where('date').equals(date).toArray()).map((s) => s.exercise)), [date]) ?? new Set()
 
   if (editing) return <WorkoutForm initial={editing} onDone={() => setEditing(null)} />
 
-  const wid = chosen ?? schedule[new Date().getDay()]
-  const w = workouts.find((x) => x.id === wid)
+  const w = workouts.find((x) => x.id === openId)
+  const todayId = schedule[new Date().getDay()]
+
+  if (!w) {
+    return (
+      <>
+        <h1>Tập</h1>
+        <section>
+          <h2>Chọn buổi tập</h2>
+          {workouts.map((x) => {
+            const done = x.items.some((ex) => doneToday.has(ex.name))
+            return (
+              <div key={x.id} className="row item">
+                <button className="combo" onClick={() => setOpenId(x.id)}>
+                  {x.name} <small className="muted">· {x.items.length} bài</small>
+                  {x.id === todayId && <span className="badge">Hôm nay</span>}
+                  {done && <span className="badge done">✓ Đã tập</span>}
+                </button>
+                <button className="ghost" onClick={() => setEditing(x)}>Sửa</button>
+              </div>
+            )
+          })}
+          <button className="ghost" onClick={() => setEditing({})}>+ Buổi tập mới</button>
+        </section>
+
+        <section>
+          <h2>Lịch theo thứ</h2>
+          {DAYS.map((d, i) => (
+            <div key={i} className="row">
+              <span>{d}</span>
+              <select value={schedule[i] ?? ''} onChange={(e) => setSetting('schedule', { ...schedule, [i]: e.target.value ? +e.target.value : null })}>
+                <option value="">Nghỉ</option>
+                {workouts.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}
+              </select>
+            </div>
+          ))}
+        </section>
+      </>
+    )
+  }
 
   return (
     <>
-      <h1>Tập</h1>
-      <select value={wid ?? ''} onChange={(e) => setChosen(e.target.value ? +e.target.value : 0)}>
-        <option value="">Hôm nay nghỉ</option>
-        {workouts.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}
-      </select>
-      {w && (
+      <button className="ghost" onClick={() => setOpenId(null)}>← Quay lại</button>
+      <h1>{w.name} <small className="muted" style={{ fontSize: '1rem', fontWeight: 400 }}>· {date.split('-').reverse().join('/')}</small></h1>
+      {w.items.length > 0 && (
         <div className="row">
           <span className="muted">Nghỉ giữa set</span>
           <div className="seg">
@@ -113,17 +150,17 @@ export default function Gym({ startRest }) {
           </div>
         </div>
       )}
-      {w && w.items.length === 0 && (
+      {w.items.length === 0 && (
         <section>
           <p className="muted">Buổi {w.name} chưa có bài nào.</p>
           <button onClick={() => setEditing(w)}>+ Thêm bài cho {w.name}</button>
         </section>
       )}
-      {w?.items.filter((ex) => !skipped.includes(ex.name)).map((ex) => (
+      {w.items.filter((ex) => !skipped.includes(ex.name)).map((ex) => (
         <ExerciseLog key={`${w.id}-${ex.name}`} ex={ex} date={date} startRest={startRest} restSec={restSec}
           onSkip={() => setSkipped([...skipped, ex.name])} />
       ))}
-      {w && skipped.some((n) => w.items.some((ex) => ex.name === n)) && (
+      {skipped.some((n) => w.items.some((ex) => ex.name === n)) && (
         <section>
           <h2>Bỏ hôm nay</h2>
           {skipped.filter((n) => w.items.some((ex) => ex.name === n)).map((n) => (
@@ -134,30 +171,6 @@ export default function Gym({ startRest }) {
           ))}
         </section>
       )}
-
-      <section>
-        <h2>Lịch theo thứ</h2>
-        {DAYS.map((d, i) => (
-          <div key={i} className="row">
-            <span>{d}</span>
-            <select value={schedule[i] ?? ''} onChange={(e) => setSetting('schedule', { ...schedule, [i]: e.target.value ? +e.target.value : null })}>
-              <option value="">Nghỉ</option>
-              {workouts.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}
-            </select>
-          </div>
-        ))}
-      </section>
-
-      <section>
-        <h2>Các buổi tập</h2>
-        {workouts.map((x) => (
-          <div key={x.id} className="row item">
-            <span>{x.name} <small className="muted">{x.items.length} bài</small></span>
-            <button className="ghost" onClick={() => setEditing(x)}>Sửa</button>
-          </div>
-        ))}
-        <button className="ghost" onClick={() => setEditing({})}>+ Buổi tập mới</button>
-      </section>
     </>
   )
 }
