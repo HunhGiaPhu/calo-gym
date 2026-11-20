@@ -72,7 +72,7 @@ function PhotoLog({ date, meal }) {
         <>
           <p className="muted">AI chỉ ước lượng, sửa lại số gram cho đúng rồi ghi. * = số do AI tra, không có trong danh sách món.</p>
           <table className="macros">
-            <thead><tr><th>Món</th><th>Gram</th><th>Kcal</th><th>P</th><th>C</th><th>F</th></tr></thead>
+            <thead><tr><th>Món</th><th>Gram</th><th aria-label="Kcal" title="Kcal">🔥</th><th aria-label="Protein" title="Protein">🥩</th><th aria-label="Carb" title="Carb">🍚</th><th aria-label="Fat" title="Fat">🧈</th></tr></thead>
             <tbody>
               {items.map((it, i) => {
                 const n = nutrients({ unit: 'g', ...it }, +it.grams || 0)

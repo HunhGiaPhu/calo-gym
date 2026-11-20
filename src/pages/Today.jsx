@@ -32,10 +32,10 @@ export default function Today({ go }) {
       {!profile && <p className="note" onClick={() => go('progress')}>Chưa có chỉ số cơ thể. Bấm để nhập ở tab Tiến độ.</p>}
       <section>
         {t && <p className="big">{Math.round(t.kcal - s.kcal)} <small>kcal còn lại</small></p>}
-        <Meter label="Kcal" value={s.kcal} target={t?.kcal} unit="" />
-        <Meter label="Protein" value={s.p} target={t?.p} unit="g" />
-        <Meter label="Carb" value={s.c} target={t?.c} unit="g" />
-        <Meter label="Fat" value={s.f} target={t?.f} unit="g" />
+        <Meter label="🔥 Kcal" value={s.kcal} target={t?.kcal} unit="" />
+        <Meter label="🥩 Protein" value={s.p} target={t?.p} unit="g" />
+        <Meter label="🍚 Carb" value={s.c} target={t?.c} unit="g" />
+        <Meter label="🧈 Fat" value={s.f} target={t?.f} unit="g" />
       </section>
       <section onClick={() => go('gym')}>
         <h2>Lịch tập</h2>
