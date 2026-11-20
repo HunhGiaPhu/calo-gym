@@ -794,3 +794,8 @@ table.macros { width: 100%; border-collapse: collapse; font-size: .85rem; font-v
 .macros label { flex-direction: row; align-items: center; margin: 0; font-size: inherit; color: var(--ink); text-align: left; }
 .macros input[type=checkbox] { width: 18px; min-height: 18px; flex: none; }
 .macros input[type=number] { width: 58px; min-height: 36px; padding: 4px 6px; text-align: right; }
+
+/* Hàng chọn bữa: Sáng / Trưa / Tối / Phụ */
+.meals { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.meals button { padding-left: 0; padding-right: 0; }
+.meals button:disabled { opacity: .35; }

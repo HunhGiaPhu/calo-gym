@@ -47,10 +47,10 @@ function PhotoLog({ date, meal }) {
     }
   }
   const edit = (i, patch) => setItems(items.map((it, j) => (j === i ? { ...it, ...patch } : it)))
-  const saveAll = async () => {
+  const saveAll = async (m) => {
     for (const it of items.filter((x) => x.on && +x.grams > 0)) {
       // Lưu món theo số AI đoán, rồi ghi theo gram người dùng đã sửa.
-      await addLog(date, meal, await foodFor(it), +it.grams)
+      await addLog(date, m, await foodFor(it), +it.grams)
     }
     setItems(null)
   }
@@ -94,10 +94,11 @@ function PhotoLog({ date, meal }) {
               })()}
             </tfoot>
           </table>
-          <div className="row">
-            <button onClick={saveAll}>Ghi vào bữa {meal}</button>
-            <button className="ghost" onClick={() => setItems(null)}>Huỷ</button>
+          <p className="muted">Ghi vào bữa:</p>
+          <div className="meals">
+            {MEALS.map((m) => <button key={m} className={m === meal ? '' : 'ghost'} onClick={() => saveAll(m)}>{m}</button>)}
           </div>
+          <button className="ghost" onClick={() => setItems(null)} style={{ width: '100%', marginTop: 8 }}>Huỷ</button>
         </>
       )}
     </section>
@@ -169,15 +170,15 @@ export default function Eat() {
     await db.logs.bulkAdd(prev.map(({ id: _id, ...l }) => ({ ...l, date })))
   }
 
-  // Lưu bữa đang chọn (hoặc cả ngày) thành combo. Combo cả ngày nhớ luôn bữa của từng món.
-  const saveCombo = async (wholeDay) => {
-    const src = wholeDay ? logs : logs.filter((l) => l.meal === meal)
+  // Lưu 1 bữa (m) hoặc cả ngày (m = null) thành combo. Combo cả ngày nhớ luôn bữa của từng món.
+  const saveCombo = async (m) => {
+    const src = m ? logs.filter((l) => l.meal === m) : logs
     if (!src.length) return alert('Chưa có món nào để lưu')
-    const name = prompt('Tên combo?', wholeDay ? 'Ngày thường' : `${meal} thường`)
+    const name = prompt('Tên combo?', m ? `${m} thường` : 'Ngày thường')
     if (!name) return
     await db.combos.add({
       name,
-      items: src.map((l) => ({ foodId: l.foodId, qty: l.qty, meal: wholeDay ? l.meal : null })),
+      items: src.map((l) => ({ foodId: l.foodId, qty: l.qty, meal: m ? null : l.meal })),
     })
   }
 
@@ -241,10 +242,13 @@ export default function Eat() {
           </div>
         ))}
         <button className="ghost" onClick={copyYesterday} style={{ width: '100%', marginTop: 8 }}>Ăn lại như hôm trước</button>
-        <div className="row">
-          <button className="ghost" onClick={() => saveCombo(false)}>Lưu bữa {meal} thành combo</button>
-          <button className="ghost" onClick={() => saveCombo(true)}>Lưu cả ngày thành combo</button>
+        <p className="muted">Lưu thành combo:</p>
+        <div className="meals">
+          {MEALS.map((m) => (
+            <button key={m} className="ghost" disabled={!logs.some((l) => l.meal === m)} onClick={() => saveCombo(m)}>{m}</button>
+          ))}
         </div>
+        <button className="ghost" disabled={!logs.length} onClick={() => saveCombo(null)} style={{ width: '100%', marginTop: 8 }}>Lưu cả ngày</button>
       </section>
     </>
   )
