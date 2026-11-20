@@ -4,7 +4,7 @@ import { LineChart, Line, BarChart, Bar, XAxis, YAxis, Tooltip, ReferenceLine, R
 import { db, setSetting, useSetting, exportAll, importAll } from '../db'
 import { today, toDate, targets, streak, ACTIVITY, rolling7, weightAdvice } from '../calc'
 import { getKey, setKey, getModel, setModel, DEFAULT_MODEL } from '../gemini'
-import { loadGis, getToken, uploadBackup } from '../drive'
+import { loadGis, backupToDrive } from '../drive'
 
 function GeminiForm() {
   const [key, setK] = useState(getKey())
@@ -96,10 +96,8 @@ export default function Progress() {
   useEffect(() => { loadGis().catch(() => {}) }, [])
   const doDrive = () => {
     setDriveMsg('Đang lưu lên Drive…')
-    getToken()
-      .then(async () => {
-        await uploadBackup(JSON.stringify(await exportAll()))
-        await setSetting('lastBackup', Date.now())
+    backupToDrive()
+      .then(() => {
         setDriveMsg(`Đã lưu lên Drive lúc ${new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })} ✓`)
       })
       .catch((err) => setDriveMsg(`Chưa lưu được: ${err.message}`))

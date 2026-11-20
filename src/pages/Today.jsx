@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, useSetting } from '../db'
 import { today, sumLogs, targets } from '../calc'
+import { loadGis, backupToDrive } from '../drive'
 
 export function Meter({ label, value, target, unit }) {
   const pct = target ? Math.min(100, (value / target) * 100) : 0
@@ -25,6 +27,15 @@ export default function Today({ go }) {
   const w = workouts.find((x) => x.id === schedule[new Date().getDay()])
   const hasData = useLiveQuery(() => db.logs.count()) > 0
   const backupOld = hasData && (!lastBackup || Date.now() - lastBackup > 7 * 864e5)
+  const [driveMsg, setDriveMsg] = useState('')
+  // Tải sẵn thư viện Google khi cần nhắc, để bấm nút là mở cửa sổ đăng nhập được ngay (iPhone chặn nếu chờ).
+  useEffect(() => { if (backupOld) loadGis().catch(() => {}) }, [backupOld])
+  const doDrive = () => {
+    setDriveMsg('Đang lưu lên Drive…')
+    backupToDrive()
+      .then(() => setDriveMsg('Đã lưu lên Drive ✓'))
+      .catch((err) => setDriveMsg(`Chưa lưu được: ${err.message}`))
+  }
 
   return (
     <>
@@ -52,7 +63,18 @@ export default function Today({ go }) {
         ))}
         <button onClick={() => go('eat')}>+ Ghi món</button>
       </section>
-      {backupOld && <p className="note" onClick={() => go('progress')}>Đã hơn 7 ngày chưa backup. Bấm để backup.</p>}
+      {(backupOld || driveMsg) && (
+        <section>
+          <h2>Backup</h2>
+          {backupOld && (
+            <>
+              <p className="muted">Đã hơn 7 ngày chưa backup. Bấm 1 lần để lưu lên Drive.</p>
+              <button onClick={doDrive} style={{ width: '100%' }}>Lưu vào Drive</button>
+            </>
+          )}
+          {driveMsg && <p className="muted">{driveMsg}</p>}
+        </section>
+      )}
     </>
   )
 }

@@ -1,3 +1,5 @@
+import { exportAll, setSetting } from './db'
+
 // Backup thẳng lên Google Drive bằng Google Identity Services (token client, không cần server).
 // Client ID không phải bí mật: Google chỉ cho dùng từ origin đã khai báo (hunhgiaphu.github.io).
 const CLIENT_ID = '708462321380-8f3cr69htphqfpefiaa166i6imh211i3.apps.googleusercontent.com'
@@ -64,3 +66,9 @@ export async function uploadBackup(json) {
     method: 'POST', headers: { 'Content-Type': `multipart/related; boundary=${b}` }, body,
   })
 }
+
+// Gọi NGAY trong lúc bấm nút (getToken chạy trước mọi await), dùng chung cho tab Hôm nay và Tiến độ.
+export const backupToDrive = () => getToken().then(async () => {
+  await uploadBackup(JSON.stringify(await exportAll()))
+  await setSetting('lastBackup', Date.now())
+})
