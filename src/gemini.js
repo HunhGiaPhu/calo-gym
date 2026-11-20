@@ -3,7 +3,8 @@
 
 const KEY = 'geminiKey'
 const MODEL = 'geminiModel'
-export const DEFAULT_MODEL = 'gemini-flash-latest'
+// Bản lite trả lời ~10s; gemini-flash-latest hay quá tải, treo >60s làm Safari báo "Load failed".
+export const DEFAULT_MODEL = 'gemini-flash-lite-latest'
 
 const read = (k) => { try { return localStorage.getItem(k) || '' } catch { return '' } }
 const write = (k, v) => {
@@ -56,8 +57,20 @@ export function parseItems(text) {
 }
 
 // Thu nhỏ ảnh về cạnh dài 1024px: gửi nhanh hơn, tốn ít quota hơn.
+// createImageBitmap hay lỗi với ảnh thư viện trên iPhone: lỗi thì giải mã bằng <img>.
+async function decode(file) {
+  try {
+    return await createImageBitmap(file)
+  } catch {
+    const img = new Image()
+    img.src = URL.createObjectURL(file)
+    try { await img.decode() } finally { URL.revokeObjectURL(img.src) }
+    return img
+  }
+}
+
 async function toJpegBase64(file, max = 1024) {
-  const bmp = await createImageBitmap(file)
+  const bmp = await decode(file)
   const s = Math.min(1, max / Math.max(bmp.width, bmp.height))
   const cv = Object.assign(document.createElement('canvas'), { width: Math.round(bmp.width * s), height: Math.round(bmp.height * s) })
   cv.getContext('2d').drawImage(bmp, 0, 0, cv.width, cv.height)
@@ -67,14 +80,36 @@ async function toJpegBase64(file, max = 1024) {
 export async function recognize(file) {
   const key = getKey()
   if (!key) throw new Error('Chưa có API key. Nhập ở tab Tiến độ.')
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(getModel())}:generateContent`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
-    body: JSON.stringify({
-      contents: [{ parts: [{ inline_data: { mime_type: 'image/jpeg', data: await toJpegBase64(file) } }, { text: PROMPT }] }],
-      generationConfig: { responseMimeType: 'application/json', responseSchema: SCHEMA },
-    }),
-  })
+  // Báo rõ hỏng ở bước nào (đọc ảnh hay gửi đi), vì Safari chỉ báo chung chung "Load failed".
+  let data
+  try { data = await toJpegBase64(file) } catch (e) { throw new Error(`Không đọc được ảnh (${e.name}: ${e.message})`) }
+  // Model đã chọn quá tải hoặc chậm quá 30s (Safari tự cắt ở ~60s) thì thử lại bằng model mặc định.
+  const models = [...new Set([getModel(), DEFAULT_MODEL])]
+  let res
+  for (const [i, model] of models.entries()) {
+    const last = i === models.length - 1
+    const ctl = new AbortController()
+    const timer = setTimeout(() => ctl.abort(), 30000)
+    try {
+      res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
+        method: 'POST',
+        signal: ctl.signal,
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
+        body: JSON.stringify({
+          contents: [{ parts: [{ inline_data: { mime_type: 'image/jpeg', data } }, { text: PROMPT }] }],
+          generationConfig: { responseMimeType: 'application/json', responseSchema: SCHEMA },
+        }),
+      })
+    } catch (e) {
+      if (!last && e.name === 'AbortError') continue
+      throw new Error(e.name === 'AbortError'
+        ? 'Gemini không trả lời sau 30 giây (đang quá tải), thử lại sau.'
+        : `Không gửi được tới Gemini (${e.name}: ${e.message}). Ảnh ${Math.round(data.length / 1024)}KB.`)
+    } finally {
+      clearTimeout(timer)
+    }
+    if (last || ![429, 500, 503].includes(res.status)) break
+  }
   const body = await res.json().catch(() => ({}))
   if (!res.ok) throw new Error(body?.error?.message || `Lỗi ${res.status}`)
   const text = (body.candidates?.[0]?.content?.parts ?? []).map((p) => p.text ?? '').join('')

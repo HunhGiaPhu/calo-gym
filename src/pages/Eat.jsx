@@ -58,7 +58,14 @@ function PhotoLog({ date, meal }) {
   return (
     <section>
       <h2>Chụp món</h2>
-      <button disabled={busy} onClick={() => setCam(true)}>{busy ? 'Đang nhận diện…' : '📷 Chụp món'}</button>
+      <div className="row">
+        <button disabled={busy} onClick={() => setCam(true)}>{busy ? 'Đang nhận diện…' : '📷 Chụp món'}</button>
+        {!busy && (
+          <label className="btn ghost">🖼 Gửi ảnh
+            <input type="file" accept="image/*" hidden onChange={(e) => { const f = e.target.files[0]; e.target.value = ''; if (f) onFile(f) }} />
+          </label>
+        )}
+      </div>
       {cam && <Camera onPick={onFile} onClose={() => setCam(false)} />}
       {err && <p className="note">{err}</p>}
       {items?.length > 0 && (
