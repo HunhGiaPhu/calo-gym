@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../db'
-import { today, nutrients, addDays } from '../calc'
+import { today, nutrients, addDays, sumLogs } from '../calc'
 import { recognize } from '../gemini'
 import Camera from '../Camera'
 
@@ -11,9 +11,12 @@ const EMPTY = { name: '', unit: 'g', kcal: '', p: '', c: '', f: '' }
 const addLog = (date, meal, food, qty) =>
   db.logs.add({ date, meal, foodId: food.id, name: food.name, unit: food.unit, qty, ...nutrients(food, qty) })
 
+// Chỉ khớp món tính theo gram: món "theo phần" mà ghi số gram thì ra sai (50g thành 50 phần).
+const findByName = (name) => db.foods.filter((f) => f.unit === 'g' && f.name.toLowerCase() === name.toLowerCase()).first()
+
 // Món AI đoán: dùng lại món cùng tên nếu có, không thì thêm mới để combo dùng được.
 async function foodFor(it) {
-  const same = await db.foods.filter((f) => f.name.toLowerCase() === it.name.toLowerCase()).first()
+  const same = await findByName(it.name)
   if (same) return same
   const food = { name: it.name, unit: 'g', kcal: it.kcal, p: it.p, c: it.c, f: it.f }
   return { ...food, id: await db.foods.add(food) }
@@ -32,7 +35,11 @@ function PhotoLog({ date, meal }) {
     try {
       const found = await recognize(file)
       if (!found.length) setErr('Không nhận ra món nào, thử chụp gần và rõ hơn.')
-      setItems(found.map((it) => ({ ...it, on: true })))
+      // Món có trong danh sách thì lấy số của danh sách, không có thì dùng số Gemini tự tra.
+      setItems(await Promise.all(found.map(async (it) => {
+        const f = await findByName(it.name)
+        return { ...it, ...(f && { kcal: f.kcal, p: f.p, c: f.c, f: f.f }), fromList: !!f, on: true }
+      })))
     } catch (ex) {
       setErr(ex.message)
     } finally {
@@ -56,14 +63,30 @@ function PhotoLog({ date, meal }) {
       {err && <p className="note">{err}</p>}
       {items?.length > 0 && (
         <>
-          <p className="muted">AI chỉ ước lượng, sửa lại số gram cho đúng rồi ghi.</p>
-          {items.map((it, i) => (
-            <div key={i} className="row item">
-              <input type="checkbox" checked={it.on} onChange={(e) => edit(i, { on: e.target.checked })} style={{ width: 22, minHeight: 22, flex: 'none' }} />
-              <span>{it.name} <small className="muted">{Math.round((it.kcal * (+it.grams || 0)) / 100)} kcal</small></span>
-              <input type="number" inputMode="decimal" value={it.grams} onChange={(e) => edit(i, { grams: e.target.value })} style={{ maxWidth: 90, flex: 'none' }} aria-label={`Gram ${it.name}`} />
-            </div>
-          ))}
+          <p className="muted">AI chỉ ước lượng, sửa lại số gram cho đúng rồi ghi. * = số do AI tra, không có trong danh sách món.</p>
+          <table className="macros">
+            <thead><tr><th>Món</th><th>Gram</th><th>Kcal</th><th>P</th><th>C</th><th>F</th></tr></thead>
+            <tbody>
+              {items.map((it, i) => {
+                const n = nutrients({ unit: 'g', ...it }, +it.grams || 0)
+                return (
+                  <tr key={i} className={it.on ? '' : 'off'}>
+                    <td>
+                      <label><input type="checkbox" checked={it.on} onChange={(e) => edit(i, { on: e.target.checked })} /> {it.name}{!it.fromList && '*'}</label>
+                    </td>
+                    <td><input type="number" inputMode="decimal" value={it.grams} onChange={(e) => edit(i, { grams: e.target.value })} aria-label={`Gram ${it.name}`} /></td>
+                    <td>{Math.round(n.kcal)}</td><td>{n.p}</td><td>{n.c}</td><td>{n.f}</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+            <tfoot>
+              {(() => {
+                const t = sumLogs(items.filter((x) => x.on).map((it) => nutrients({ unit: 'g', ...it }, +it.grams || 0)))
+                return <tr><td>Tổng</td><td /><td>{Math.round(t.kcal)}</td><td>{Math.round(t.p)}</td><td>{Math.round(t.c)}</td><td>{Math.round(t.f)}</td></tr>
+              })()}
+            </tfoot>
+          </table>
           <div className="row">
             <button onClick={saveAll}>Ghi vào bữa {meal}</button>
             <button className="ghost" onClick={() => setItems(null)}>Huỷ</button>
