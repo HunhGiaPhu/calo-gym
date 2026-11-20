@@ -4,15 +4,23 @@ import { db, useSetting } from '../db'
 import { today, sumLogs, targets } from '../calc'
 import { loadGis, backupToDrive } from '../drive'
 
-export function Meter({ label, value, target, unit }) {
-  const pct = target ? Math.min(100, (value / target) * 100) : 0
+// Vòng tiến độ SVG: đầy dần theo value/target, đỏ khi vượt.
+function Ring({ value, target, size, stroke, label, children }) {
+  const r = (size - stroke) / 2
+  const c = 2 * Math.PI * r
+  const pct = target ? Math.min(1, value / target) : 0
   return (
-    <div className="meter">
-      <div className="row"><span>{label}</span><b>{Math.round(value)} / {target ?? '?'} {unit}</b></div>
-      <div className="bar"><i style={{ width: `${pct}%` }} className={value > target ? 'over' : ''} /></div>
+    <div className={`ring${target && value > target ? ' over' : ''}`} style={{ width: size, height: size }} role="img" aria-label={label}>
+      <svg width={size} height={size} aria-hidden="true">
+        <circle className="track" cx={size / 2} cy={size / 2} r={r} fill="none" strokeWidth={stroke} />
+        <circle className="fill" cx={size / 2} cy={size / 2} r={r} fill="none" strokeWidth={stroke} strokeDasharray={c} strokeDashoffset={c * (1 - pct)} />
+      </svg>
+      <div className="ring-in" aria-hidden="true">{children}</div>
     </div>
   )
 }
+
+const MACROS = [['p', '🥩', 'Protein'], ['c', '🍚', 'Carb'], ['f', '🧈', 'Fat']]
 
 export default function Today({ go }) {
   const d = today()
@@ -28,6 +36,7 @@ export default function Today({ go }) {
   const hasData = useLiveQuery(() => db.logs.count()) > 0
   const backupOld = hasData && (!lastBackup || Date.now() - lastBackup > 7 * 864e5)
   const [driveMsg, setDriveMsg] = useState('')
+  const [dateLabel] = useState(() => new Date().toLocaleDateString('vi-VN', { weekday: 'long', day: 'numeric', month: 'numeric' }))
   // Tải sẵn thư viện Google khi cần nhắc, để bấm nút là mở cửa sổ đăng nhập được ngay (iPhone chặn nếu chờ).
   useEffect(() => { if (backupOld) loadGis().catch(() => {}) }, [backupOld])
   const doDrive = () => {
@@ -39,15 +48,34 @@ export default function Today({ go }) {
 
   return (
     <>
-      <h1>Hôm nay</h1>
+      <p className="muted" style={{ margin: '8px 0 0', textTransform: 'capitalize' }}>{dateLabel}</p>
+      <h1 style={{ marginTop: 0 }}>Hôm nay</h1>
       {!profile && <p className="note" onClick={() => go('progress')}>Chưa có chỉ số cơ thể. Bấm để nhập ở tab Tiến độ.</p>}
-      <section>
-        {t && <p className="big">{Math.round(t.kcal - s.kcal)} <small>kcal còn lại</small></p>}
-        <Meter label="🔥 Kcal" value={s.kcal} target={t?.kcal} unit="" />
-        <Meter label="🥩 Protein" value={s.p} target={t?.p} unit="g" />
-        <Meter label="🍚 Carb" value={s.c} target={t?.c} unit="g" />
-        <Meter label="🧈 Fat" value={s.f} target={t?.f} unit="g" />
+      <section className="hero">
+        <Ring value={s.kcal} target={t?.kcal} size={196} stroke={14}
+          label={t ? `Đã ăn ${Math.round(s.kcal)} trên ${t.kcal} kcal` : `Đã ăn ${Math.round(s.kcal)} kcal`}>
+          <div className="ring-num">{t ? Math.abs(Math.round(t.kcal - s.kcal)) : Math.round(s.kcal)}</div>
+          <div className="ring-lbl">🔥 {!t ? 'kcal đã ăn' : s.kcal > t.kcal ? 'kcal vượt' : 'kcal còn lại'}</div>
+        </Ring>
+        <div className="hero-sub">
+          <div>Đã ăn<b>{Math.round(s.kcal)}</b></div>
+          <div>Mục tiêu<b>{t?.kcal ?? '–'}</b></div>
+        </div>
       </section>
+      <div className="macro-grid">
+        {MACROS.map(([k, icon, name]) => {
+          const goal = t?.[k]
+          const left = goal ? Math.round(goal - s[k]) : null
+          return (
+            <div key={k} className="macro">
+              <Ring value={s[k]} target={goal} size={64} stroke={6} label={`${name} ${Math.round(s[k])} trên ${goal ?? '?'} gam`}>{icon}</Ring>
+              <b>{Math.round(s[k])}{goal ? `/${goal}` : ''}g</b>
+              <span>{name}</span>
+              {left !== null && <small>{left >= 0 ? `còn ${left}g` : `vượt ${-left}g`}</small>}
+            </div>
+          )
+        })}
+      </div>
       <section onClick={() => go('gym')}>
         <h2>Lịch tập</h2>
         <p>{w ? `Hôm nay: ${w.name}` : 'Hôm nay nghỉ'}</p>
