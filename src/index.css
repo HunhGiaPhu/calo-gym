@@ -194,3 +194,8 @@ nav button:active { opacity: .8; }
 @media (prefers-reduced-motion: reduce) {
   *, .ring .fill { transition: none !important; animation: none !important; }
 }
+
+/* Ô chat nhỏ để nhắn AI sửa món sau khi chụp */
+.fix { margin: 4px 0 12px; }
+.fix .row > button { flex: none; padding: 10px 20px; }
+.bubble { margin: 6px 0 6px auto; width: fit-content; max-width: 85%; padding: 8px 14px; border-radius: 18px 18px 4px 18px; background: var(--card-2); border: 1px solid var(--line); font-size: .9rem; }

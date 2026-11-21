@@ -77,7 +77,14 @@ async function toJpegBase64(file, max = 1024) {
   return cv.toDataURL('image/jpeg', 0.8).split(',')[1]
 }
 
-export async function recognize(file) {
+// Người dùng sửa: gửi lại ảnh + danh sách lần trước + lời sửa, AI làm lại cả danh sách.
+export const fixPrompt = (prev, note) => `${PROMPT}
+Lần trước bạn nhận ra (tên, gram): ${JSON.stringify(prev.map((it) => [it.name, +it.grams || 0]))}.
+Người dùng sửa lại: "${note.trim().slice(0, 300)}".
+Làm lại danh sách theo lời sửa (đổi món, thêm, bớt, đổi gram nếu được nói). Món không bị nhắc thì giữ nguyên tên và gram.`
+
+// fix = { prev, note } khi người dùng gõ lời sửa; không có thì nhận diện lần đầu.
+export async function recognize(file, fix) {
   const key = getKey()
   if (!key) throw new Error('Chưa có API key. Nhập ở tab Tiến độ.')
   // Báo rõ hỏng ở bước nào (đọc ảnh hay gửi đi), vì Safari chỉ báo chung chung "Load failed".
@@ -96,7 +103,7 @@ export async function recognize(file) {
         signal: ctl.signal,
         headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
         body: JSON.stringify({
-          contents: [{ parts: [{ inline_data: { mime_type: 'image/jpeg', data } }, { text: PROMPT }] }],
+          contents: [{ parts: [{ inline_data: { mime_type: 'image/jpeg', data } }, { text: fix ? fixPrompt(fix.prev, fix.note) : PROMPT }] }],
           generationConfig: { responseMimeType: 'application/json', responseSchema: SCHEMA },
         }),
       })

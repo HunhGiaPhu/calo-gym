@@ -28,13 +28,18 @@ function PhotoLog({ date, meal }) {
   const [err, setErr] = useState('')
 
   const [cam, setCam] = useState(false)
+  const [photo, setPhoto] = useState(null) // giữ ảnh để gửi lại khi người dùng sửa
+  const [notes, setNotes] = useState([])
+  const [note, setNote] = useState('')
 
-  const onFile = async (file) => {
-    setCam(false)
-    setBusy(true); setErr(''); setItems(null)
+  const run = async (file, fix) => {
+    setBusy(true); setErr('')
     try {
-      const found = await recognize(file)
-      if (!found.length) setErr('Không nhận ra món nào, thử chụp gần và rõ hơn.')
+      const found = await recognize(file, fix)
+      if (!found.length) {
+        setErr(fix ? 'AI không ra món nào, thử nói rõ hơn.' : 'Không nhận ra món nào, thử chụp gần và rõ hơn.')
+        if (fix) return // sửa hỏng thì giữ bảng cũ
+      }
       // Món có trong danh sách thì lấy số của danh sách, không có thì dùng số Gemini tự tra.
       setItems(await Promise.all(found.map(async (it) => {
         const f = await findByName(it.name)
@@ -45,6 +50,13 @@ function PhotoLog({ date, meal }) {
     } finally {
       setBusy(false)
     }
+  }
+  const onFile = (file) => { setCam(false); setPhoto(file); setNotes([]); setItems(null); run(file) }
+  const sendFix = () => {
+    const t = note.trim()
+    if (!t || busy) return
+    setNotes([...notes, t]); setNote('')
+    run(photo, { prev: items, note: t })
   }
   const edit = (i, patch) => setItems(items.map((it, j) => (j === i ? { ...it, ...patch } : it)))
   const saveAll = async (m) => {
@@ -94,6 +106,14 @@ function PhotoLog({ date, meal }) {
               })()}
             </tfoot>
           </table>
+          <div className="fix">
+            {notes.map((t, i) => <p key={i} className="bubble">{t}</p>)}
+            <form className="row" onSubmit={(e) => { e.preventDefault(); sendFix() }}>
+              <input placeholder="Sửa món, vd: bánh gạo phô mai, không phải bơ" value={note} maxLength={300}
+                onChange={(e) => setNote(e.target.value)} aria-label="Nhắn AI sửa lại món" />
+              <button disabled={busy || !note.trim()}>{busy ? '…' : 'Sửa'}</button>
+            </form>
+          </div>
           <p className="muted">Ghi vào bữa:</p>
           <div className="meals">
             {MEALS.map((m) => <button key={m} className={m === meal ? '' : 'ghost'} onClick={() => saveAll(m)}>{m}</button>)}

@@ -1,5 +1,12 @@
 import { expect, test } from 'vitest'
-import { parseItems } from './gemini'
+import { parseItems, fixPrompt } from './gemini'
+
+test('fixPrompt gửi kèm danh sách cũ (gram người dùng đã sửa) và lời sửa đã cắt gọn', () => {
+  const p = fixPrompt([{ name: 'Bánh gạo bơ', grams: '40' }, { name: 'Sữa', grams: '' }], '  bánh gạo phô mai, không phải bơ  ' + 'x'.repeat(400))
+  expect(p).toContain('[["Bánh gạo bơ",40],["Sữa",0]]')
+  expect(p).toContain('"bánh gạo phô mai, không phải bơ')
+  expect(p).not.toContain('x'.repeat(301))
+})
 
 test('parseItems đổi về trên 100g và lọc rác', () => {
   const out = parseItems(JSON.stringify({ items: [
