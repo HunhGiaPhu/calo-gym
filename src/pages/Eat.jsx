@@ -4,6 +4,7 @@ import { db } from '../db'
 import { today, nutrients, addDays, sumLogs } from '../calc'
 import { recognize } from '../gemini'
 import Camera from '../Camera'
+import { Macros } from './Today'
 
 const MEALS = ['Sáng', 'Trưa', 'Tối', 'Phụ']
 const EMPTY = { name: '', unit: 'g', kcal: '', p: '', c: '', f: '' }
@@ -257,7 +258,7 @@ export default function Eat() {
         <h2>Đã ghi ngày {date}</h2>
         {logs.map((l) => (
           <div key={l.id} className="row item">
-            <span>{l.meal} · {l.name} {l.qty}{l.unit === 'g' ? 'g' : ' phần'}</span>
+            <span>{l.meal} · {l.name} {l.qty}{l.unit === 'g' ? 'g' : ' phần'}<Macros l={l} /></span>
             <span>{Math.round(l.kcal)} kcal <button className="x" onClick={() => db.logs.delete(l.id)}>✕</button></span>
           </div>
         ))}

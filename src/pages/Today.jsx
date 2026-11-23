@@ -22,6 +22,9 @@ function Ring({ value, target, size, stroke, label, children }) {
 
 const MACROS = [['p', '🥩', 'Protein'], ['c', '🍚', 'Carb'], ['f', '🧈', 'Fat']]
 
+// Dòng nhỏ dưới tên món: protein / carb / fat của riêng món đó (dùng chung cho tab Ăn).
+export const Macros = ({ l }) => <small className="mac">🥩 {Math.round(l.p)}g · 🍚 {Math.round(l.c)}g · 🧈 {Math.round(l.f)}g</small>
+
 export default function Today({ go }) {
   const d = today()
   const logs = useLiveQuery(() => db.logs.where('date').equals(d).toArray(), [d]) ?? []
@@ -85,7 +88,7 @@ export default function Today({ go }) {
         {logs.length === 0 && <p className="muted">Chưa ghi gì.</p>}
         {logs.map((l) => (
           <div key={l.id} className="row item">
-            <span>{l.meal} · {l.name} {l.qty}{l.unit === 'g' ? 'g' : ' phần'}</span>
+            <span>{l.meal} · {l.name} {l.qty}{l.unit === 'g' ? 'g' : ' phần'}<Macros l={l} /></span>
             <span>{Math.round(l.kcal)} kcal <button className="x" onClick={() => db.logs.delete(l.id)}>✕</button></span>
           </div>
         ))}
