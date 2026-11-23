@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../db'
-import { today, nutrients, addDays, sumLogs } from '../calc'
+import { nutrients, addDays, sumLogs } from '../calc'
 import { recognize } from '../gemini'
 import Camera from '../Camera'
 import { Macros } from './Today'
@@ -154,8 +154,7 @@ function FoodForm({ initial, onDone }) {
   )
 }
 
-export default function Eat() {
-  const [date, setDate] = useState(today())
+export default function Eat({ day: date, setDay: setDate }) {
   const [meal, setMeal] = useState(MEALS[0])
   const [q, setQ] = useState('')
   const [pick, setPick] = useState(null)

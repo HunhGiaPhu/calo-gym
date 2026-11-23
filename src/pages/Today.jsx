@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, useSetting } from '../db'
-import { today, sumLogs, targets } from '../calc'
+import { today, addDays, sumLogs, targets } from '../calc'
 import { loadGis, backupToDrive } from '../drive'
 
 // Vòng tiến độ SVG: đầy dần theo value/target, đỏ khi vượt.
@@ -25,8 +25,14 @@ const MACROS = [['p', '🥩', 'Protein'], ['c', '🍚', 'Carb'], ['f', '🧈', '
 // Dòng nhỏ dưới tên món: protein / carb / fat của riêng món đó (dùng chung cho tab Ăn).
 export const Macros = ({ l }) => <small className="mac">🥩 {Math.round(l.p)}g · 🍚 {Math.round(l.c)}g · 🧈 {Math.round(l.f)}g</small>
 
-export default function Today({ go }) {
-  const d = today()
+const WEEKDAYS = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy']
+
+export default function Today({ go, day, setDay }) {
+  const d = day
+  const now = today()
+  const wd = new Date(`${d}T00:00`).getDay()
+  const dm = `${+d.slice(8)}/${+d.slice(5, 7)}`
+  const title = d === now ? 'Hôm nay' : d === addDays(now, -1) ? 'Hôm qua' : dm
   const logs = useLiveQuery(() => db.logs.where('date').equals(d).toArray(), [d]) ?? []
   const workouts = useLiveQuery(() => db.workouts.toArray()) ?? []
   const profile = useSetting('profile', null)
@@ -35,11 +41,10 @@ export default function Today({ go }) {
 
   const t = profile ? targets(profile) : null
   const s = sumLogs(logs)
-  const w = workouts.find((x) => x.id === schedule[new Date().getDay()])
+  const w = workouts.find((x) => x.id === schedule[wd])
   const hasData = useLiveQuery(() => db.logs.count()) > 0
   const backupOld = hasData && (!lastBackup || Date.now() - lastBackup > 7 * 864e5)
   const [driveMsg, setDriveMsg] = useState('')
-  const [dateLabel] = useState(() => new Date().toLocaleDateString('vi-VN', { weekday: 'long', day: 'numeric', month: 'numeric' }))
   // Tải sẵn thư viện Google khi cần nhắc, để bấm nút là mở cửa sổ đăng nhập được ngay (iPhone chặn nếu chờ).
   useEffect(() => { if (backupOld) loadGis().catch(() => {}) }, [backupOld])
   const doDrive = () => {
@@ -51,8 +56,13 @@ export default function Today({ go }) {
 
   return (
     <>
-      <p className="muted" style={{ margin: '8px 0 0', textTransform: 'capitalize' }}>{dateLabel}</p>
-      <h1 style={{ marginTop: 0 }}>Hôm nay</h1>
+      <p className="muted" style={{ margin: '8px 0 0' }}>{WEEKDAYS[wd]}, {dm}</p>
+      <div className="daynav">
+        <button className="ghost" onClick={() => setDay(addDays(d, -1))} aria-label="Xem ngày trước">‹</button>
+        <h1>{title}</h1>
+        <button className="ghost" onClick={() => setDay(addDays(d, 1))} disabled={d >= now} aria-label="Xem ngày sau">›</button>
+        {d !== now && <button className="ghost today-btn" onClick={() => setDay(now)}>Về hôm nay</button>}
+      </div>
       {!profile && <p className="note" onClick={() => go('progress')}>Chưa có chỉ số cơ thể. Bấm để nhập ở tab Tiến độ.</p>}
       <section className="hero">
         <Ring value={s.kcal} target={t?.kcal} size={196} stroke={14}
@@ -81,7 +91,7 @@ export default function Today({ go }) {
       </div>
       <section onClick={() => go('gym')}>
         <h2>Lịch tập</h2>
-        <p>{w ? `Hôm nay: ${w.name}` : 'Hôm nay nghỉ'}</p>
+        <p>{w ? `${title}: ${w.name}` : `${title} nghỉ`}</p>
       </section>
       <section>
         <h2>Đã ăn</h2>

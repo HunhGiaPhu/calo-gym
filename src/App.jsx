@@ -4,6 +4,7 @@ import Eat from './pages/Eat'
 import Gym from './pages/Gym'
 import Progress from './pages/Progress'
 import ErrorBoundary from './ErrorBoundary'
+import { today } from './calc'
 import RestTimer, { useRest } from './RestTimer'
 
 // Icon nét đơn giản, vẽ tay để khỏi thêm thư viện icon.
@@ -19,11 +20,13 @@ const TABS = [
 
 export default function App() {
   const [tab, setTab] = useState('today')
+  // Ngày đang xem, dùng chung cho tab Hôm nay và Ăn: lùi về hôm qua rồi ghi món là ghi vào hôm qua.
+  const [day, setDay] = useState(today)
   const { rest, start, stop } = useRest()
   const Page = TABS.find((t) => t[0] === tab)[2]
   return (
     <>
-      <main><ErrorBoundary key={tab} onReset={() => setTab('today')}><Page go={setTab} startRest={start} /></ErrorBoundary></main>
+      <main><ErrorBoundary key={tab} onReset={() => setTab('today')}><Page go={setTab} startRest={start} day={day} setDay={setDay} /></ErrorBoundary></main>
       {rest && <RestTimer rest={rest} onStop={stop} onAdd={(s) => start(Math.max(0, (rest.end - Date.now()) / 1000) + s)} />}
       <nav>
         {TABS.map(([id, label, , icon]) => (

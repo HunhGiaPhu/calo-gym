@@ -202,3 +202,9 @@ nav button:active { opacity: .8; }
 
 /* protein/carb/fat từng món trong danh sách đã ăn */
 .mac { display: block; margin-top: 2px; font-size: .78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Mũi tên xem ngày trước / sau ở tab Hôm nay */
+.daynav { display: flex; align-items: center; gap: 8px; margin: 4px 0 16px; flex-wrap: wrap; }
+.daynav h1 { margin: 0; flex: 1; text-align: center; }
+.daynav > button.ghost { width: 48px; padding: 0; font-size: 1.5rem; line-height: 1; }
+.daynav > button.today-btn { width: 100%; font-size: .9rem; min-height: 44px; }
