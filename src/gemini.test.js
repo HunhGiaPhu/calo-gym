@@ -22,3 +22,13 @@ test('parseItems đổi về trên 100g và lọc rác', () => {
   expect(parseItems('{}')).toEqual([])
   expect(() => parseItems('not json')).toThrow()
 })
+
+test('textPrompt và fixPrompt cho lời kể: có lời kể, cắt gọn, sửa dựa trên lời kể', async () => {
+  const { textPrompt, fixPrompt } = await import('./gemini')
+  const t = textPrompt('  2 trứng luộc, 1 chén cơm  ' + 'y'.repeat(400))
+  expect(t).toContain('"2 trứng luộc, 1 chén cơm')
+  expect(t).not.toContain('y'.repeat(301))
+  const f = fixPrompt([{ name: 'Trứng luộc', grams: 100 }], 'chỉ 1 quả thôi', t)
+  expect(f.startsWith(t)).toBe(true)
+  expect(f).toContain('[["Trứng luộc",100]]')
+})

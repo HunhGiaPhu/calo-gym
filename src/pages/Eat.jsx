@@ -7,7 +7,6 @@ import Camera from '../Camera'
 import { Macros } from './Today'
 
 const MEALS = ['Sáng', 'Trưa', 'Tối', 'Phụ']
-const EMPTY = { name: '', unit: 'g', kcal: '', p: '', c: '', f: '' }
 
 const addLog = (date, meal, food, qty) =>
   db.logs.add({ date, meal, foodId: food.id, name: food.name, unit: food.unit, qty, ...nutrients(food, qty) })
@@ -29,7 +28,8 @@ function PhotoLog({ date, meal }) {
   const [err, setErr] = useState('')
 
   const [cam, setCam] = useState(false)
-  const [photo, setPhoto] = useState(null) // giữ ảnh để gửi lại khi người dùng sửa
+  const [photo, setPhoto] = useState(null) // giữ ảnh hoặc lời kể để gửi lại khi người dùng sửa
+  const [say, setSay] = useState('')
   const [notes, setNotes] = useState([])
   const [note, setNote] = useState('')
 
@@ -38,7 +38,7 @@ function PhotoLog({ date, meal }) {
     try {
       const found = await recognize(file, fix)
       if (!found.length) {
-        setErr(fix ? 'AI không ra món nào, thử nói rõ hơn.' : 'Không nhận ra món nào, thử chụp gần và rõ hơn.')
+        setErr(fix || typeof file === 'string' ? 'AI không ra món nào, thử nói rõ hơn.' : 'Không nhận ra món nào, thử chụp gần và rõ hơn.')
         if (fix) return // sửa hỏng thì giữ bảng cũ
       }
       // Món có trong danh sách thì lấy số của danh sách, không có thì dùng số Gemini tự tra.
@@ -53,6 +53,7 @@ function PhotoLog({ date, meal }) {
     }
   }
   const onFile = (file) => { setCam(false); setPhoto(file); setNotes([]); setItems(null); run(file) }
+  const onSay = () => { const t = say.trim(); if (!t || busy) return; setSay(''); onFile(t) }
   const sendFix = () => {
     const t = note.trim()
     if (!t || busy) return
@@ -70,7 +71,7 @@ function PhotoLog({ date, meal }) {
 
   return (
     <section>
-      <h2>Chụp món</h2>
+      <h2>Thêm món</h2>
       <div className="row">
         <button disabled={busy} onClick={() => setCam(true)}>{busy ? 'Đang nhận diện…' : '📷 Chụp món'}</button>
         {!busy && (
@@ -79,6 +80,11 @@ function PhotoLog({ date, meal }) {
           </label>
         )}
       </div>
+      <form className="row say" onSubmit={(e) => { e.preventDefault(); onSay() }}>
+        <input placeholder="Hoặc nhắn món đã ăn, vd: 2 trứng luộc, 1 chén cơm" value={say} maxLength={300}
+          onChange={(e) => setSay(e.target.value)} aria-label="Nhắn AI món đã ăn" />
+        <button disabled={busy || !say.trim()}>Gửi</button>
+      </form>
       {cam && <Camera onPick={onFile} onClose={() => setCam(false)} />}
       {err && <p className="note">{err}</p>}
       {items?.length > 0 && (
@@ -126,52 +132,11 @@ function PhotoLog({ date, meal }) {
   )
 }
 
-function FoodForm({ initial, onDone }) {
-  const [f, setF] = useState(initial)
-  const set = (k) => (e) => setF({ ...f, [k]: e.target.value })
-  const save = async () => {
-    if (!f.name.trim() || f.kcal === '') return alert('Cần tên món và kcal')
-    const row = { ...f, name: f.name.trim(), kcal: +f.kcal, p: +f.p || 0, c: +f.c || 0, f: +f.f || 0 }
-    await db.foods.put(row)
-    onDone()
-  }
-  const per = f.unit === 'g' ? '/100g' : '/1 phần'
-  return (
-    <section>
-      <h2>{f.id ? 'Sửa món' : 'Món mới'}</h2>
-      <input placeholder="Tên món" value={f.name} onChange={set('name')} />
-      <select value={f.unit} onChange={set('unit')}>
-        <option value="g">Tính theo gram</option>
-        <option value="phần">Tính theo phần (cái, hộp, tô...)</option>
-      </select>
-      <div className="grid4">
-        {[['kcal', 'Kcal'], ['p', 'Protein'], ['c', 'Carb'], ['f', 'Fat']].map(([k, l]) => (
-          <label key={k}>{l} {per}<input type="number" inputMode="decimal" value={f[k]} onChange={set(k)} /></label>
-        ))}
-      </div>
-      <div className="row"><button onClick={save}>Lưu</button><button className="ghost" onClick={onDone}>Huỷ</button></div>
-    </section>
-  )
-}
-
 export default function Eat({ day: date, setDay: setDate }) {
   const [meal, setMeal] = useState(MEALS[0])
-  const [q, setQ] = useState('')
-  const [pick, setPick] = useState(null)
-  const [qty, setQty] = useState('')
-  const [editing, setEditing] = useState(null)
 
-  const foods = useLiveQuery(() => db.foods.orderBy('name').toArray()) ?? []
   const combos = useLiveQuery(() => db.combos.toArray()) ?? []
   const logs = useLiveQuery(() => db.logs.where('date').equals(date).toArray(), [date]) ?? []
-
-  const matches = q ? foods.filter((f) => f.name.toLowerCase().includes(q.toLowerCase())).slice(0, 15) : []
-
-  const add = async () => {
-    if (!(+qty > 0)) return alert('Nhập số lượng')
-    await addLog(date, meal, pick, +qty)
-    setPick(null); setQty(''); setQ('')
-  }
 
   const applyCombo = async (c) => {
     let missing = 0
@@ -202,8 +167,6 @@ export default function Eat({ day: date, setDay: setDate }) {
     })
   }
 
-  if (editing) return <FoodForm initial={editing} onDone={() => setEditing(null)} />
-
   return (
     <>
       <h1>Ăn</h1>
@@ -227,31 +190,6 @@ export default function Eat({ day: date, setDay: setDate }) {
 
       <PhotoLog date={date} meal={meal} />
 
-      <section>
-        <h2>Thêm món</h2>
-        {pick ? (
-          <>
-            <p><b>{pick.name}</b> · {pick.kcal} kcal {pick.unit === 'g' ? '/100g' : '/phần'}</p>
-            <div className="row">
-              <input type="number" inputMode="decimal" autoFocus placeholder={pick.unit === 'g' ? 'Số gram' : 'Số phần'}
-                value={qty} onChange={(e) => setQty(e.target.value)} />
-              <button onClick={add}>Ghi</button>
-              <button className="ghost" onClick={() => setPick(null)}>Huỷ</button>
-            </div>
-          </>
-        ) : (
-          <>
-            <input placeholder="Tìm món..." value={q} onChange={(e) => setQ(e.target.value)} />
-            {matches.map((f) => (
-              <div key={f.id} className="row item">
-                <span onClick={() => setPick(f)}>{f.name} <small className="muted">{f.kcal} kcal{f.unit === 'g' ? '/100g' : '/phần'}</small></span>
-                <button className="ghost" onClick={() => setEditing(f)}>Sửa</button>
-              </div>
-            ))}
-            <button className="ghost" onClick={() => setEditing({ ...EMPTY, name: q })}>+ Món mới</button>
-          </>
-        )}
-      </section>
 
       <section>
         <h2>Đã ghi ngày {date}</h2>

@@ -77,19 +77,29 @@ async function toJpegBase64(file, max = 1024) {
   return cv.toDataURL('image/jpeg', 0.8).split(',')[1]
 }
 
-// Người dùng sửa: gửi lại ảnh + danh sách lần trước + lời sửa, AI làm lại cả danh sách.
-export const fixPrompt = (prev, note) => `${PROMPT}
+// Nhắn chữ thay cho ảnh: người dùng tự kể món đã ăn.
+export const textPrompt = (desc) => `Người Việt đang giảm mỡ tăng cơ kể món đã ăn: "${desc.trim().slice(0, 300)}".
+Tách từng món/thành phần, ước lượng khối lượng ăn được (gram; không nói rõ thì lấy khẩu phần Việt Nam thường gặp, vd 1 chén cơm ~150g, 1 quả trứng ~50g)
+và dinh dưỡng CHO ĐÚNG LƯỢNG ĐÓ: kcal, p (protein g), c (carb g), f (fat g). Tên món bằng tiếng Việt, ngắn gọn. Không phải đồ ăn thì trả items rỗng.`
+
+// Người dùng sửa: gửi lại ảnh/lời kể + danh sách lần trước + lời sửa, AI làm lại cả danh sách.
+export const fixPrompt = (prev, note, base = PROMPT) => `${base}
 Lần trước bạn nhận ra (tên, gram): ${JSON.stringify(prev.map((it) => [it.name, +it.grams || 0]))}.
 Người dùng sửa lại: "${note.trim().slice(0, 300)}".
 Làm lại danh sách theo lời sửa (đổi món, thêm, bớt, đổi gram nếu được nói). Món không bị nhắc thì giữ nguyên tên và gram.`
 
-// fix = { prev, note } khi người dùng gõ lời sửa; không có thì nhận diện lần đầu.
-export async function recognize(file, fix) {
+// input: File (ảnh) hoặc chuỗi (lời kể). fix = { prev, note } khi người dùng gõ lời sửa.
+export async function recognize(input, fix) {
   const key = getKey()
   if (!key) throw new Error('Chưa có API key. Nhập ở tab Tiến độ.')
   // Báo rõ hỏng ở bước nào (đọc ảnh hay gửi đi), vì Safari chỉ báo chung chung "Load failed".
-  let data
-  try { data = await toJpegBase64(file) } catch (e) { throw new Error(`Không đọc được ảnh (${e.name}: ${e.message})`) }
+  const desc = typeof input === 'string' ? input : null
+  let data = ''
+  if (!desc) {
+    try { data = await toJpegBase64(input) } catch (e) { throw new Error(`Không đọc được ảnh (${e.name}: ${e.message})`) }
+  }
+  const base = desc ? textPrompt(desc) : PROMPT
+  const prompt = fix ? fixPrompt(fix.prev, fix.note, base) : base
   // Model đã chọn quá tải hoặc chậm quá 30s (Safari tự cắt ở ~60s) thì thử lại bằng model mặc định.
   const models = [...new Set([getModel(), DEFAULT_MODEL])]
   let res
@@ -103,7 +113,7 @@ export async function recognize(file, fix) {
         signal: ctl.signal,
         headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
         body: JSON.stringify({
-          contents: [{ parts: [{ inline_data: { mime_type: 'image/jpeg', data } }, { text: fix ? fixPrompt(fix.prev, fix.note) : PROMPT }] }],
+          contents: [{ parts: [...(data ? [{ inline_data: { mime_type: 'image/jpeg', data } }] : []), { text: prompt }] }],
           generationConfig: { responseMimeType: 'application/json', responseSchema: SCHEMA },
         }),
       })
@@ -111,7 +121,7 @@ export async function recognize(file, fix) {
       if (!last && e.name === 'AbortError') continue
       throw new Error(e.name === 'AbortError'
         ? 'Gemini không trả lời sau 30 giây (đang quá tải), thử lại sau.'
-        : `Không gửi được tới Gemini (${e.name}: ${e.message}). Ảnh ${Math.round(data.length / 1024)}KB.`)
+        : `Không gửi được tới Gemini (${e.name}: ${e.message}).${data ? ` Ảnh ${Math.round(data.length / 1024)}KB.` : ''}`)
     } finally {
       clearTimeout(timer)
     }
