@@ -1,6 +1,6 @@
 [
 {
-"name": "whole milk",
+"name": "Sữa tươi nguyên kem",
 "unit": "g",
 "kcal": 496.7,
 "p": 25.7,
@@ -8,7 +8,7 @@
 "f": 26.3
 },
 {
-"name": "vegetable oil",
+"name": "Dầu thực vật",
 "unit": "g",
 "kcal": 589.3,
 "p": 0.0,
@@ -16,7 +16,7 @@
 "f": 66.7
 },
 {
-"name": "uncooked rice",
+"name": "Gạo sống",
 "unit": "g",
 "kcal": 358.0,
 "p": 6.5,
@@ -24,7 +24,7 @@
 "f": 0.5
 },
 {
-"name": "sunlower oil",
+"name": "Dầu hướng dương",
 "unit": "g",
 "kcal": 885.7,
 "p": 0.0,
@@ -32,7 +32,7 @@
 "f": 100.0
 },
 {
-"name": "summer roll",
+"name": "Gỏi cuốn",
 "unit": "g",
 "kcal": 118.1,
 "p": 10.1,
@@ -40,7 +40,7 @@
 "f": 3.3
 },
 {
-"name": "steak",
+"name": "Bò bít tết",
 "unit": "g",
 "kcal": 250.0,
 "p": 26.0,
@@ -48,7 +48,7 @@
 "f": 20.0
 },
 {
-"name": "spring roll",
+"name": "Chả giò",
 "unit": "g",
 "kcal": 154.5,
 "p": 16.4,
@@ -56,7 +56,7 @@
 "f": 8.0
 },
 {
-"name": "sesame oil",
+"name": "Dầu mè",
 "unit": "g",
 "kcal": 857.1,
 "p": 0.0,
@@ -64,7 +64,7 @@
 "f": 100.0
 },
 {
-"name": "salmon",
+"name": "Cá hồi",
 "unit": "g",
 "kcal": 206.2,
 "p": 22.0,
@@ -72,7 +72,7 @@
 "f": 12.3
 },
 {
-"name": "popcorn",
+"name": "Bắp rang",
 "unit": "g",
 "kcal": 557.0,
 "p": 7.5,
@@ -80,7 +80,7 @@
 "f": 34.2
 },
 {
-"name": "peanut oil",
+"name": "Dầu đậu phộng",
 "unit": "g",
 "kcal": 850.0,
 "p": 0.0,
@@ -88,7 +88,7 @@
 "f": 100.0
 },
 {
-"name": "peanut butter",
+"name": "Bơ đậu phộng",
 "unit": "g",
 "kcal": 587.5,
 "p": 21.9,
@@ -96,7 +96,7 @@
 "f": 50.0
 },
 {
-"name": "olive oil",
+"name": "Dầu ô liu",
 "unit": "g",
 "kcal": 884.0,
 "p": 0.0,
@@ -104,7 +104,7 @@
 "f": 100.0
 },
 {
-"name": "maple grove sugar ree syrup",
+"name": "Siro Maple Grove không đường",
 "unit": "g",
 "kcal": 16.7,
 "p": 0.0,
@@ -112,7 +112,7 @@
 "f": 0.0
 },
 {
-"name": "low at milk",
+"name": "Sữa tươi ít béo",
 "unit": "g",
 "kcal": 41.8,
 "p": 3.4,
@@ -120,7 +120,7 @@
 "f": 1.0
 },
 {
-"name": "japanese mayonnaise",
+"name": "Mayonnaise Nhật",
 "unit": "g",
 "kcal": 373.3,
 "p": 1.3,
@@ -128,7 +128,7 @@
 "f": 36.0
 },
 {
-"name": "hersheys zero sugar syrup",
+"name": "Siro socola Hershey's không đường",
 "unit": "g",
 "kcal": 33.3,
 "p": 0.0,
@@ -136,7 +136,7 @@
 "f": 0.0
 },
 {
-"name": "ground pork",
+"name": "Thịt heo xay",
 "unit": "g",
 "kcal": 296.5,
 "p": 25.9,
@@ -144,7 +144,7 @@
 "f": 21.2
 },
 {
-"name": "ground bee",
+"name": "Thịt bò xay",
 "unit": "g",
 "kcal": 272.6,
 "p": 27.4,
@@ -152,7 +152,7 @@
 "f": 17.7
 },
 {
-"name": "ghee",
+"name": "Bơ ghee",
 "unit": "g",
 "kcal": 861.5,
 "p": 0.3,
@@ -160,7 +160,7 @@
 "f": 100.0
 },
 {
-"name": "egg white",
+"name": "Lòng trắng trứng",
 "unit": "g",
 "kcal": 51.5,
 "p": 10.9,
@@ -168,7 +168,7 @@
 "f": 0.3
 },
 {
-"name": "egg",
+"name": "Trứng gà",
 "unit": "g",
 "kcal": 144.0,
 "p": 12.6,
@@ -176,7 +176,7 @@
 "f": 9.6
 },
 {
-"name": "cream",
+"name": "Kem tươi whipping",
 "unit": "g",
 "kcal": 336.7,
 "p": 3.0,
@@ -184,7 +184,7 @@
 "f": 36.7
 },
 {
-"name": "coconut oil",
+"name": "Dầu dừa",
 "unit": "g",
 "kcal": 864.3,
 "p": 0.0,
@@ -192,7 +192,7 @@
 "f": 92.9
 },
 {
-"name": "ground",
+"name": "Thịt xay",
 "unit": "g",
 "kcal": 213.8,
 "p": 23.8,
@@ -200,7 +200,7 @@
 "f": 13.8
 },
 {
-"name": "cheddar cheese",
+"name": "Phô mai cheddar",
 "unit": "g",
 "kcal": 410.7,
 "p": 23.2,
@@ -208,7 +208,7 @@
 "f": 33.6
 },
 {
-"name": "canola oil",
+"name": "Dầu hạt cải",
 "unit": "g",
 "kcal": 885.7,
 "p": 0.0,
@@ -216,7 +216,7 @@
 "f": 100.0
 },
 {
-"name": "butter",
+"name": "Bơ lạt",
 "unit": "g",
 "kcal": 728.6,
 "p": 0.7,
@@ -224,7 +224,7 @@
 "f": 85.7
 },
 {
-"name": "bread",
+"name": "Bánh mì",
 "unit": "g",
 "kcal": 265.5,
 "p": 9.0,
@@ -232,7 +232,7 @@
 "f": 3.4
 },
 {
-"name": "bagel",
+"name": "Bánh mì bagel",
 "unit": "g",
 "kcal": 263.8,
 "p": 10.5,
@@ -240,7 +240,7 @@
 "f": 1.3
 },
 {
-"name": "avocado oil",
+"name": "Dầu quả bơ",
 "unit": "g",
 "kcal": 885.7,
 "p": 0.0,
@@ -248,7 +248,7 @@
 "f": 100.0
 },
 {
-"name": "alpro almond no sugar",
+"name": "Sữa hạnh nhân Alpro không đường",
 "unit": "g",
 "kcal": 13.0,
 "p": 0.4,
@@ -256,7 +256,7 @@
 "f": 1.1
 },
 {
-"name": "cucumber",
+"name": "Dưa leo",
 "unit": "g",
 "kcal": 14.9,
 "p": 0.6,
@@ -264,7 +264,7 @@
 "f": 0.1
 },
 {
-"name": "tomato",
+"name": "Cà chua",
 "unit": "g",
 "kcal": 17.9,
 "p": 0.9,
@@ -272,7 +272,7 @@
 "f": 0.2
 },
 {
-"name": "chicken thighs skinless",
+"name": "Đùi gà bỏ da",
 "unit": "g",
 "kcal": 164.3,
 "p": 24.1,
@@ -280,7 +280,7 @@
 "f": 7.8
 },
 {
-"name": "alpro almond milk",
+"name": "Sữa hạnh nhân Alpro",
 "unit": "g",
 "kcal": 23.0,
 "p": 0.0,
@@ -288,7 +288,7 @@
 "f": 1.2
 },
 {
-"name": "eta",
+"name": "Phô mai feta",
 "unit": "g",
 "kcal": 267.9,
 "p": 14.3,
@@ -296,7 +296,7 @@
 "f": 21.4
 },
 {
-"name": "tzatziki",
+"name": "Sốt tzatziki",
 "unit": "g",
 "kcal": 90.0,
 "p": 2.3,
@@ -304,7 +304,7 @@
 "f": 7.3
 },
 {
-"name": "bell pepper",
+"name": "Ớt chuông",
 "unit": "g",
 "kcal": 28.1,
 "p": 1.0,
@@ -312,7 +312,7 @@
 "f": 0.2
 },
 {
-"name": "lime",
+"name": "Chanh",
 "unit": "g",
 "kcal": 29.9,
 "p": 0.7,
@@ -320,7 +320,7 @@
 "f": 0.1
 },
 {
-"name": "harrisa",
+"name": "Sốt ớt harissa",
 "unit": "g",
 "kcal": 328.6,
 "p": 6.4,
@@ -328,7 +328,7 @@
 "f": 25.0
 },
 {
-"name": "cous cous",
+"name": "Couscous",
 "unit": "g",
 "kcal": 112.1,
 "p": 3.8,
@@ -336,7 +336,7 @@
 "f": 0.2
 },
 {
-"name": "mozarella",
+"name": "Phô mai mozzarella",
 "unit": "g",
 "kcal": 303.6,
 "p": 22.5,
@@ -344,7 +344,7 @@
 "f": 22.5
 },
 {
-"name": "nutriboost bluberry",
+"name": "Sữa Nutriboost việt quất",
 "unit": "g",
 "kcal": 53.5,
 "p": 1.0,
@@ -352,7 +352,7 @@
 "f": 0.8
 },
 {
-"name": "my nutrition whey protein",
+"name": "Whey protein My Nutrition",
 "unit": "g",
 "kcal": 344.0,
 "p": 84.0,
@@ -360,7 +360,7 @@
 "f": 1.6
 },
 {
-"name": "lactose ree yogurt",
+"name": "Sữa chua không lactose",
 "unit": "g",
 "kcal": 78.0,
 "p": 5.3,
@@ -368,7 +368,7 @@
 "f": 3.3
 },
 {
-"name": "Ba Granola",
+"name": "Granola Ba",
 "unit": "g",
 "kcal": 378.0,
 "p": 8.0,
@@ -376,7 +376,7 @@
 "f": 9.4
 },
 {
-"name": "banana",
+"name": "Chuối",
 "unit": "g",
 "kcal": 89.0,
 "p": 1.1,
@@ -384,7 +384,7 @@
 "f": 0.3
 },
 {
-"name": "morico sashimi salad",
+"name": "Salad sashimi Morico",
 "unit": "phần",
 "kcal": 285.7,
 "p": 34.5,
@@ -392,7 +392,7 @@
 "f": 13.1
 },
 {
-"name": "Konjac Collagen",
+"name": "Thạch konjac collagen",
 "unit": "phần",
 "kcal": 10.0,
 "p": 0,
@@ -400,7 +400,7 @@
 "f": 0
 },
 {
-"name": "broccoli",
+"name": "Bông cải xanh",
 "unit": "g",
 "kcal": 34.0,
 "p": 2.8,
@@ -408,7 +408,7 @@
 "f": 0.4
 },
 {
-"name": "ries",
+"name": "Khoai tây chiên",
 "unit": "g",
 "kcal": 128.0,
 "p": 2.5,
@@ -416,7 +416,7 @@
 "f": 4.1
 },
 {
-"name": "cantaloupe",
+"name": "Dưa lưới",
 "unit": "g",
 "kcal": 34.0,
 "p": 0.8,
@@ -424,7 +424,7 @@
 "f": 0.2
 },
 {
-"name": "tuna",
+"name": "Cá ngừ",
 "unit": "g",
 "kcal": 132.0,
 "p": 28.0,
@@ -432,7 +432,7 @@
 "f": 1.3
 },
 {
-"name": "catish",
+"name": "Cá trê",
 "unit": "g",
 "kcal": 144.0,
 "p": 18.0,
@@ -440,7 +440,7 @@
 "f": 7.2
 },
 {
-"name": "A4 Wagyu",
+"name": "Bò Wagyu A4",
 "unit": "g",
 "kcal": 296.0,
 "p": 0.0,
@@ -448,7 +448,7 @@
 "f": 19.0
 },
 {
-"name": "lounder",
+"name": "Cá bơn",
 "unit": "g",
 "kcal": 85.8,
 "p": 15.0,
@@ -464,7 +464,7 @@
 "f": 84.6
 },
 {
-"name": "Hu Tieu Nam Vang",
+"name": "Hủ tiếu Nam Vang",
 "unit": "phần",
 "kcal": 650.0,
 "p": 34.8,
@@ -472,7 +472,7 @@
 "f": 10.7
 },
 {
-"name": "ground pork at extracted",
+"name": "Thịt heo xay (đã chắt mỡ)",
 "unit": "g",
 "kcal": 169.6,
 "p": 20.5,
@@ -480,7 +480,7 @@
 "f": 9.8
 },
 {
-"name": "asparagus",
+"name": "Măng tây",
 "unit": "g",
 "kcal": 20.0,
 "p": 2.2,
@@ -488,7 +488,7 @@
 "f": 0.1
 },
 {
-"name": "pomello",
+"name": "Bưởi",
 "unit": "g",
 "kcal": 38.0,
 "p": 0.8,
@@ -496,7 +496,7 @@
 "f": 0.0
 },
 {
-"name": "starbucks creamer",
+"name": "Kem pha cà phê Starbucks",
 "unit": "g",
 "kcal": 133.3,
 "p": 0.7,
@@ -504,7 +504,7 @@
 "f": 10.0
 },
 {
-"name": "amur ish",
+"name": "Cá trắm",
 "unit": "g",
 "kcal": 206.0,
 "p": 22.0,
@@ -512,7 +512,7 @@
 "f": 12.0
 },
 {
-"name": "zuchinni",
+"name": "Bí ngòi",
 "unit": "g",
 "kcal": 17.0,
 "p": 1.2,
@@ -520,7 +520,7 @@
 "f": 0.3
 },
 {
-"name": "enoki mushroom",
+"name": "Nấm kim châm",
 "unit": "g",
 "kcal": 37.0,
 "p": 2.7,
@@ -528,7 +528,7 @@
 "f": 0.3
 },
 {
-"name": "dragon ruit",
+"name": "Thanh long",
 "unit": "g",
 "kcal": 52.0,
 "p": 0.3,
@@ -536,7 +536,7 @@
 "f": 0.2
 },
 {
-"name": "cooked chicken",
+"name": "Thịt gà chín",
 "unit": "g",
 "kcal": 213.8,
 "p": 23.8,
@@ -544,7 +544,7 @@
 "f": 13.8
 },
 {
-"name": "cooked lamb",
+"name": "Thịt cừu chín",
 "unit": "g",
 "kcal": 294.1,
 "p": 24.7,
@@ -552,7 +552,7 @@
 "f": 21.2
 },
 {
-"name": "cucumber tomato salad",
+"name": "Salad dưa leo cà chua",
 "unit": "g",
 "kcal": 100.0,
 "p": 1.0,
@@ -560,7 +560,7 @@
 "f": 10.0
 },
 {
-"name": "shrimp",
+"name": "Tôm",
 "unit": "g",
 "kcal": 119.0,
 "p": 23.0,
@@ -568,7 +568,7 @@
 "f": 1.7
 },
 {
-"name": "smoked salmon",
+"name": "Cá hồi xông khói",
 "unit": "g",
 "kcal": 117.0,
 "p": 18.0,
@@ -576,7 +576,7 @@
 "f": 4.3
 },
 {
-"name": "knorr",
+"name": "Hạt nêm Knorr",
 "unit": "g",
 "kcal": 190.5,
 "p": 12.7,
@@ -584,7 +584,7 @@
 "f": 1.1
 },
 {
-"name": "peanuts",
+"name": "Đậu phộng",
 "unit": "g",
 "kcal": 567.0,
 "p": 26.0,
@@ -592,7 +592,7 @@
 "f": 49.0
 },
 {
-"name": "cucumbers",
+"name": "Dưa leo (2)",
 "unit": "g",
 "kcal": 14.9,
 "p": 0.6,
@@ -600,7 +600,7 @@
 "f": 0.1
 },
 {
-"name": "romaine lettuce",
+"name": "Xà lách romaine",
 "unit": "g",
 "kcal": 17.0,
 "p": 1.2,
@@ -608,7 +608,7 @@
 "f": 0.3
 },
 {
-"name": "tou taki",
+"name": "Đậu hũ Taki",
 "unit": "g",
 "kcal": 20.8,
 "p": 0.9,
@@ -616,7 +616,7 @@
 "f": 0.0
 },
 {
-"name": "ish sauce",
+"name": "Nước mắm",
 "unit": "g",
 "kcal": 35.0,
 "p": 5.0,
@@ -624,7 +624,7 @@
 "f": 0.0
 },
 {
-"name": "ried shallots",
+"name": "Hành phi",
 "unit": "g",
 "kcal": 400.0,
 "p": 2.0,
@@ -632,7 +632,7 @@
 "f": 40.0
 },
 {
-"name": "ben style: chicken parm burrito",
+"name": "Burrito gà parmesan (Ben style)",
 "unit": "phần",
 "kcal": 354.0,
 "p": 49.0,
@@ -640,7 +640,7 @@
 "f": 9.0
 },
 {
-"name": "ben style: egg white bee burrito",
+"name": "Burrito lòng trắng trứng bò (Ben style)",
 "unit": "phần",
 "kcal": 300.0,
 "p": 40.0,
@@ -648,7 +648,7 @@
 "f": 13.0
 },
 {
-"name": "meadow resh skim milk",
+"name": "Sữa tách béo Meadow Fresh",
 "unit": "g",
 "kcal": 34.0,
 "p": 3.4,
@@ -656,7 +656,7 @@
 "f": 0.1
 },
 {
-"name": "poke theory meal",
+"name": "Poke Theory (suất)",
 "unit": "phần",
 "kcal": 1015.0,
 "p": 104.0,
@@ -664,7 +664,7 @@
 "f": 53.1
 },
 {
-"name": "jello sugar ree pudding",
+"name": "Pudding Jell-O không đường",
 "unit": "g",
 "kcal": 53.4,
 "p": 3.2,
@@ -672,7 +672,7 @@
 "f": 0.1
 },
 {
-"name": "hirame",
+"name": "Cá bơn hirame",
 "unit": "g",
 "kcal": 92.9,
 "p": 19.6,
@@ -680,7 +680,7 @@
 "f": 1.1
 },
 {
-"name": "kimchi",
+"name": "Kim chi",
 "unit": "g",
 "kcal": 15.3,
 "p": 1.1,
@@ -688,7 +688,7 @@
 "f": 0.5
 },
 {
-"name": "snickers zero sugar",
+"name": "Snickers không đường",
 "unit": "phần",
 "kcal": 202.0,
 "p": 4.2,
@@ -696,7 +696,7 @@
 "f": 12.4
 },
 {
-"name": "collagen peptides",
+"name": "Bột collagen peptide",
 "unit": "g",
 "kcal": 477.8,
 "p": 100.0,
@@ -704,7 +704,7 @@
 "f": 0.0
 },
 {
-"name": "bok choy",
+"name": "Cải thìa",
 "unit": "g",
 "kcal": 11.8,
 "p": 1.6,
@@ -712,7 +712,7 @@
 "f": 0.2
 },
 {
-"name": "mushrooms",
+"name": "Nấm",
 "unit": "g",
 "kcal": 28.3,
 "p": 2.2,
@@ -720,7 +720,7 @@
 "f": 0.5
 },
 {
-"name": "cheese ish tou",
+"name": "Đậu hũ cá phô mai",
 "unit": "g",
 "kcal": 166.7,
 "p": 10.0,
@@ -728,7 +728,7 @@
 "f": 10.0
 },
 {
-"name": "ried tou",
+"name": "Đậu hũ chiên",
 "unit": "g",
 "kcal": 275.0,
 "p": 18.9,
@@ -736,7 +736,7 @@
 "f": 20.4
 },
 {
-"name": "haidilao thai soup packet",
+"name": "Gói lẩu Thái Haidilao",
 "unit": "g",
 "kcal": 271.0,
 "p": 17.1,
@@ -744,7 +744,7 @@
 "f": 4.0
 },
 {
-"name": "cooked chicken breast",
+"name": "Ức gà chín",
 "unit": "g",
 "kcal": 165.0,
 "p": 30.8,
@@ -752,7 +752,7 @@
 "f": 3.6
 },
 {
-"name": "boost juice protein supreme",
+"name": "Boost Juice Protein Supreme",
 "unit": "phần",
 "kcal": 531.0,
 "p": 88.0,
@@ -760,7 +760,7 @@
 "f": 2.0
 },
 {
-"name": "caulilower",
+"name": "Súp lơ trắng",
 "unit": "g",
 "kcal": 25.0,
 "p": 1.9,
@@ -768,7 +768,7 @@
 "f": 0.3
 },
 {
-"name": "shabu shabu pork belly",
+"name": "Ba chỉ heo shabu shabu",
 "unit": "g",
 "kcal": 296.4,
 "p": 23.2,
@@ -776,7 +776,7 @@
 "f": 21.8
 },
 {
-"name": "sugar",
+"name": "Đường",
 "unit": "g",
 "kcal": 381.0,
 "p": 0.0,
@@ -784,7 +784,7 @@
 "f": 0.0
 },
 {
-"name": "all purpose lour",
+"name": "Bột mì đa dụng",
 "unit": "g",
 "kcal": 364.0,
 "p": 10.0,
@@ -792,7 +792,7 @@
 "f": 1.0
 },
 {
-"name": "broccolini",
+"name": "Bông cải broccolini",
 "unit": "g",
 "kcal": 35.0,
 "p": 3.0,
@@ -800,7 +800,7 @@
 "f": 0.5
 },
 {
-"name": "potatoes",
+"name": "Khoai tây",
 "unit": "g",
 "kcal": 77.0,
 "p": 2.0,
@@ -808,7 +808,7 @@
 "f": 0.1
 },
 {
-"name": "sweet potatoes",
+"name": "Khoai lang",
 "unit": "g",
 "kcal": 86.0,
 "p": 1.6,
@@ -816,7 +816,7 @@
 "f": 0.1
 },
 {
-"name": "blueberries",
+"name": "Việt quất",
 "unit": "g",
 "kcal": 57.0,
 "p": 0.7,
@@ -824,7 +824,7 @@
 "f": 0.3
 },
 {
-"name": "apples",
+"name": "Táo",
 "unit": "g",
 "kcal": 52.0,
 "p": 0.3,
@@ -832,7 +832,7 @@
 "f": 0.2
 },
 {
-"name": "oranges",
+"name": "Cam",
 "unit": "g",
 "kcal": 47.0,
 "p": 0.9,
@@ -840,7 +840,7 @@
 "f": 0.1
 },
 {
-"name": "grapes",
+"name": "Nho",
 "unit": "g",
 "kcal": 69.0,
 "p": 0.7,
@@ -848,7 +848,7 @@
 "f": 0.2
 },
 {
-"name": "avocados",
+"name": "Quả bơ",
 "unit": "g",
 "kcal": 160.0,
 "p": 2.0,
@@ -856,7 +856,7 @@
 "f": 15.0
 },
 {
-"name": "apricots",
+"name": "Quả mơ",
 "unit": "g",
 "kcal": 48.0,
 "p": 1.4,
@@ -864,7 +864,7 @@
 "f": 0.1
 },
 {
-"name": "blackberries",
+"name": "Mâm xôi đen",
 "unit": "g",
 "kcal": 43.0,
 "p": 1.4,
@@ -872,7 +872,7 @@
 "f": 0.5
 },
 {
-"name": "cherries",
+"name": "Cherry",
 "unit": "g",
 "kcal": 63.0,
 "p": 1.1,
@@ -880,7 +880,7 @@
 "f": 0.2
 },
 {
-"name": "guava",
+"name": "Ổi",
 "unit": "g",
 "kcal": 68.0,
 "p": 2.6,
@@ -888,7 +888,7 @@
 "f": 0.6
 },
 {
-"name": "pears",
+"name": "Lê",
 "unit": "g",
 "kcal": 57.0,
 "p": 0.4,
@@ -896,7 +896,7 @@
 "f": 0.1
 },
 {
-"name": "carrots",
+"name": "Cà rốt",
 "unit": "g",
 "kcal": 41.0,
 "p": 0.9,
@@ -904,7 +904,7 @@
 "f": 0.2
 },
 {
-"name": "daikon",
+"name": "Củ cải trắng",
 "unit": "g",
 "kcal": 18.0,
 "p": 0.6,
@@ -912,7 +912,7 @@
 "f": 0.1
 },
 {
-"name": "white vinegar",
+"name": "Giấm trắng",
 "unit": "g",
 "kcal": 3.0,
 "p": 0.0,
@@ -920,7 +920,7 @@
 "f": 0.0
 },
 {
-"name": "pork belly",
+"name": "Ba chỉ heo",
 "unit": "g",
 "kcal": 518.0,
 "p": 9.0,
@@ -928,7 +928,7 @@
 "f": 53.0
 },
 {
-"name": "scallions",
+"name": "Hành lá",
 "unit": "g",
 "kcal": 32.0,
 "p": 1.8,
@@ -936,7 +936,7 @@
 "f": 0.2
 },
 {
-"name": "water",
+"name": "Nước lọc",
 "unit": "g",
 "kcal": 0.0,
 "p": 0.0,
@@ -944,7 +944,7 @@
 "f": 0.0
 },
 {
-"name": "splenda",
+"name": "Đường ăn kiêng Splenda",
 "unit": "g",
 "kcal": 0.0,
 "p": 0.0,
@@ -952,7 +952,7 @@
 "f": 0.0
 },
 {
-"name": "black pepper",
+"name": "Tiêu đen",
 "unit": "g",
 "kcal": 0.0,
 "p": 0.0,
@@ -960,7 +960,7 @@
 "f": 0.0
 },
 {
-"name": "meat marinade sauce",
+"name": "Sốt ướp thịt",
 "unit": "g",
 "kcal": 200.0,
 "p": 3.0,
@@ -968,7 +968,7 @@
 "f": 10.0
 },
 {
-"name": "garlic",
+"name": "Tỏi",
 "unit": "g",
 "kcal": 149.0,
 "p": 6.4,
@@ -976,7 +976,7 @@
 "f": 0.5
 },
 {
-"name": "chili peppers",
+"name": "Ớt",
 "unit": "g",
 "kcal": 40.0,
 "p": 1.9,
@@ -984,7 +984,7 @@
 "f": 0.4
 },
 {
-"name": "thịt chả hà nội ít calo",
+"name": "Chả Hà Nội ít calo",
 "unit": "phần",
 "kcal": 4464.3,
 "p": 179.7,
@@ -992,7 +992,7 @@
 "f": 404.3
 },
 {
-"name": "ensure bottle milk",
+"name": "Sữa Ensure (chai)",
 "unit": "phần",
 "kcal": 350.0,
 "p": 11.0,
@@ -1000,7 +1000,7 @@
 "f": 11.0
 },
 {
-"name": "au parc chicken salad",
+"name": "Salad gà Au Parc",
 "unit": "phần",
 "kcal": 603.0,
 "p": 47.0,
@@ -1008,7 +1008,7 @@
 "f": 33.0
 },
 {
-"name": "pork jowl",
+"name": "Thịt nọng heo",
 "unit": "g",
 "kcal": 518.0,
 "p": 17.0,
@@ -1016,7 +1016,7 @@
 "f": 48.0
 },
 {
-"name": "pork shoulder",
+"name": "Thịt vai heo",
 "unit": "g",
 "kcal": 250.0,
 "p": 19.0,
@@ -1024,7 +1024,7 @@
 "f": 20.0
 },
 {
-"name": "shallots",
+"name": "Hành tím",
 "unit": "g",
 "kcal": 72.0,
 "p": 2.0,
@@ -1032,7 +1032,7 @@
 "f": 0.1
 },
 {
-"name": "coconut water",
+"name": "Nước dừa",
 "unit": "g",
 "kcal": 19.0,
 "p": 0.7,
@@ -1040,7 +1040,7 @@
 "f": 0.2
 },
 {
-"name": "wood ear mushrooms",
+"name": "Nấm mèo",
 "unit": "g",
 "kcal": 36.0,
 "p": 2.2,
@@ -1048,7 +1048,7 @@
 "f": 0.2
 },
 {
-"name": "vermicelli noodles",
+"name": "Bún",
 "unit": "g",
 "kcal": 110.0,
 "p": 2.0,
@@ -1056,7 +1056,7 @@
 "f": 0.2
 },
 {
-"name": "chicken bouillon",
+"name": "Hạt nêm gà",
 "unit": "g",
 "kcal": 262.0,
 "p": 48.0,
@@ -1064,7 +1064,7 @@
 "f": 5.6
 },
 {
-"name": "salt",
+"name": "Muối",
 "unit": "g",
 "kcal": 0.0,
 "p": 0.0,
@@ -1072,7 +1072,7 @@
 "f": 0.0
 },
 {
-"name": "kiwi",
+"name": "Kiwi",
 "unit": "g",
 "kcal": 61.0,
 "p": 1.1,
@@ -1080,7 +1080,7 @@
 "f": 0.5
 },
 {
-"name": "white bread",
+"name": "Bánh mì sandwich trắng",
 "unit": "g",
 "kcal": 265.0,
 "p": 9.0,
@@ -1088,7 +1088,7 @@
 "f": 3.2
 },
 {
-"name": "croissant",
+"name": "Bánh sừng bò",
 "unit": "g",
 "kcal": 406.0,
 "p": 8.0,
@@ -1096,7 +1096,7 @@
 "f": 21.0
 },
 {
-"name": "pain au chocolat",
+"name": "Bánh sừng bò socola",
 "unit": "g",
 "kcal": 465.0,
 "p": 8.0,
@@ -1104,7 +1104,7 @@
 "f": 25.0
 },
 {
-"name": "rice paper",
+"name": "Bánh tráng",
 "unit": "g",
 "kcal": 330.0,
 "p": 3.0,
@@ -1112,7 +1112,7 @@
 "f": 0.5
 },
 {
-"name": "taro",
+"name": "Khoai môn",
 "unit": "g",
 "kcal": 142.0,
 "p": 1.5,
@@ -1120,7 +1120,7 @@
 "f": 0.2
 },
 {
-"name": "milo powder",
+"name": "Bột Milo",
 "unit": "g",
 "kcal": 380.0,
 "p": 8.0,
@@ -1128,7 +1128,7 @@
 "f": 6.0
 },
 {
-"name": "onions",
+"name": "Hành tây",
 "unit": "g",
 "kcal": 40.0,
 "p": 1.1,
@@ -1136,7 +1136,7 @@
 "f": 0.1
 },
 {
-"name": "oyster sauce",
+"name": "Dầu hào",
 "unit": "g",
 "kcal": 80.0,
 "p": 1.0,
@@ -1144,7 +1144,7 @@
 "f": 0.4
 },
 {
-"name": "soy sauce",
+"name": "Nước tương",
 "unit": "g",
 "kcal": 53.0,
 "p": 8.0,
@@ -1152,7 +1152,7 @@
 "f": 0.0
 },
 {
-"name": "dark soy sauce",
+"name": "Nước tương đen",
 "unit": "g",
 "kcal": 65.0,
 "p": 6.0,
@@ -1160,7 +1160,7 @@
 "f": 0.0
 },
 {
-"name": "low calorie mayo",
+"name": "Mayonnaise ít calo",
 "unit": "g",
 "kcal": 70.0,
 "p": 1.0,
@@ -1168,7 +1168,7 @@
 "f": 5.0
 },
 {
-"name": "rying powder",
+"name": "Bột chiên giòn",
 "unit": "g",
 "kcal": 400.0,
 "p": 10.0,
@@ -1176,7 +1176,7 @@
 "f": 3.0
 },
 {
-"name": "corn",
+"name": "Bắp",
 "unit": "g",
 "kcal": 96.0,
 "p": 3.4,
@@ -1184,7 +1184,7 @@
 "f": 1.5
 },
 {
-"name": "dried shrimp",
+"name": "Tôm khô",
 "unit": "g",
 "kcal": 250.0,
 "p": 50.0,
@@ -1192,7 +1192,7 @@
 "f": 3.0
 },
 {
-"name": "bee brisket",
+"name": "Gầu bò",
 "unit": "g",
 "kcal": 250.0,
 "p": 26.0,
@@ -1200,7 +1200,7 @@
 "f": 20.0
 },
 {
-"name": "chili paste",
+"name": "Sa tế",
 "unit": "g",
 "kcal": 100.0,
 "p": 2.0,
@@ -1208,7 +1208,7 @@
 "f": 5.0
 },
 {
-"name": "bean sprouts",
+"name": "Giá đỗ",
 "unit": "g",
 "kcal": 30.0,
 "p": 3.0,
@@ -1216,7 +1216,7 @@
 "f": 0.2
 },
 {
-"name": "cream cheese",
+"name": "Cream cheese",
 "unit": "g",
 "kcal": 342.0,
 "p": 6.0,
@@ -1224,7 +1224,7 @@
 "f": 34.0
 },
 {
-"name": "at ree cream cheese",
+"name": "Cream cheese không béo",
 "unit": "g",
 "kcal": 70.0,
 "p": 6.0,
@@ -1232,7 +1232,7 @@
 "f": 0.5
 },
 {
-"name": "gouda",
+"name": "Phô mai gouda",
 "unit": "g",
 "kcal": 356.0,
 "p": 25.0,
@@ -1240,7 +1240,7 @@
 "f": 27.0
 },
 {
-"name": "emmental",
+"name": "Phô mai emmental",
 "unit": "g",
 "kcal": 349.0,
 "p": 27.0,
@@ -1248,7 +1248,7 @@
 "f": 28.0
 },
 {
-"name": "parmesan",
+"name": "Phô mai parmesan",
 "unit": "g",
 "kcal": 431.0,
 "p": 38.0,
@@ -1256,7 +1256,7 @@
 "f": 29.0
 },
 {
-"name": "pecorino romano",
+"name": "Phô mai pecorino romano",
 "unit": "g",
 "kcal": 387.0,
 "p": 28.0,
@@ -1264,7 +1264,7 @@
 "f": 32.0
 },
 {
-"name": "macaroni",
+"name": "Nui",
 "unit": "g",
 "kcal": 157.0,
 "p": 5.8,
@@ -1272,7 +1272,7 @@
 "f": 0.9
 },
 {
-"name": "mozzarella",
+"name": "Phô mai mozzarella (2)",
 "unit": "g",
 "kcal": 280.0,
 "p": 28.0,
@@ -1280,7 +1280,7 @@
 "f": 17.0
 },
 {
-"name": "gruyere",
+"name": "Phô mai gruyère",
 "unit": "g",
 "kcal": 413.0,
 "p": 29.0,
@@ -1288,7 +1288,7 @@
 "f": 32.0
 },
 {
-"name": "comte",
+"name": "Phô mai comté",
 "unit": "g",
 "kcal": 398.0,
 "p": 28.0,
@@ -1296,7 +1296,7 @@
 "f": 31.0
 },
 {
-"name": "Bún Chả Hà Nội",
+"name": "Bún chả Hà Nội",
 "unit": "phần",
 "kcal": 822.5,
 "p": 61.3,
@@ -1304,7 +1304,7 @@
 "f": 57.6
 },
 {
-"name": "babybel low at cheese",
+"name": "Phô mai Babybel ít béo",
 "unit": "g",
 "kcal": 250.0,
 "p": 25.0,
@@ -1312,7 +1312,7 @@
 "f": 16.0
 },
 {
-"name": "oodlands Spicy Hawaiian Ahi Poke",
+"name": "Poke cá ngừ cay Woodlands",
 "unit": "g",
 "kcal": 200.0,
 "p": 25.0,
@@ -1320,7 +1320,7 @@
 "f": 10.0
 },
 {
-"name": "oodlands Shoyu Ahi Poke",
+"name": "Poke cá ngừ shoyu Woodlands",
 "unit": "g",
 "kcal": 180.0,
 "p": 24.0,
@@ -1328,7 +1328,7 @@
 "f": 8.0
 },
 {
-"name": "oodlands Seaweed Salad",
+"name": "Salad rong biển Woodlands",
 "unit": "g",
 "kcal": 150.0,
 "p": 5.0,
@@ -1336,7 +1336,7 @@
 "f": 7.0
 },
 {
-"name": "Whole oods Milk Guacamole (No Tomato)",
+"name": "Guacamole Whole Foods (không cà chua)",
 "unit": "g",
 "kcal": 210.0,
 "p": 3.0,
@@ -1344,7 +1344,7 @@
 "f": 18.0
 },
 {
-"name": "Whole oods Egg Salad",
+"name": "Salad trứng Whole Foods",
 "unit": "g",
 "kcal": 250.0,
 "p": 12.0,
@@ -1352,7 +1352,7 @@
 "f": 20.0
 },
 {
-"name": "protein bar chocolate",
+"name": "Thanh protein socola",
 "unit": "phần",
 "kcal": 179.0,
 "p": 16.0,
@@ -1360,7 +1360,7 @@
 "f": 8.6
 },
 {
-"name": "spinach",
+"name": "Rau bina",
 "unit": "g",
 "kcal": 23.0,
 "p": 2.9,
@@ -1368,7 +1368,7 @@
 "f": 0.4
 },
 {
-"name": "salami",
+"name": "Salami",
 "unit": "g",
 "kcal": 263.2,
 "p": 42.1,
@@ -1376,7 +1376,7 @@
 "f": 7.0
 },
 {
-"name": "roasted pork",
+"name": "Heo quay",
 "unit": "g",
 "kcal": 291.0,
 "p": 25.0,
@@ -1384,7 +1384,7 @@
 "f": 21.0
 },
 {
-"name": "char siu pork",
+"name": "Xá xíu",
 "unit": "g",
 "kcal": 295.0,
 "p": 23.0,
@@ -1392,7 +1392,7 @@
 "f": 18.0
 },
 {
-"name": "roasted chicken",
+"name": "Gà quay",
 "unit": "g",
 "kcal": 239.0,
 "p": 27.0,
@@ -1400,7 +1400,7 @@
 "f": 14.0
 },
 {
-"name": "steamed bok choy",
+"name": "Cải thìa luộc",
 "unit": "g",
 "kcal": 13.0,
 "p": 1.5,
@@ -1408,7 +1408,7 @@
 "f": 0.2
 },
 {
-"name": "stir ry bean sprouts",
+"name": "Giá xào",
 "unit": "g",
 "kcal": 31.0,
 "p": 3.0,
@@ -1416,7 +1416,7 @@
 "f": 0.2
 },
 {
-"name": "royo",
+"name": "Froyo (sữa chua đông lạnh)",
 "unit": "g",
 "kcal": 95.0,
 "p": 9.4,
@@ -1424,7 +1424,7 @@
 "f": 3.1
 },
 {
-"name": "pasta",
+"name": "Mì Ý",
 "unit": "g",
 "kcal": 158.0,
 "p": 5.8,
@@ -1432,7 +1432,7 @@
 "f": 0.9
 },
 {
-"name": "cooked rice",
+"name": "Cơm trắng",
 "unit": "g",
 "kcal": 130.0,
 "p": 2.7,
@@ -1440,7 +1440,7 @@
 "f": 0.3
 },
 {
-"name": "ben style: the burritos supreme",
+"name": "Burrito supreme (Ben style)",
 "unit": "phần",
 "kcal": 375.0,
 "p": 35.0,
@@ -1448,7 +1448,7 @@
 "f": 14.0
 },
 {
-"name": "ben style: sweet & sour chicken",
+"name": "Gà chua ngọt (Ben style)",
 "unit": "phần",
 "kcal": 289.0,
 "p": 31.0,
@@ -1456,7 +1456,7 @@
 "f": 5.6
 },
 {
-"name": "ben style: chili cheesy chicken",
+"name": "Gà phô mai cay (Ben style)",
 "unit": "phần",
 "kcal": 295.0,
 "p": 35.0,
@@ -1464,7 +1464,7 @@
 "f": 9.0
 },
 {
-"name": "ben style: pad thai",
+"name": "Pad Thái (Ben style)",
 "unit": "phần",
 "kcal": 435.0,
 "p": 38.0,
@@ -1472,7 +1472,7 @@
 "f": 19.0
 },
 {
-"name": "ben style: mushroom omelet",
+"name": "Trứng chiên nấm (Ben style)",
 "unit": "phần",
 "kcal": 247.0,
 "p": 21.0,
@@ -1480,7 +1480,7 @@
 "f": 15.0
 },
 {
-"name": "xôi má ba (big)",
+"name": "Xôi Má Ba (phần lớn)",
 "unit": "phần",
 "kcal": 1469.0,
 "p": 57.5,
@@ -1488,7 +1488,7 @@
 "f": 48.4
 },
 {
-"name": "xôi má ba (protein)",
+"name": "Xôi Má Ba (nhiều đạm)",
 "unit": "phần",
 "kcal": 619.4,
 "p": 39.9,
@@ -1496,7 +1496,7 @@
 "f": 46.3
 },
 {
-"name": "xôi má ba (rice only)",
+"name": "Xôi Má Ba (chỉ xôi)",
 "unit": "phần",
 "kcal": 850.0,
 "p": 17.6,
@@ -1504,7 +1504,7 @@
 "f": 2.0
 },
 {
-"name": "Varna Lie",
+"name": "Sữa Varna Life",
 "unit": "g",
 "kcal": 62.5,
 "p": 3.3,
@@ -1512,7 +1512,7 @@
 "f": 3.3
 },
 {
-"name": "ben style: breakast burrito",
+"name": "Burrito ăn sáng (Ben style)",
 "unit": "phần",
 "kcal": 282.0,
 "p": 30.0,
@@ -1520,7 +1520,7 @@
 "f": 10.0
 },
 {
-"name": "ben style: chicken egg panini",
+"name": "Panini gà trứng (Ben style)",
 "unit": "phần",
 "kcal": 459.0,
 "p": 48.0,
@@ -1528,7 +1528,7 @@
 "f": 25.0
 },
 {
-"name": "ben style: bbq chicken pizza",
+"name": "Pizza gà BBQ (Ben style)",
 "unit": "phần",
 "kcal": 318.0,
 "p": 36.0,
@@ -1536,7 +1536,7 @@
 "f": 5.6
 },
 {
-"name": "marukame udon: small tonkotsu",
+"name": "Udon tonkotsu nhỏ (Marukame)",
 "unit": "phần",
 "kcal": 626.0,
 "p": 42.0,
@@ -1544,7 +1544,7 @@
 "f": 45.0
 },
 {
-"name": "ben style: egg white potato omelette",
+"name": "Trứng chiên lòng trắng khoai tây (Ben style)",
 "unit": "phần",
 "kcal": 225.0,
 "p": 22.0,
@@ -1552,7 +1552,7 @@
 "f": 23.0
 },
 {
-"name": "ben style: oatmeal cookie",
+"name": "Bánh quy yến mạch (Ben style)",
 "unit": "phần",
 "kcal": 175.0,
 "p": 10.0,
@@ -1560,7 +1560,7 @@
 "f": 7.0
 },
 {
-"name": "ben style: philli cheese steak",
+"name": "Bánh mì Philly cheesesteak (Ben style)",
 "unit": "phần",
 "kcal": 350.0,
 "p": 35.0,
@@ -1568,7 +1568,7 @@
 "f": 19.0
 },
 {
-"name": "coconut milk",
+"name": "Nước cốt dừa",
 "unit": "g",
 "kcal": 230.0,
 "p": 2.3,
@@ -1576,7 +1576,7 @@
 "f": 24.0
 },
 {
-"name": "gong cha wintermelon tea",
+"name": "Trà bí đao Gong Cha",
 "unit": "phần",
 "kcal": 113.0,
 "p": 0,
@@ -1584,7 +1584,7 @@
 "f": 0
 },
 {
-"name": "phê la tấm",
+"name": "Phê La Tấm",
 "unit": "phần",
 "kcal": 160.0,
 "p": 0,
@@ -1592,7 +1592,7 @@
 "f": 0
 },
 {
-"name": "vinamilk coconut water",
+"name": "Nước dừa Vinamilk",
 "unit": "g",
 "kcal": 15.2,
 "p": 0.0,
@@ -1600,7 +1600,7 @@
 "f": 0.0
 },
 {
-"name": "quán bụi meal",
+"name": "Cơm Quán Bụi",
 "unit": "phần",
 "kcal": 570.0,
 "p": 41.0,
@@ -1608,7 +1608,7 @@
 "f": 33.5
 },
 {
-"name": "burrito bowl",
+"name": "Burrito bowl",
 "unit": "phần",
 "kcal": 890.0,
 "p": 65.0,
@@ -1616,7 +1616,7 @@
 "f": 39.0
 },
 {
-"name": "koi black tea macchiato",
+"name": "Hồng trà macchiato KOI",
 "unit": "phần",
 "kcal": 118.0,
 "p": 1.6,
@@ -1624,7 +1624,7 @@
 "f": 3.9
 },
 {
-"name": "mini trimax ish oil",
+"name": "Dầu cá Trimax mini",
 "unit": "phần",
 "kcal": 7.0,
 "p": 0,
@@ -1632,7 +1632,7 @@
 "f": 0.5
 },
 {
-"name": "carne asada quesadilla",
+"name": "Quesadilla bò nướng",
 "unit": "phần",
 "kcal": 650.0,
 "p": 45.0,
@@ -1640,7 +1640,7 @@
 "f": 34.0
 },
 {
-"name": "carne asada tacos",
+"name": "Taco bò nướng",
 "unit": "phần",
 "kcal": 440.0,
 "p": 32.0,
@@ -1648,7 +1648,7 @@
 "f": 18.0
 },
 {
-"name": "birria tacos",
+"name": "Taco birria",
 "unit": "phần",
 "kcal": 600.0,
 "p": 38.0,
@@ -1656,7 +1656,7 @@
 "f": 28.0
 },
 {
-"name": "lamb",
+"name": "Thịt cừu",
 "unit": "g",
 "kcal": 294.0,
 "p": 25.0,
@@ -1664,7 +1664,7 @@
 "f": 21.0
 },
 {
-"name": "protein ice cream",
+"name": "Kem protein",
 "unit": "g",
 "kcal": 96.1,
 "p": 14.2,
@@ -1672,7 +1672,7 @@
 "f": 2.6
 },
 {
-"name": "honey",
+"name": "Mật ong",
 "unit": "g",
 "kcal": 304.8,
 "p": 0.5,
@@ -1680,7 +1680,7 @@
 "f": 0.0
 },
 {
-"name": "edam cheese stick",
+"name": "Phô mai edam que",
 "unit": "g",
 "kcal": 350.0,
 "p": 26.4,
@@ -1688,7 +1688,7 @@
 "f": 26.7
 },
 {
-"name": "marou chocolate 78%",
+"name": "Socola Marou 78%",
 "unit": "g",
 "kcal": 596.0,
 "p": 8.6,
@@ -1696,7 +1696,7 @@
 "f": 41.9
 },
 {
-"name": "marou chocolate 70%",
+"name": "Socola Marou 70%",
 "unit": "g",
 "kcal": 605.0,
 "p": 8.7,
@@ -1704,7 +1704,7 @@
 "f": 43.1
 },
 {
-"name": "cooked chuck roll (50% at removed)",
+"name": "Nạc vai bò chín (bỏ 50% mỡ)",
 "unit": "g",
 "kcal": 205.0,
 "p": 26.0,
@@ -1712,7 +1712,7 @@
 "f": 11.0
 },
 {
-"name": "cooked top blade (50% at removed)",
+"name": "Lõi vai bò chín (bỏ 50% mỡ)",
 "unit": "g",
 "kcal": 195.0,
 "p": 25.0,
@@ -1720,7 +1720,7 @@
 "f": 10.0
 },
 {
-"name": "cooked rib eye (50% at removed)",
+"name": "Thăn lưng bò ribeye chín (bỏ 50% mỡ)",
 "unit": "g",
 "kcal": 225.0,
 "p": 25.0,
@@ -1728,7 +1728,7 @@
 "f": 13.0
 },
 {
-"name": "cooked asparagus",
+"name": "Măng tây chín",
 "unit": "g",
 "kcal": 22.0,
 "p": 2.0,
@@ -1736,7 +1736,7 @@
 "f": 0.0
 },
 {
-"name": "cooked chuck roll (ull at)",
+"name": "Nạc vai bò chín (đủ mỡ)",
 "unit": "g",
 "kcal": 295.0,
 "p": 24.0,
@@ -1744,7 +1744,7 @@
 "f": 23.0
 },
 {
-"name": "cooked top blade (ull at)",
+"name": "Lõi vai bò chín (đủ mỡ)",
 "unit": "g",
 "kcal": 250.0,
 "p": 25.0,
@@ -1752,7 +1752,7 @@
 "f": 18.0
 },
 {
-"name": "cooked rib eye (ull at)",
+"name": "Thăn lưng bò ribeye chín (đủ mỡ)",
 "unit": "g",
 "kcal": 310.0,
 "p": 25.0,
@@ -1760,7 +1760,7 @@
 "f": 25.0
 },
 {
-"name": "pb it",
+"name": "Bột bơ đậu phộng PB Fit",
 "unit": "g",
 "kcal": 380.0,
 "p": 45.0,
@@ -1768,7 +1768,7 @@
 "f": 9.0
 },
 {
-"name": "ben style: sweet potato smoked bee omlet",
+"name": "Trứng chiên khoai lang bò xông khói (Ben style)",
 "unit": "phần",
 "kcal": 377.0,
 "p": 51.0,
@@ -1776,7 +1776,7 @@
 "f": 10.0
 },
 {
-"name": "ben style: extra crispy crust BBQ Chicken Pizza",
+"name": "Pizza gà BBQ đế giòn (Ben style)",
 "unit": "phần",
 "kcal": 318.0,
 "p": 36.0,
@@ -1784,7 +1784,7 @@
 "f": 5.6
 },
 {
-"name": "pho broth",
+"name": "Nước dùng phở",
 "unit": "g",
 "kcal": 26.0,
 "p": 3.2,
@@ -1792,7 +1792,7 @@
 "f": 0.5
 },
 {
-"name": "pho noodles",
+"name": "Bánh phở",
 "unit": "g",
 "kcal": 110.0,
 "p": 2.0,
@@ -1800,7 +1800,7 @@
 "f": 0.3
 },
 {
-"name": "cod",
+"name": "Cá tuyết",
 "unit": "g",
 "kcal": 82.0,
 "p": 18.0,
@@ -1808,7 +1808,7 @@
 "f": 0.7
 },
 {
-"name": "cooked shrimp",
+"name": "Tôm chín",
 "unit": "g",
 "kcal": 99.0,
 "p": 24.0,
@@ -1816,7 +1816,7 @@
 "f": 0.3
 },
 {
-"name": "cooked ground pork",
+"name": "Thịt heo xay chín",
 "unit": "g",
 "kcal": 290.0,
 "p": 25.0,
@@ -1824,7 +1824,7 @@
 "f": 21.0
 },
 {
-"name": "cooked pork shoulder",
+"name": "Thịt vai heo chín",
 "unit": "g",
 "kcal": 295.0,
 "p": 26.0,
@@ -1832,7 +1832,7 @@
 "f": 21.0
 },
 {
-"name": "hu tieu nam vang broth",
+"name": "Nước dùng hủ tiếu Nam Vang",
 "unit": "g",
 "kcal": 35.0,
 "p": 4.0,
@@ -1840,7 +1840,7 @@
 "f": 1.5
 },
 {
-"name": "cooked quail eggs",
+"name": "Trứng cút luộc",
 "unit": "g",
 "kcal": 158.0,
 "p": 13.0,
@@ -1848,7 +1848,7 @@
 "f": 11.0
 },
 {
-"name": "ried garlic",
+"name": "Tỏi phi",
 "unit": "g",
 "kcal": 530.0,
 "p": 9.0,
@@ -1856,7 +1856,7 @@
 "f": 41.0
 },
 {
-"name": "hu tieu nam vang noodles",
+"name": "Sợi hủ tiếu",
 "unit": "g",
 "kcal": 108.0,
 "p": 2.6,
@@ -1864,7 +1864,7 @@
 "f": 0.3
 },
 {
-"name": "serrano ham",
+"name": "Thịt nguội serrano",
 "unit": "g",
 "kcal": 241.0,
 "p": 31.0,
@@ -1872,7 +1872,7 @@
 "f": 13.0
 },
 {
-"name": "manchego",
+"name": "Phô mai manchego",
 "unit": "g",
 "kcal": 410.0,
 "p": 24.0,
@@ -1880,7 +1880,7 @@
 "f": 34.0
 },
 {
-"name": "morico teriyaki chicken salad",
+"name": "Salad gà teriyaki Morico",
 "unit": "phần",
 "kcal": 320.0,
 "p": 32.0,
@@ -1888,7 +1888,7 @@
 "f": 11.0
 },
 {
-"name": "cooked brisket",
+"name": "Gầu bò chín",
 "unit": "g",
 "kcal": 280.0,
 "p": 27.0,
@@ -1896,7 +1896,7 @@
 "f": 19.0
 },
 {
-"name": "cooked oxtail",
+"name": "Đuôi bò chín",
 "unit": "g",
 "kcal": 262.0,
 "p": 22.0,
@@ -1904,7 +1904,7 @@
 "f": 20.0
 },
 {
-"name": "pho broth at extracted",
+"name": "Nước dùng phở (đã chắt mỡ)",
 "unit": "g",
 "kcal": 8.0,
 "p": 1.1,
@@ -1912,7 +1912,7 @@
 "f": 0.2
 },
 {
-"name": "grilled chicken",
+"name": "Gà nướng",
 "unit": "g",
 "kcal": 165.0,
 "p": 31.0,
@@ -1920,7 +1920,7 @@
 "f": 3.6
 },
 {
-"name": "teriyaki chicken",
+"name": "Gà teriyaki",
 "unit": "g",
 "kcal": 178.0,
 "p": 25.0,
@@ -1928,7 +1928,7 @@
 "f": 5.1
 },
 {
-"name": "salad",
+"name": "Salad rau",
 "unit": "g",
 "kcal": 20.0,
 "p": 1.5,
@@ -1936,7 +1936,7 @@
 "f": 0.2
 },
 {
-"name": "morico salad sauce",
+"name": "Sốt salad Morico",
 "unit": "g",
 "kcal": 90.0,
 "p": 1.5,
@@ -1944,7 +1944,7 @@
 "f": 4.0
 },
 {
-"name": "tteoboki ried",
+"name": "Bánh gạo tteokbokki chiên",
 "unit": "g",
 "kcal": 275.0,
 "p": 5.0,
@@ -1952,7 +1952,7 @@
 "f": 9.0
 },
 {
-"name": "daikon radish",
+"name": "Củ cải trắng (2)",
 "unit": "g",
 "kcal": 18.0,
 "p": 0.6,
@@ -1960,7 +1960,7 @@
 "f": 0.1
 },
 {
-"name": "macaron",
+"name": "Bánh macaron",
 "unit": "g",
 "kcal": 527.8,
 "p": 8.3,
@@ -1968,7 +1968,7 @@
 "f": 27.8
 },
 {
-"name": "grana pandana",
+"name": "Phô mai Grana Padano",
 "unit": "g",
 "kcal": 398.0,
 "p": 33.0,
@@ -1976,7 +1976,7 @@
 "f": 29.0
 },
 {
-"name": "barilla basilico",
+"name": "Sốt Barilla Basilico",
 "unit": "g",
 "kcal": 64.1,
 "p": 1.6,
@@ -1984,7 +1984,7 @@
 "f": 2.6
 },
 {
-"name": "tomato paste",
+"name": "Cà chua cô đặc",
 "unit": "g",
 "kcal": 82.0,
 "p": 4.3,
@@ -1992,7 +1992,7 @@
 "f": 0.5
 },
 {
-"name": "crab meat",
+"name": "Thịt cua",
 "unit": "g",
 "kcal": 82.0,
 "p": 18.1,
@@ -2000,7 +2000,7 @@
 "f": 1.1
 },
 {
-"name": "mm",
+"name": "Kẹo M&M",
 "unit": "g",
 "kcal": 500.0,
 "p": 5.0,
@@ -2008,7 +2008,7 @@
 "f": 24.0
 },
 {
-"name": "murray cod",
+"name": "Cá tuyết Murray",
 "unit": "g",
 "kcal": 153.0,
 "p": 18.0,
@@ -2016,7 +2016,7 @@
 "f": 9.2
 },
 {
-"name": "rokeby vanilla waer",
+"name": "Bánh xốp vani Rokeby",
 "unit": "phần",
 "kcal": 242.0,
 "p": 30.0,
@@ -2024,7 +2024,7 @@
 "f": 6.4
 },
 {
-"name": "rokeby espresso/chocolate",
+"name": "Rokeby espresso/socola",
 "unit": "phần",
 "kcal": 286.0,
 "p": 30.0,
@@ -2032,7 +2032,7 @@
 "f": 6.4
 },
 {
-"name": "chicken breast",
+"name": "Ức gà",
 "unit": "g",
 "kcal": 165.0,
 "p": 31.0,
@@ -2040,7 +2040,7 @@
 "f": 3.6
 },
 {
-"name": "ground bee at extracted",
+"name": "Thịt bò xay (đã chắt mỡ)",
 "unit": "g",
 "kcal": 176.0,
 "p": 26.0,
@@ -2048,7 +2048,7 @@
 "f": 8.1
 },
 {
-"name": "stirried white cabbage",
+"name": "Bắp cải trắng xào",
 "unit": "g",
 "kcal": 70.0,
 "p": 2.0,
@@ -2056,7 +2056,7 @@
 "f": 4.0
 },
 {
-"name": "cooked white ish",
+"name": "Cá thịt trắng chín",
 "unit": "g",
 "kcal": 110.0,
 "p": 23.0,
@@ -2064,7 +2064,7 @@
 "f": 2.0
 },
 {
-"name": "lank steak",
+"name": "Thăn bụng bò (flank steak)",
 "unit": "g",
 "kcal": 192.0,
 "p": 27.0,
@@ -2072,7 +2072,7 @@
 "f": 2.0
 },
 {
-"name": "miso soup",
+"name": "Súp miso",
 "unit": "phần",
 "kcal": 40.0,
 "p": 3.0,
@@ -2080,7 +2080,7 @@
 "f": 3.0
 },
 {
-"name": "rice",
+"name": "Cơm",
 "unit": "g",
 "kcal": 130.0,
 "p": 2.0,
@@ -2088,7 +2088,7 @@
 "f": 2.0
 },
 {
-"name": "smoked ham",
+"name": "Thịt nguội xông khói",
 "unit": "g",
 "kcal": 145.0,
 "p": 20.9,
@@ -2096,7 +2096,7 @@
 "f": 1.5
 },
 {
-"name": "pistachios",
+"name": "Hạt dẻ cười",
 "unit": "g",
 "kcal": 562.0,
 "p": 20.2,
@@ -2104,7 +2104,7 @@
 "f": 27.2
 },
 {
-"name": "chicken jerky",
+"name": "Khô gà",
 "unit": "g",
 "kcal": 301.0,
 "p": 46.0,
@@ -2112,7 +2112,7 @@
 "f": 20.0
 },
 {
-"name": "philadelphia light",
+"name": "Cream cheese Philadelphia light",
 "unit": "g",
 "kcal": 170.0,
 "p": 7.9,
@@ -2120,7 +2120,7 @@
 "f": 13.7
 },
 {
-"name": "grenade protein bar",
+"name": "Thanh protein Grenade",
 "unit": "phần",
 "kcal": 208.0,
 "p": 21.0,
@@ -2128,7 +2128,7 @@
 "f": 20.0
 },
 {
-"name": "lasagne noodles",
+"name": "Lá lasagne",
 "unit": "g",
 "kcal": 375.0,
 "p": 13.0,
@@ -2136,7 +2136,7 @@
 "f": 2.0
 },
 {
-"name": "low at cottage cheese",
+"name": "Phô mai cottage ít béo",
 "unit": "g",
 "kcal": 97.3,
 "p": 11.5,
@@ -2144,7 +2144,7 @@
 "f": 4.4
 },
 {
-"name": "corn starch",
+"name": "Bột bắp",
 "unit": "g",
 "kcal": 381.0,
 "p": 0.3,
@@ -2152,7 +2152,7 @@
 "f": 0.1
 },
 {
-"name": "riccota cheese",
+"name": "Phô mai ricotta",
 "unit": "g",
 "kcal": 174.0,
 "p": 11.3,
@@ -2160,7 +2160,7 @@
 "f": 12.9
 },
 {
-"name": "glutamine",
+"name": "Glutamine",
 "unit": "phần",
 "kcal": 4.0,
 "p": 1.0,
@@ -2168,7 +2168,7 @@
 "f": 0
 },
 {
-"name": "creatine",
+"name": "Creatine",
 "unit": "phần",
 "kcal": 0.0,
 "p": 0,
@@ -2176,7 +2176,7 @@
 "f": 0
 },
 {
-"name": "passata",
+"name": "Sốt cà chua passata",
 "unit": "g",
 "kcal": 29.0,
 "p": 1.3,
@@ -2184,7 +2184,7 @@
 "f": 0.2
 },
 {
-"name": "reeze dried cheddar",
+"name": "Phô mai cheddar sấy khô",
 "unit": "g",
 "kcal": 607.0,
 "p": 36.2,
@@ -2192,7 +2192,7 @@
 "f": 47.4
 },
 {
-"name": "reduced at salami",
+"name": "Salami giảm béo",
 "unit": "g",
 "kcal": 256.7,
 "p": 30.0,
@@ -2200,7 +2200,7 @@
 "f": 15.0
 },
 {
-"name": "kirkland protein bar",
+"name": "Thanh protein Kirkland",
 "unit": "phần",
 "kcal": 190.0,
 "p": 21.0,
@@ -2208,7 +2208,7 @@
 "f": 7.0
 },
 {
-"name": "white mushrooms",
+"name": "Nấm mỡ trắng",
 "unit": "g",
 "kcal": 22.0,
 "p": 3.1,
@@ -2216,7 +2216,7 @@
 "f": 0.3
 },
 {
-"name": "shabu shabu bee",
+"name": "Bò shabu shabu",
 "unit": "g",
 "kcal": 170.0,
 "p": 20.0,
@@ -2224,7 +2224,7 @@
 "f": 10.0
 },
 {
-"name": "shabu shabu chicken",
+"name": "Gà shabu shabu",
 "unit": "g",
 "kcal": 120.0,
 "p": 22.0,
@@ -2232,7 +2232,7 @@
 "f": 2.5
 },
 {
-"name": "chicken collagen broth (ull at)",
+"name": "Nước hầm gà collagen (đủ mỡ)",
 "unit": "g",
 "kcal": 45.0,
 "p": 6.0,
@@ -2240,7 +2240,7 @@
 "f": 3.5
 },
 {
-"name": "white cabbage",
+"name": "Bắp cải trắng",
 "unit": "g",
 "kcal": 25.0,
 "p": 1.3,
@@ -2248,7 +2248,7 @@
 "f": 0.1
 },
 {
-"name": "protein style cheeseburger",
+"name": "Cheeseburger cuốn xà lách",
 "unit": "phần",
 "kcal": 235.0,
 "p": 18.0,
@@ -2256,7 +2256,7 @@
 "f": 17.0
 },
 {
-"name": "protein style double cheeseburger",
+"name": "Cheeseburger đôi cuốn xà lách",
 "unit": "phần",
 "kcal": 360.0,
 "p": 29.0,
@@ -2264,7 +2264,7 @@
 "f": 28.0
 },
 {
-"name": "chipotle chicken salad (no cheese)",
+"name": "Salad gà Chipotle (không phô mai)",
 "unit": "phần",
 "kcal": 420.0,
 "p": 38.0,
@@ -2272,7 +2272,7 @@
 "f": 18.0
 },
 {
-"name": "G Chicken",
+"name": "Ức gà G Chicken",
 "unit": "g",
 "kcal": 135.0,
 "p": 27.7,
@@ -2280,7 +2280,7 @@
 "f": 1.6
 },
 {
-"name": "shrimp paste squeeze",
+"name": "Mắm tôm (tuýp)",
 "unit": "g",
 "kcal": 61.1,
 "p": 12.2,
@@ -2288,7 +2288,7 @@
 "f": 0.9
 },
 {
-"name": "cheese tou",
+"name": "Đậu hũ phô mai",
 "unit": "g",
 "kcal": 250.0,
 "p": 10.0,
@@ -2296,7 +2296,7 @@
 "f": 20.0
 },
 {
-"name": "prawn paste",
+"name": "Chả tôm",
 "unit": "g",
 "kcal": 92.3,
 "p": 12.3,
@@ -2304,7 +2304,7 @@
 "f": 0.8
 },
 {
-"name": "ish roe and soy",
+"name": "Trứng cá với nước tương",
 "unit": "g",
 "kcal": 107.1,
 "p": 10.7,
@@ -2312,7 +2312,7 @@
 "f": 1.8
 },
 {
-"name": "venti starbucks low at coee",
+"name": "Cà phê ít béo Starbucks (venti)",
 "unit": "phần",
 "kcal": 130.0,
 "p": 9.0,
@@ -2320,7 +2320,7 @@
 "f": 3.0
 },
 {
-"name": "vietnamese sausage",
+"name": "Giò lụa",
 "unit": "g",
 "kcal": 180.0,
 "p": 25.0,
@@ -2328,7 +2328,7 @@
 "f": 4.0
 },
 {
-"name": "lean hotpot bee",
+"name": "Bò nạc nhúng lẩu",
 "unit": "g",
 "kcal": 120.0,
 "p": 22.0,
@@ -2336,7 +2336,7 @@
 "f": 3.0
 },
 {
-"name": "scallops",
+"name": "Sò điệp",
 "unit": "g",
 "kcal": 69.0,
 "p": 12.0,
@@ -2344,7 +2344,7 @@
 "f": 0.5
 },
 {
-"name": "starbs",
+"name": "Starbucks (đồ uống protein)",
 "unit": "phần",
 "kcal": 270.0,
 "p": 43.0,
@@ -2352,7 +2352,7 @@
 "f": 4.0
 },
 {
-"name": "cappuccino",
+"name": "Cappuccino",
 "unit": "g",
 "kcal": 40.0,
 "p": 2.0,
@@ -2360,7 +2360,7 @@
 "f": 1.8
 },
 {
-"name": "steamed egg",
+"name": "Trứng hấp",
 "unit": "g",
 "kcal": 140.0,
 "p": 12.0,
@@ -2368,7 +2368,7 @@
 "f": 10.0
 },
 {
-"name": "potato soup",
+"name": "Súp khoai tây",
 "unit": "g",
 "kcal": 100.0,
 "p": 2.0,
@@ -2376,7 +2376,7 @@
 "f": 6.0
 },
 {
-"name": "whole wheat bread",
+"name": "Bánh mì nguyên cám",
 "unit": "g",
 "kcal": 240.0,
 "p": 10.0,
@@ -2384,7 +2384,7 @@
 "f": 4.0
 },
 {
-"name": "davids protein bar",
+"name": "Thanh protein David",
 "unit": "phần",
 "kcal": 150.0,
 "p": 28.0,
@@ -2392,7 +2392,7 @@
 "f": 2.0
 },
 {
-"name": "muscle milk protein shake",
+"name": "Sữa protein Muscle Milk",
 "unit": "phần",
 "kcal": 170.0,
 "p": 25.0,
@@ -2400,7 +2400,7 @@
 "f": 5.0
 },
 {
-"name": "chipotle chicken salad (no cheese/sourcream)",
+"name": "Salad gà Chipotle (không phô mai, sour cream)",
 "unit": "phần",
 "kcal": 230.0,
 "p": 34.0,
@@ -2408,7 +2408,7 @@
 "f": 16.0
 },
 {
-"name": "silk almond milk",
+"name": "Sữa hạnh nhân Silk",
 "unit": "g",
 "kcal": 12.5,
 "p": 0.4,
@@ -2416,7 +2416,7 @@
 "f": 1.2
 },
 {
-"name": "starbucks iced coee bottle",
+"name": "Cà phê đá Starbucks (chai)",
 "unit": "g",
 "kcal": 4.2,
 "p": 0.3,
@@ -2424,7 +2424,7 @@
 "f": 0.0
 },
 {
-"name": "starbucks protein matcha tall",
+"name": "Matcha protein Starbucks (tall)",
 "unit": "phần",
 "kcal": 220.0,
 "p": 22.0,
@@ -2432,7 +2432,7 @@
 "f": 4.0
 },
 {
-"name": "malibu mango smoothie",
+"name": "Sinh tố xoài Malibu",
 "unit": "phần",
 "kcal": 450.0,
 "p": 12.0,
@@ -2440,7 +2440,7 @@
 "f": 5.0
 },
 {
-"name": "low at bee",
+"name": "Thịt bò ít mỡ",
 "unit": "g",
 "kcal": 170.0,
 "p": 27.0,
@@ -2448,7 +2448,7 @@
 "f": 4.0
 },
 {
-"name": "slate protein shake",
+"name": "Sữa protein Slate",
 "unit": "phần",
 "kcal": 130.0,
 "p": 30.0,
@@ -2456,7 +2456,7 @@
 "f": 0
 },
 {
-"name": "yasso",
+"name": "Kem sữa chua Yasso",
 "unit": "phần",
 "kcal": 90.0,
 "p": 5.0,
@@ -2464,7 +2464,7 @@
 "f": 1.0
 },
 {
-"name": "low cal popcorn",
+"name": "Bắp rang ít calo",
 "unit": "phần",
 "kcal": 110.0,
 "p": 3.0,
@@ -2472,7 +2472,7 @@
 "f": 2.0
 },
 {
-"name": "chipotle chicken salad (single chicken everything)",
+"name": "Salad gà Chipotle (1 phần gà, đủ topping)",
 "unit": "phần",
 "kcal": 530.0,
 "p": 44.0,
@@ -2480,7 +2480,7 @@
 "f": 26.0
 },
 {
-"name": "chipotle chicken salad (double chicken everything)",
+"name": "Salad gà Chipotle (2 phần gà, đủ topping)",
 "unit": "phần",
 "kcal": 710.0,
 "p": 76.0,
@@ -2488,7 +2488,7 @@
 "f": 33.0
 },
 {
-"name": "pistachio snack bag",
+"name": "Hạt dẻ cười (gói)",
 "unit": "phần",
 "kcal": 120.0,
 "p": 5.0,
@@ -2496,7 +2496,7 @@
 "f": 10.0
 },
 {
-"name": "quest bar (cookies dough)",
+"name": "Thanh Quest (cookie dough)",
 "unit": "phần",
 "kcal": 190.0,
 "p": 21.0,
@@ -2504,7 +2504,7 @@
 "f": 7.0
 },
 {
-"name": "smoked tri tip steak",
+"name": "Bò tri-tip xông khói",
 "unit": "g",
 "kcal": 190.0,
 "p": 26.0,
@@ -2512,7 +2512,7 @@
 "f": 10.0
 },
 {
-"name": "gỏi gà",
+"name": "Gỏi gà",
 "unit": "g",
 "kcal": 130.0,
 "p": 12.0,
@@ -2520,7 +2520,7 @@
 "f": 4.0
 },
 {
-"name": "in n out (single protein style)",
+"name": "In-N-Out cuốn xà lách (1 thịt)",
 "unit": "phần",
 "kcal": 240.0,
 "p": 14.0,
@@ -2528,7 +2528,7 @@
 "f": 17.0
 },
 {
-"name": "in n out (double protein style)",
+"name": "In-N-Out cuốn xà lách (2 thịt)",
 "unit": "phần",
 "kcal": 390.0,
 "p": 21.0,
@@ -2536,7 +2536,7 @@
 "f": 27.0
 },
 {
-"name": "chipotle chicken steak salad",
+"name": "Salad gà và bò Chipotle",
 "unit": "phần",
 "kcal": 760.0,
 "p": 65.0,
@@ -2544,7 +2544,7 @@
 "f": 38.0
 },
 {
-"name": "cava chicken salad",
+"name": "Salad gà Cava",
 "unit": "phần",
 "kcal": 600.0,
 "p": 50.0,
@@ -2552,7 +2552,7 @@
 "f": 33.0
 },
 {
-"name": "built protein bar",
+"name": "Thanh protein Built",
 "unit": "phần",
 "kcal": 150.0,
 "p": 17.0,
@@ -2560,7 +2560,7 @@
 "f": 3.0
 },
 {
-"name": "lukes lobster roll",
+"name": "Bánh mì tôm hùm Luke's",
 "unit": "phần",
 "kcal": 300.0,
 "p": 26.0,
@@ -2568,7 +2568,7 @@
 "f": 10.0
 },
 {
-"name": "starlux main course",
+"name": "Starlux món chính",
 "unit": "phần",
 "kcal": 450.0,
 "p": 40.0,
@@ -2576,7 +2576,7 @@
 "f": 22.0
 },
 {
-"name": "starlux rice",
+"name": "Starlux cơm",
 "unit": "phần",
 "kcal": 200.0,
 "p": 5.0,
@@ -2584,7 +2584,7 @@
 "f": 4.0
 },
 {
-"name": "starlux bread + butter",
+"name": "Starlux bánh mì + bơ",
 "unit": "phần",
 "kcal": 180.0,
 "p": 4.0,
@@ -2592,7 +2592,7 @@
 "f": 9.0
 },
 {
-"name": "starlux appetizer",
+"name": "Starlux khai vị",
 "unit": "phần",
 "kcal": 120.0,
 "p": 6.0,
@@ -2600,7 +2600,7 @@
 "f": 6.0
 },
 {
-"name": "starlux ruit platter",
+"name": "Starlux đĩa trái cây",
 "unit": "phần",
 "kcal": 120.0,
 "p": 1.0,
@@ -2608,7 +2608,7 @@
 "f": 0
 },
 {
-"name": "starlux dessert",
+"name": "Starlux tráng miệng",
 "unit": "phần",
 "kcal": 250.0,
 "p": 4.0,
@@ -2616,7 +2616,7 @@
 "f": 14.0
 },
 {
-"name": "starlux yogurt/cheese",
+"name": "Starlux sữa chua/phô mai",
 "unit": "phần",
 "kcal": 150.0,
 "p": 7.0,
@@ -2624,7 +2624,7 @@
 "f": 8.0
 },
 {
-"name": "chipotle chicken salad (with rice)",
+"name": "Salad gà Chipotle (có cơm)",
 "unit": "phần",
 "kcal": 740.0,
 "p": 48.0,
@@ -2632,7 +2632,7 @@
 "f": 32.0
 },
 {
-"name": "quest bar (chocolate brownie)",
+"name": "Thanh Quest (brownie socola)",
 "unit": "phần",
 "kcal": 170.0,
 "p": 20.0,
@@ -2640,7 +2640,7 @@
 "f": 6.0
 },
 {
-"name": "gỏi",
+"name": "Gỏi",
 "unit": "g",
 "kcal": 90.0,
 "p": 9.0,
@@ -2648,7 +2648,7 @@
 "f": 3.0
 },
 {
-"name": "illet mignon",
+"name": "Thăn bò filet mignon",
 "unit": "g",
 "kcal": 120.0,
 "p": 22.0,
@@ -2656,7 +2656,7 @@
 "f": 3.0
 },
 {
-"name": "uncooked pasta",
+"name": "Mì Ý khô",
 "unit": "g",
 "kcal": 371.0,
 "p": 13.0,
@@ -2664,7 +2664,7 @@
 "f": 1.5
 },
 {
-"name": "garlic naan",
+"name": "Bánh naan tỏi",
 "unit": "g",
 "kcal": 330.0,
 "p": 9.0,
@@ -2672,7 +2672,7 @@
 "f": 12.0
 },
 {
-"name": "butter chicken",
+"name": "Gà sốt bơ Ấn Độ",
 "unit": "g",
 "kcal": 220.0,
 "p": 5.0,
@@ -2680,7 +2680,7 @@
 "f": 18.0
 },
 {
-"name": "McDonalds Large ries",
+"name": "Khoai tây chiên McDonald's (lớn)",
 "unit": "phần",
 "kcal": 480.0,
 "p": 7.0,

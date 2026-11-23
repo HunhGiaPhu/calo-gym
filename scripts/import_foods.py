@@ -45,6 +45,12 @@ def main(xlsx):
 
     out = ROOT / "src" / "data"
     out.mkdir(parents=True, exist_ok=True)
+    # Giữ tên tiếng Việt khi nhập lại từ Excel (file Excel gốc tên tiếng Anh, bị rớt chữ f).
+    ren = out / "foods_rename.json"
+    if ren.exists():
+        names = json.loads(ren.read_text(encoding="utf-8"))
+        for it in good:
+            it["name"] = names.get(it["name"], it["name"])
     (out / "foods.json").write_text(json.dumps(good, ensure_ascii=False, indent=0), encoding="utf-8")
     review = Path(xlsx).parent / "foods_can_xem.csv"
     with review.open("w", newline="", encoding="utf-8-sig") as fh:

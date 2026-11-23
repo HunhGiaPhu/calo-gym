@@ -1,6 +1,7 @@
 import Dexie from 'dexie'
 import { useLiveQuery } from 'dexie-react-hooks'
 import seedFoods from './data/foods.json'
+import renameFoods from './data/foods_rename.json'
 
 export const db = new Dexie('calo-gym')
 db.version(1).stores({
@@ -22,6 +23,10 @@ async function addSplit(tx) {
 
 // v2: không đổi bảng, chỉ để chạy addSplit một lần trên máy đã cài từ trước.
 db.version(2).stores({}).upgrade(addSplit)
+// v3: máy đã cài từ trước có danh sách món tên tiếng Anh (bị rớt chữ f khi nhập Excel) → đổi sang tên tiếng Việt.
+// Chỉ đổi đúng các món gốc; món người dùng tự thêm và nhật ký cũ giữ nguyên.
+db.version(3).stores({}).upgrade((tx) =>
+  tx.table('foods').toCollection().modify((f) => { if (renameFoods[f.name]) f.name = renameFoods[f.name] }))
 db.on('populate', async (tx) => {
   await tx.table('foods').bulkAdd(seedFoods)
   await addSplit(tx)
