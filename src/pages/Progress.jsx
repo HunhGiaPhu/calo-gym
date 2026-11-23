@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, Tooltip, ReferenceLine, ResponsiveContainer } from 'recharts'
-import { db, setSetting, useSetting, exportAll, importAll } from '../db'
-import { today, toDate, targets, streak, ACTIVITY, rolling7, weightAdvice } from '../calc'
+import { db, setSetting, useSetting, exportAll, importAll, logWeight } from '../db'
+import { today, toDate, targets, streak, ACTIVITY, rolling7, weightAdvice, weekStats, liftSeries } from '../calc'
 import { getKey, setKey, getModel, setModel, DEFAULT_MODEL } from '../gemini'
-import { loadGis, backupToDrive } from '../drive'
+import { loadGis, backupToDrive, restoreFromDrive } from '../drive'
 
 function GeminiForm() {
   const [key, setK] = useState(getKey())
@@ -56,19 +56,28 @@ export default function Progress() {
   const advice = weightAdvice(weights)
   const applyAdvice = () => setSetting('profile', { ...profile, deficit: Math.min(1000, Math.max(0, profile.deficit + advice.adjust)) })
   // Không dùng uniqueKeys(): Safari iOS lỗi "Unable to open cursor" với key cursor.
-  const sessionDates = useLiveQuery(async () => new Set((await db.sessions.toArray()).map((s) => s.date))) ?? new Set()
+  const sessions = useLiveQuery(() => db.sessions.toArray()) ?? []
+  const sessionDates = new Set(sessions.map((x) => x.date))
+  // Bài tập theo số buổi đã ghi, nhiều nhất lên đầu.
+  const lifts = Object.entries(sessions.reduce((m, x) => { m[x.exercise] = (m[x.exercise] || 0) + 1; return m }, {}))
+    .sort((a, b) => b[1] - a[1]).map(([n]) => n)
+  const [lift, setLift] = useState('')
+  const liftName = lifts.includes(lift) ? lift : lifts[0]
+  const series = liftName ? liftSeries(sessions, liftName) : []
+  const pr = series.reduce((b, x) => (x.e1rm > (b?.e1rm ?? 0) ? x : b), null)
   const [kg, setKg] = useState('')
 
   // Kcal 14 ngày gần nhất
   const days = Array.from({ length: 14 }, (_, i) => { const d = new Date(); d.setDate(d.getDate() - 13 + i); return toDate(d) })
   const logs = useLiveQuery(() => db.logs.where('date').between(days[0], days[13], true, true).toArray(), [days[0]]) ?? []
   const kcalData = days.map((d) => ({ d: d.slice(5), kcal: Math.round(logs.filter((l) => l.date === d).reduce((s, l) => s + l.kcal, 0)) }))
-  const target = profile ? targets(profile).kcal : null
+  const t = profile ? targets(profile) : null
+  const target = t?.kcal ?? null
+  const week = weekStats(logs, today(), t)
 
   const saveWeight = async () => {
     if (!(+kg > 0)) return
-    await db.weights.put({ date: today(), kg: +kg })
-    if (profile) await setSetting('profile', { ...profile, weight: +kg }) // mục tiêu kcal đi theo cân nặng mới
+    await logWeight(+kg)
     setKg('')
   }
 
@@ -101,6 +110,15 @@ export default function Progress() {
         setDriveMsg(`Đã lưu lên Drive lúc ${new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })} ✓`)
       })
       .catch((err) => setDriveMsg(`Chưa lưu được: ${err.message}`))
+  }
+
+  const doRestore = () => {
+    setDriveMsg('Đang lấy bản backup từ Drive…')
+    restoreFromDrive((d, at) => confirm(`Bản trên Drive lưu lúc ${at.toLocaleString('vi-VN', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' })} (${d?.logs?.length ?? 0} món đã ghi, ${d?.weights?.length ?? 0} lần cân).
+
+Khôi phục sẽ THAY TOÀN BỘ dữ liệu trong máy bằng bản này; món ghi sau giờ đó sẽ mất. Muốn giữ bản hiện tại thì huỷ và bấm "Chia sẻ file" trước. Tiếp tục?`))
+      .then((ok) => setDriveMsg(ok ? 'Đã khôi phục từ Drive ✓' : 'Đã huỷ khôi phục.'))
+      .catch((err) => setDriveMsg(`Chưa khôi phục được: ${err.message}`))
   }
 
   const doImport = async (e) => {
@@ -157,6 +175,45 @@ export default function Progress() {
       </section>
 
       <section>
+        <h2>7 ngày qua</h2>
+        {week ? (
+          <>
+            <div className="stats">
+              <div><b>{week.kcal}</b><span>🔥 kcal TB/ngày{t ? ` · mục tiêu ${t.kcal}` : ''}</span></div>
+              <div><b>{week.p}g</b><span>🥩 protein TB/ngày{t ? ` · mục tiêu ${t.p}g` : ''}</span></div>
+              {t && <div><b>{week.proteinDays}/{week.days}</b><span>ngày đủ protein</span></div>}
+              {t && <div><b>{week.overDays}/{week.days}</b><span>ngày vượt kcal</span></div>}
+            </div>
+            <p className="muted">Tính {week.days} ngày có ghi món, ngày không ghi bỏ qua.</p>
+          </>
+        ) : <p className="muted">7 ngày qua chưa ghi món nào.</p>}
+      </section>
+
+      <section>
+        <h2>Tiến bộ tạ</h2>
+        {lifts.length === 0 ? <p className="muted">Ghi set ở tab Tập là sẽ thấy biểu đồ từng bài ở đây.</p> : (
+          <>
+            <select value={liftName} onChange={(e) => setLift(e.target.value)} aria-label="Chọn bài tập">
+              {lifts.map((n) => <option key={n}>{n}</option>)}
+            </select>
+            {pr && <p className="big">{pr.e1rm} <small>kg · 1RM ước tính cao nhất ({pr.date.slice(8)}/{pr.date.slice(5, 7)})</small></p>}
+            {series.length > 1 ? (
+              <div className="chart"><ResponsiveContainer width="100%" height={180}>
+                <LineChart data={series}>
+                  <XAxis dataKey="date" tickFormatter={(d) => d.slice(5)} fontSize={11} axisLine={false} tickLine={false} />
+                  <YAxis domain={['dataMin - 5', 'dataMax + 5']} fontSize={11} width={36} axisLine={false} tickLine={false} />
+                  <Tooltip />
+                  <Line dataKey="e1rm" name="1RM ước tính" stroke="currentColor" strokeWidth={2.5} dot={{ r: 3 }} />
+                  <Line dataKey="top" name="Tạ nặng nhất" stroke="currentColor" strokeOpacity={0.35} strokeWidth={1} dot={false} />
+                </LineChart>
+              </ResponsiveContainer></div>
+            ) : <p className="muted">Cần ít nhất 2 buổi của bài này để vẽ biểu đồ.</p>}
+            <p className="muted">1RM ước tính = mức tạ nâng được 1 lần, tính từ set tốt nhất (kg × (1 + rep/30)).</p>
+          </>
+        )}
+      </section>
+
+      <section>
         <h2>Kcal 14 ngày</h2>
         <div className="chart"><ResponsiveContainer width="100%" height={200}>
           <BarChart data={kcalData}>
@@ -176,7 +233,10 @@ export default function Progress() {
       <section>
         <h2>Backup</h2>
         <p className="muted">Dữ liệu chỉ nằm trong máy này. "Lưu vào Drive" ghi đè file calo-gym-backup.json trong Drive của bạn.</p>
-        <button onClick={doDrive} style={{ width: '100%' }}>Lưu vào Drive</button>
+        <div className="row">
+          <button onClick={doDrive}>Lưu vào Drive</button>
+          <button className="ghost" onClick={doRestore}>Khôi phục từ Drive</button>
+        </div>
         {driveMsg && <p className="muted">{driveMsg}</p>}
         <div className="row">
           <button className="ghost" onClick={doExport}>Chia sẻ file</button>

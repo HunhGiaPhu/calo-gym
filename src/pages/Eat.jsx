@@ -1,15 +1,12 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { db } from '../db'
+import { db, addLog } from '../db'
 import { nutrients, addDays, sumLogs } from '../calc'
 import { recognize } from '../gemini'
 import Camera from '../Camera'
 import { Macros } from './Today'
 
 const MEALS = ['Sáng', 'Trưa', 'Tối', 'Phụ']
-
-const addLog = (date, meal, food, qty) =>
-  db.logs.add({ date, meal, foodId: food.id, name: food.name, unit: food.unit, qty, ...nutrients(food, qty) })
 
 // Chỉ khớp món tính theo gram: món "theo phần" mà ghi số gram thì ra sai (50g thành 50 phần).
 const findByName = (name) => db.foods.filter((f) => f.unit === 'g' && f.name.toLowerCase() === name.toLowerCase()).first()

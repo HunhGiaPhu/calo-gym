@@ -1,4 +1,4 @@
-import { exportAll, setSetting } from './db'
+import { exportAll, importAll, setSetting } from './db'
 
 // Backup thẳng lên Google Drive bằng Google Identity Services (token client, không cần server).
 // Client ID không phải bí mật: Google chỉ cho dùng từ origin đã khai báo (hunhgiaphu.github.io).
@@ -50,12 +50,18 @@ async function api(url, opts = {}) {
   return r.json()
 }
 
+// File backup app đã tạo (scope drive.file chỉ thấy file của app). Lỡ có 2 file trùng tên thì lấy bản mới nhất.
+async function findBackup() {
+  const q = encodeURIComponent(`name='${NAME}' and trashed=false`)
+  const { files } = await api(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id,modifiedTime)&orderBy=modifiedTime%20desc&spaces=drive`)
+  return files?.[0]
+}
+
 // Ghi đè 1 file cố định. Drive tự giữ lịch sử phiên bản cũ ~30 ngày.
 export async function uploadBackup(json) {
-  const q = encodeURIComponent(`name='${NAME}' and trashed=false`)
-  const { files } = await api(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id)&spaces=drive`)
-  if (files?.[0]) {
-    return api(`https://www.googleapis.com/upload/drive/v3/files/${files[0].id}?uploadType=media`, {
+  const id = (await findBackup())?.id
+  if (id) {
+    return api(`https://www.googleapis.com/upload/drive/v3/files/${id}?uploadType=media`, {
       method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: json,
     })
   }
@@ -71,4 +77,17 @@ export async function uploadBackup(json) {
 export const backupToDrive = () => getToken().then(async () => {
   await uploadBackup(JSON.stringify(await exportAll()))
   await setSetting('lastBackup', Date.now())
+})
+
+// Tải bản backup trên Drive về, hỏi lại (ask nhận dữ liệu + ngày lưu để báo bản cũ hay mới) rồi mới thay toàn bộ dữ liệu.
+// importAll kiểm file trước khi xoá dữ liệu cũ. Cũng phải gọi ngay lúc bấm nút như backupToDrive.
+export const restoreFromDrive = (ask) => getToken().then(async () => {
+  const file = await findBackup()
+  if (!file) throw new Error('Chưa có file backup trên Drive')
+  const data = await api(`https://www.googleapis.com/drive/v3/files/${file.id}?alt=media`)
+  const savedAt = new Date(file.modifiedTime || Date.now())
+  if (!ask(data, savedAt)) return false
+  await importAll(data)
+  await setSetting('lastBackup', savedAt.getTime()) // file mang ngày backup lần trước nữa, đặt lại cho đúng bản vừa lấy
+  return true
 })

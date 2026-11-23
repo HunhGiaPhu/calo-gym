@@ -2,6 +2,7 @@ import Dexie from 'dexie'
 import { useLiveQuery } from 'dexie-react-hooks'
 import seedFoods from './data/foods.json'
 import renameFoods from './data/foods_rename.json'
+import { nutrients, today } from './calc'
 
 export const db = new Dexie('calo-gym')
 db.version(1).stores({
@@ -38,6 +39,16 @@ navigator.storage?.persist?.()
 export const TABLES = ['foods', 'combos', 'logs', 'workouts', 'sessions', 'weights', 'settings']
 
 export const setSetting = (key, value) => db.settings.put({ key, value })
+
+export const addLog = (date, meal, food, qty) =>
+  db.logs.add({ date, meal, foodId: food.id, name: food.name, unit: food.unit, qty, ...nutrients(food, qty) })
+
+// Ghi cân cho một ngày; cân của hôm nay thì cập nhật luôn hồ sơ để mục tiêu kcal đi theo cân mới.
+export async function logWeight(kg, date = today()) {
+  await db.weights.put({ date, kg })
+  const p = await db.settings.get('profile')
+  if (p && date === today()) await setSetting('profile', { ...p.value, weight: kg })
+}
 
 export function useSetting(key, fallback) {
   const row = useLiveQuery(() => db.settings.get(key), [key])

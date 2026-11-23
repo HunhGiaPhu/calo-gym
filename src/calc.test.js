@@ -58,3 +58,41 @@ test('streak bỏ qua ngày nghỉ, hôm nay chưa tập không đứt chuỗi',
   done.delete('2026-11-17')
   expect(streak(done, sched, new Date(2026, 10, 19))).toBe(1)
 })
+
+test('weekStats chỉ tính ngày có ghi, đếm ngày đủ protein / vượt kcal', async () => {
+  const { weekStats } = await import('./calc')
+  const L = (date, kcal, p) => ({ date, kcal, p, c: 0, f: 0 })
+  const logs = [L('2026-11-24', 2000, 100), L('2026-11-24', 300, 40), L('2026-11-22', 1500, 80), L('2026-11-10', 9999, 9)]
+  const s = weekStats(logs, '2026-11-24', { kcal: 2100, p: 136 })
+  expect(s).toEqual({ days: 2, kcal: 1900, p: 110, proteinDays: 1, overDays: 1 }) // 11-10 nằm ngoài 7 ngày
+  expect(weekStats([], '2026-11-24', null)).toBeNull()
+})
+
+test('bestE1rm và liftSeries', async () => {
+  const { bestE1rm, liftSeries } = await import('./calc')
+  expect(bestE1rm([{ kg: 60, reps: 10 }, { kg: 70, reps: 5 }, { kg: 0, reps: 12 }])).toBe(81.7) // 70*(1+5/30)
+  expect(bestE1rm([])).toBe(0)
+  const ss = [
+    { date: '2026-11-20', exercise: 'Bench', sets: [{ kg: 60, reps: 8 }] },
+    { date: '2026-11-13', exercise: 'Bench', sets: [{ kg: 55, reps: 8 }] },
+    { date: '2026-11-20', exercise: 'Squat', sets: [{ kg: 80, reps: 5 }] },
+  ]
+  expect(liftSeries(ss, 'Bench').map((x) => [x.date, x.e1rm, x.top])).toEqual([['2026-11-13', 69.7, 55], ['2026-11-20', 76, 60]])
+})
+
+test('proteinPicks ưu tiên protein/kcal, bỏ món theo phần, giới hạn 300g', async () => {
+  const { proteinPicks } = await import('./calc')
+  const foods = [
+    { name: 'Ức gà', unit: 'g', kcal: 165, p: 31 },
+    { name: 'Hạt điều', unit: 'g', kcal: 553, p: 18 },
+    { name: 'Trứng', unit: 'phần', kcal: 78, p: 6 },
+    { name: 'Cơm', unit: 'g', kcal: 130, p: 2.7 },
+  ]
+  const r = proteinPicks(foods, 40)
+  expect(r.map((x) => x.name)).toEqual(['Ức gà', 'Hạt điều'])
+  expect(r[0]).toMatchObject({ grams: 130, pAdd: 40, kcalAdd: 215 })
+  expect(r[1].grams).toBe(220)
+  expect(proteinPicks(foods, 500)[0]).toMatchObject({ grams: 130, pAdd: 40 }) // thiếu nhiều vẫn chỉ gợi ý cỡ 1 bữa phụ
+  expect(proteinPicks([{ name: 'Đậu', unit: 'g', kcal: 300, p: 10 }], 60)[0].grams).toBe(300) // tối đa 300g
+  expect(proteinPicks(foods, 0)).toEqual([])
+})

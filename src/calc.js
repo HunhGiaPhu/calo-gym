@@ -92,3 +92,39 @@ export function streak(doneDates, schedule, now = new Date()) {
   }
   return n
 }
+
+// Thống kê 7 ngày tới `end` (gồm end). Chỉ tính ngày có ghi món, để ngày quên ghi không kéo trung bình xuống.
+export function weekStats(logs, end, t) {
+  const logged = Array.from({ length: 7 }, (_, i) => logs.filter((l) => l.date === addDays(end, i - 6)))
+    .filter((day) => day.length).map(sumLogs)
+  if (!logged.length) return null
+  const avg = (k) => Math.round(logged.reduce((s, x) => s + x[k], 0) / logged.length)
+  return {
+    days: logged.length, kcal: avg('kcal'), p: avg('p'),
+    proteinDays: t ? logged.filter((x) => x.p >= t.p * 0.9).length : null, // đạt ≥90% mục tiêu protein
+    overDays: t ? logged.filter((x) => x.kcal > t.kcal * 1.05).length : null, // vượt >5% mục tiêu kcal
+  }
+}
+
+// 1RM ước tính (công thức Epley) của set tốt nhất trong một buổi.
+export const bestE1rm = (sets) =>
+  Math.max(0, ...sets.filter((s) => s.kg > 0 && s.reps > 0).map((s) => Math.round(s.kg * (1 + s.reps / 30) * 10) / 10))
+
+// Các buổi của một bài, theo ngày: 1RM ước tính + mức tạ nặng nhất.
+export const liftSeries = (sessions, name) => sessions
+  .filter((s) => s.exercise === name).sort((a, b) => (a.date < b.date ? -1 : 1))
+  .map((s) => ({ date: s.date, e1rm: bestE1rm(s.sets), top: Math.max(0, ...s.sets.map((x) => x.kg || 0)) }))
+  .filter((x) => x.e1rm > 0)
+
+// Gợi ý món giàu protein (tính theo gram) để bù phần còn thiếu: ưu tiên nhiều protein trên mỗi kcal.
+export function proteinPicks(foods, need, n = 3) {
+  if (!(need > 0)) return []
+  return foods.filter((f) => f.unit === 'g' && f.p >= 10 && f.kcal > 0)
+    .sort((a, b) => b.p / b.kcal - a.p / a.kcal)
+    .slice(0, n)
+    .map((f) => {
+      // Mỗi gợi ý chỉ bù tối đa 40g protein (cỡ một bữa phụ), không dồn cả phần thiếu vào một món.
+      const grams = Math.min(300, Math.max(10, Math.round((Math.min(need, 40) / f.p) * 10) * 10)) // làm tròn 10g, tối đa 300g
+      return { ...f, grams, pAdd: Math.round((f.p * grams) / 100), kcalAdd: Math.round((f.kcal * grams) / 100) }
+    })
+}

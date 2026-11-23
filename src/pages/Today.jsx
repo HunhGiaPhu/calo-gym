@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { db, useSetting } from '../db'
-import { today, addDays, sumLogs, targets } from '../calc'
+import { db, useSetting, addLog, logWeight } from '../db'
+import { today, addDays, sumLogs, targets, proteinPicks } from '../calc'
 import { loadGis, backupToDrive } from '../drive'
 
 // Vòng tiến độ SVG: đầy dần theo value/target, đỏ khi vượt.
@@ -43,6 +43,12 @@ export default function Today({ go, day, setDay }) {
   const s = sumLogs(logs)
   const w = workouts.find((x) => x.id === schedule[wd])
   const hasData = useLiveQuery(() => db.logs.count()) > 0
+  const weighed = useLiveQuery(() => db.weights.get(d), [d])
+  const [kg, setKg] = useState('')
+  // Chỉ gợi ý khi đang xem hôm nay và còn thiếu đáng kể (≥15g) protein.
+  const needP = t && d === now ? Math.round(t.p - s.p) : 0
+  const foods = useLiveQuery(() => (needP >= 15 ? db.foods.toArray() : []), [needP >= 15]) ?? []
+  const picks = needP >= 15 ? proteinPicks(foods, needP) : []
   const backupOld = hasData && (!lastBackup || Date.now() - lastBackup > 7 * 864e5)
   const [driveMsg, setDriveMsg] = useState('')
   // Tải sẵn thư viện Google khi cần nhắc, để bấm nút là mở cửa sổ đăng nhập được ngay (iPhone chặn nếu chờ).
@@ -92,6 +98,26 @@ export default function Today({ go, day, setDay }) {
       <section onClick={() => go('gym')}>
         <h2>Lịch tập</h2>
         <p>{w ? `${title}: ${w.name}` : `${title} nghỉ`}</p>
+      </section>
+      {picks.length > 0 && (
+        <section>
+          <h2>Còn thiếu {needP}g protein</h2>
+          {picks.map((f) => (
+            <div key={f.id} className="row item">
+              <span>{f.name} {f.grams}g<small className="mac">🥩 +{f.pAdd}g · 🔥 +{f.kcalAdd} kcal</small></span>
+              <button className="ghost" onClick={() => addLog(d, 'Phụ', f, f.grams)} aria-label={`Ghi ${f.name} ${f.grams}g vào bữa Phụ`}>+ Ghi</button>
+            </div>
+          ))}
+          <p className="muted">Món trong danh sách có nhiều protein mà ít kcal nhất. Bấm Ghi là vào bữa Phụ; muốn đổi gram thì xoá rồi ghi ở tab Ăn.</p>
+        </section>
+      )}
+      <section>
+        <h2>Cân nặng</h2>
+        <form className="row say" onSubmit={(e) => { e.preventDefault(); if (+kg > 0) { logWeight(+kg, d); setKg('') } }}>
+          <input type="number" inputMode="decimal" step="0.1" value={kg} onChange={(e) => setKg(e.target.value)}
+            placeholder={weighed ? `Đã cân ${weighed.kg} kg` : `kg ${title.toLowerCase()}`} aria-label="Cân nặng (kg)" />
+          <button disabled={!(+kg > 0)}>{weighed ? 'Sửa' : 'Ghi'}</button>
+        </form>
       </section>
       <section>
         <h2>Đã ăn</h2>
