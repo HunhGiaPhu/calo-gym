@@ -33,12 +33,13 @@ function PhotoLog({ date, meal }) {
   const [notes, setNotes] = useState([])
   const [note, setNote] = useState('')
 
-  const run = async (file, fix) => {
+  const run = async (file, fix, mode) => {
     setBusy(true); setErr('')
     try {
-      const found = await recognize(file, fix)
+      const found = await recognize(file, fix, mode)
       if (!found.length) {
-        setErr(fix || typeof file === 'string' ? 'AI không ra món nào, thử nói rõ hơn.' : 'Không nhận ra món nào, thử chụp gần và rõ hơn.')
+        setErr(fix || typeof file === 'string' ? 'AI không ra món nào, thử nói rõ hơn.'
+          : mode === 'label' ? 'Không đọc được nhãn, chụp thẳng và rõ bảng dinh dưỡng.' : 'Không nhận ra món nào, thử chụp gần và rõ hơn.')
         if (fix) return // sửa hỏng thì giữ bảng cũ
       }
       // Món có trong danh sách thì lấy số của danh sách, không có thì dùng số Gemini tự tra.
@@ -52,13 +53,13 @@ function PhotoLog({ date, meal }) {
       setBusy(false)
     }
   }
-  const onFile = (file) => { setCam(false); setPhoto(file); setNotes([]); setItems(null); run(file) }
+  const onFile = (file, mode) => { setCam(false); setPhoto({ file, mode }); setNotes([]); setItems(null); run(file, undefined, mode) }
   const onSay = () => { const t = say.trim(); if (!t || busy) return; setSay(''); onFile(t) }
   const sendFix = () => {
     const t = note.trim()
     if (!t || busy) return
     setNotes([...notes, t]); setNote('')
-    run(photo, { prev: items, note: t })
+    run(photo.file, { prev: items, note: t }, photo.mode)
   }
   const edit = (i, patch) => setItems(items.map((it, j) => (j === i ? { ...it, ...patch } : it)))
   const saveAll = async (m) => {
@@ -72,11 +73,17 @@ function PhotoLog({ date, meal }) {
   return (
     <section>
       <h2>Thêm món</h2>
-      <div className="row">
+      <div className="row addbtns">
         <button disabled={busy} onClick={() => setCam(true)}>{busy ? 'Đang nhận diện…' : '📷 Chụp món'}</button>
         {!busy && (
           <label className="btn ghost">🖼 Gửi ảnh
             <input type="file" accept="image/*" hidden onChange={(e) => { const f = e.target.files[0]; e.target.value = ''; if (f) onFile(f) }} />
+          </label>
+        )}
+        {!busy && (
+          <label className="btn ghost" title="Chụp bảng dinh dưỡng trên bao bì">🏷 Nhãn
+            <input type="file" accept="image/*" capture="environment" hidden aria-label="Chụp nhãn dinh dưỡng"
+              onChange={(e) => { const f = e.target.files[0]; e.target.value = ''; if (f) onFile(f, 'label') }} />
           </label>
         )}
       </div>

@@ -206,3 +206,6 @@ nav button:active { background: var(--card-2); opacity: 1; }
 .daynav h1 { margin: 0; flex: 1; text-align: center; }
 .daynav > button.ghost { width: 48px; padding: 0; font-size: 1.5rem; line-height: 1; }
 .daynav > button.today-btn { width: 100%; font-size: .9rem; min-height: 44px; }
+
+/* 3 nút Chụp món / Gửi ảnh / Nhãn: chữ một dòng cho vừa màn hình điện thoại */
+.addbtns > * { padding: 10px 6px; font-size: .88rem; white-space: nowrap; }
