@@ -28,7 +28,7 @@
 
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); min-height: 100dvh; }
-main { max-width: 560px; margin: 0 auto; padding: calc(16px + env(safe-area-inset-top)) 16px calc(120px + env(safe-area-inset-bottom)); }
+main { max-width: 560px; margin: 0 auto; padding: calc(16px + env(safe-area-inset-top)) 16px calc(88px + env(safe-area-inset-bottom)); }
 
 h1 { font-size: 2rem; font-weight: 700; letter-spacing: -.02em; margin: 8px 0 16px; }
 h2 { font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 12px; }
@@ -145,26 +145,24 @@ table.macros { width: 100%; border-collapse: collapse; font-size: .85rem; font-v
 .macros input[type=checkbox] { width: 18px; min-height: 18px; flex: none; }
 .macros input[type=number] { width: 60px; min-height: 38px; padding: 4px 6px; text-align: right; }
 
-/* Thanh tab dưới: dạng viên nổi */
+/* Thanh tab dưới: dính sát mép, nền liền như app iPhone thường (không nổi, không che nội dung) */
 nav {
-  position: fixed; left: 50%; transform: translateX(-50%); z-index: 30;
-  bottom: calc(12px + env(safe-area-inset-bottom)); width: calc(100% - 32px); max-width: 420px;
-  display: flex; gap: 4px; padding: 6px;
-  background: rgb(18 18 20 / .88); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--line); border-radius: 999px;
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+  display: flex; justify-content: center; padding: 4px 8px env(safe-area-inset-bottom);
+  background: var(--card); border-top: 1px solid var(--line);
 }
 nav button {
-  flex: 1; flex-direction: column; gap: 2px; min-height: 52px; padding: 4px;
-  background: none; border: 0; border-radius: 999px; color: var(--faint); font-size: .72rem; font-weight: 600;
+  flex: 1; max-width: 120px; flex-direction: column; gap: 2px; min-height: 56px; padding: 4px;
+  background: none; border: 0; border-radius: var(--r-sm); color: var(--faint); font-size: .72rem; font-weight: 600;
 }
-nav button svg { width: 22px; height: 22px; }
-nav button.on { background: var(--accent); color: var(--on-accent); }
-nav button:active { opacity: .8; }
+nav button svg { width: 24px; height: 24px; }
+nav button.on { color: var(--accent); }
+nav button:active { background: var(--card-2); opacity: 1; }
 
 /* Đồng hồ nghỉ nổi trên thanh tab */
 .rest {
   position: fixed; left: 50%; transform: translateX(-50%); z-index: 40;
-  bottom: calc(86px + env(safe-area-inset-bottom));
+  bottom: calc(76px + env(safe-area-inset-bottom));
   display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 18px;
   border-radius: 999px; background: var(--ink); color: var(--bg); font-weight: 700; font-variant-numeric: tabular-nums;
 }

@@ -53,5 +53,5 @@ Mỗi agent làm trong worktree riêng (xem `scripts/new-agent-worktree.ps1`), n
 ## Giao diện (người dùng đã chốt)
 - Nền đen OLED + chữ trắng + **một** màu nhấn lime `--accent` (vòng kcal, nút chính, tab đang chọn); vượt mục tiêu dùng `--bad` (đỏ). Chỉ dùng biến màu trong `src/index.css`, không viết mã màu thẳng.
 - **Giữ emoji** 🔥 kcal · 🥩 protein · 🍚 carb · 🧈 fat (người dùng chọn, dù skill UI khuyên icon SVG). Font Be Vietnam Pro (dấu tiếng Việt chuẩn).
-- Tab Hôm nay kiểu app calo trên App Store: vòng kcal lớn + 3 thẻ macro có vòng nhỏ. Thanh tab dạng viên nổi.
+- Tab Hôm nay kiểu app calo trên App Store: vòng kcal lớn + 3 thẻ macro có vòng nhỏ. Thanh tab dính sát đáy, nền liền như app iPhone thường (người dùng không thích thanh nổi che nội dung); tab đang chọn tô chữ lime.
 - Bữa ăn: Sáng / Trưa / Tối / Phụ. Chữ phụ phải đạt tương phản 4.5:1; nút bấm cao tối thiểu 44px.
