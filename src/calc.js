@@ -62,6 +62,14 @@ export const ACTIVITY = [
   [1.725, 'Tập 6–7 buổi/tuần'],
 ]
 
+// Ngày tập +TRAIN_DELTA kcal; ngày nghỉ trừ bù để trung bình cả tuần vẫn bằng mục tiêu gốc.
+export const TRAIN_DELTA = 150
+export function dayAdjust(schedule, wd, delta = TRAIN_DELTA) {
+  const n = Object.values(schedule || {}).filter(Boolean).length // số ngày tập/tuần
+  if (n <= 0 || n >= 7) return 0
+  return schedule[wd] ? delta : -Math.round((delta * n) / (7 - n))
+}
+
 // Mifflin-St Jeor. Protein 2g/kg, fat 0.8g/kg, phần còn lại là carb.
 export function targets({ sex, age, height, weight, activity, deficit }) {
   const bmr = 10 * weight + 6.25 * height - 5 * age + (sex === 'nam' ? 5 : -161)

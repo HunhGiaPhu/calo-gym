@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, useSetting, addLog, logWeight } from '../db'
-import { today, addDays, sumLogs, targets, proteinPicks, qtyLabel, SUGAR_LIMIT } from '../calc'
+import { today, addDays, sumLogs, targets, proteinPicks, qtyLabel, SUGAR_LIMIT, dayAdjust } from '../calc'
 import { loadGis, backupToDrive } from '../drive'
 
 // Vòng tiến độ SVG: đầy dần theo value/target, đỏ khi vượt.
@@ -31,15 +31,16 @@ export default function Today({ go, day, setDay }) {
   const d = day
   const now = today()
   const wd = new Date(`${d}T00:00`).getDay()
+  const schedule = useSetting('schedule', {})
   const dm = `${+d.slice(8)}/${+d.slice(5, 7)}`
   const title = d === now ? 'Hôm nay' : d === addDays(now, -1) ? 'Hôm qua' : dm
   const logs = useLiveQuery(() => db.logs.where('date').equals(d).toArray(), [d]) ?? []
   const workouts = useLiveQuery(() => db.workouts.toArray()) ?? []
   const profile = useSetting('profile', null)
-  const schedule = useSetting('schedule', {})
   const lastBackup = useSetting('lastBackup', null)
 
-  const t = profile ? targets(profile) : null
+  const adj = dayAdjust(schedule, wd)
+  const t = profile ? targets({ ...profile, deficit: profile.deficit - adj }) : null
   const s = sumLogs(logs)
   const w = workouts.find((x) => x.id === schedule[wd])
   const hasData = useLiveQuery(() => db.logs.count()) > 0
@@ -80,6 +81,7 @@ export default function Today({ go, day, setDay }) {
           <div>Đã ăn<b>{Math.round(s.kcal)}</b></div>
           <div>Mục tiêu<b>{t?.kcal ?? '–'}</b></div>
         </div>
+        {t && adj !== 0 && <p className="muted" style={{ margin: '4px 0 0', textAlign: 'center' }}>{adj > 0 ? `Ngày tập: +${adj}` : `Ngày nghỉ: −${-adj}`} kcal so với mục tiêu gốc</p>}
       </section>
       <div className="macro-grid">
         {MACROS.map(([k, icon, name]) => {

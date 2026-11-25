@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { nutrients, sumLogs, targets, parsePlan, streak, addDays, rolling7, weightAdvice, nextKg, qtyLabel } from './calc'
+import { nutrients, sumLogs, targets, parsePlan, streak, addDays, rolling7, weightAdvice, nextKg, qtyLabel, dayAdjust } from './calc'
 
 test('addDays qua tháng', () => {
   expect(addDays('2026-11-30', 1)).toBe('2026-12-01')
@@ -48,6 +48,16 @@ test('targets: nam 70kg 175cm 21t', () => {
   expect(t.tdee).toBe(2625) // bmr 1693.75 * 1.55
   expect(t.kcal).toBe(2225)
   expect(t.p).toBe(140)
+})
+
+test('dayAdjust giữ trung bình mục tiêu kcal cả tuần', () => {
+  const schedule = { 1: 1, 2: 2, 4: 3, 5: 4 }
+  expect(dayAdjust(schedule, 1)).toBe(150)
+  expect(dayAdjust(schedule, 0)).toBe(-Math.round((150 * 4) / 3))
+  expect(4 * dayAdjust(schedule, 1) + 3 * dayAdjust(schedule, 0)).toBe(0)
+  expect(dayAdjust({}, 0)).toBe(0)
+  expect(dayAdjust({ 0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1 }, 0)).toBe(0)
+  expect(dayAdjust({ 1: null, 2: 5 }, 1)).toBe(-Math.round(150 / 6))
 })
 
 test('parsePlan', () => {
