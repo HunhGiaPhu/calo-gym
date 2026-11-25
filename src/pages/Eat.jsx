@@ -189,7 +189,7 @@ export default function Eat({ day: date, setDay: setDate }) {
 
       <section>
         <h2>Combo</h2>
-        {combos.length === 0 && <p className="muted">Ghi món xong rồi bấm "Lưu thành combo" bên dưới.</p>}
+        {combos.length === 0 && <p className="empty-state"><span aria-hidden="true">🍱</span>Chưa có combo. Ghi món rồi lưu thành combo ở phần dưới.</p>}
         {combos.map((c) => (
           <div key={c.id} className="row item">
             <button className="combo" onClick={() => applyCombo(c)}>{c.name} <small className="muted">· {c.items.length} món</small></button>
@@ -203,6 +203,7 @@ export default function Eat({ day: date, setDay: setDate }) {
 
       <section>
         <h2>Đã ghi ngày {date}</h2>
+        {logs.length === 0 && <p className="empty-state"><span aria-hidden="true">🍽</span>Chưa ghi món nào hôm nay</p>}
         {logs.map((l) => (
           <div key={l.id} className="row item">
             <span>{l.meal} · {l.name} {l.qty}{qtyLabel(l)}<Macros l={l} /></span>

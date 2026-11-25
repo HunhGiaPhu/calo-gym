@@ -186,12 +186,12 @@ Khôi phục sẽ THAY TOÀN BỘ dữ liệu trong máy bằng bản này; món
             </div>
             <p className="muted">Tính {week.days} ngày có ghi món, ngày không ghi bỏ qua.</p>
           </>
-        ) : <p className="muted">7 ngày qua chưa ghi món nào.</p>}
+        ) : <p className="empty-state"><span aria-hidden="true">🍽</span>7 ngày qua chưa ghi món nào</p>}
       </section>
 
       <section>
         <h2>Tiến bộ tạ</h2>
-        {lifts.length === 0 ? <p className="muted">Ghi set ở tab Tập là sẽ thấy biểu đồ từng bài ở đây.</p> : (
+        {lifts.length === 0 ? <p className="empty-state"><span aria-hidden="true">🏋️</span>Ghi set ở tab Tập để xem tiến bộ từng bài</p> : (
           <>
             <select value={liftName} onChange={(e) => setLift(e.target.value)} aria-label="Chọn bài tập">
               {lifts.map((n) => <option key={n}>{n}</option>)}

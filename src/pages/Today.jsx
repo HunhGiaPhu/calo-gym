@@ -81,7 +81,7 @@ export default function Today({ go, day, setDay }) {
           <div>Đã ăn<b>{Math.round(s.kcal)}</b></div>
           <div>Mục tiêu<b>{t?.kcal ?? '–'}</b></div>
         </div>
-        {t && adj !== 0 && <p className="muted" style={{ margin: '4px 0 0', textAlign: 'center' }}>{adj > 0 ? `Ngày tập: +${adj}` : `Ngày nghỉ: −${-adj}`} kcal so với mục tiêu gốc</p>}
+        {t && adj !== 0 && <p className="day-adjust">{adj > 0 ? 'Ngày tập · +' + adj + ' kcal' : 'Ngày nghỉ · −' + -adj + ' kcal'}</p>}
       </section>
       <div className="macro-grid">
         {MACROS.map(([k, icon, name]) => {
@@ -128,7 +128,7 @@ export default function Today({ go, day, setDay }) {
       </section>
       <section>
         <h2>Đã ăn</h2>
-        {logs.length === 0 && <p className="muted">Chưa ghi gì.</p>}
+        {logs.length === 0 && <p className="empty-state"><span aria-hidden="true">🍽</span>Chưa ghi món nào</p>}
         {logs.map((l) => (
           <div key={l.id} className="row item">
             <span>{l.meal} · {l.name} {l.qty}{qtyLabel(l)}<Macros l={l} /></span>

@@ -161,7 +161,7 @@ export default function Gym({ startRest }) {
       )}
       {w.items.length === 0 && (
         <section>
-          <p className="muted">Buổi {w.name} chưa có bài nào.</p>
+          <p className="empty-state"><span aria-hidden="true">🏋️</span>Buổi {w.name} chưa có bài nào</p>
           <button onClick={() => setEditing(w)}>+ Thêm bài cho {w.name}</button>
         </section>
       )}
