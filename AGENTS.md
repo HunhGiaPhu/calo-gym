@@ -65,8 +65,7 @@ Mỗi agent làm trong worktree riêng (xem `scripts/new-agent-worktree.ps1`), n
 - **CI:** `deploy.yml` tách 2 job `build` → `deploy`, action bản mới. Từng gặp lỗi chập chờn "No artifacts named github-pages": chạy lại bằng `gh workflow run deploy.yml --ref main`.
 
 ## Việc tồn đọng (đọc đầu phiên sau)
-- **Chưa commit trên `main`:** `.gitignore` (thêm `graphify-out/`), `.env.example`, `scripts/new-agent-worktree.ps1`, và AGENTS.md này. `.env` đã tạo (để trống, nằm trong `.gitignore`); chỉ dành cho công cụ máy tính, KHÔNG đổi thành `VITE_...` vì Vite sẽ đưa key vào JS công khai.
-- **Nhánh `agent/codex` đã cũ** (nội dung đã nằm trong `main` nhưng lịch sử khác). Trước khi làm tiếp, đưa nhánh về bằng `main` (việc có `reset --hard`, phải hỏi người dùng).
+- **`.env`** (để trống, nằm trong `.gitignore`) chỉ dành cho công cụ máy tính, KHÔNG đổi thành `VITE_...` vì Vite sẽ đưa key vào JS công khai. `agent/codex` đã reset về `main` ngày 26/11; `agent/agy` vẫn ở 6b88808 (cũ hơn main 1 commit chỉ có tài liệu), làm tiếp thì `git merge --ff-only main` trong `../app-agy`.
 - **Chưa thử trên iPhone thật:** Khôi phục từ Drive, chụp nhãn, nhắn chữ, đăng nhập Google. Mới thử bằng Gemini/Google giả trên browser.
 - **Key Gemini người dùng dán vào chat 20/11 chưa đổi** (người dùng quyết định bỏ qua). Không lên GitHub (đã quét lịch sử git và trang thật: sạch).
 - **Ý tưởng chưa làm:** Siri/Phím tắt ghi món, chụp menu quán, chụp trước/sau khi ăn, dự đoán ngày đạt cân mục tiêu, AI coach, AI tạo giáo án cho tab Tập, AI nhận xét ngày ăn, ghi vòng eo, kcal theo ngày tập/nghỉ, xuất CSV.
