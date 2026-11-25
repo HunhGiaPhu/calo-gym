@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { nutrients, sumLogs, targets, parsePlan, streak, addDays, rolling7, weightAdvice, nextKg, qtyLabel, dayAdjust } from './calc'
+import { nutrients, sumLogs, targets, parsePlan, streak, addDays, rolling7, weightAdvice, nextKg, qtyLabel, dayAdjust, frequentFoods } from './calc'
 
 test('addDays qua tháng', () => {
   expect(addDays('2026-11-30', 1)).toBe('2026-12-01')
@@ -118,4 +118,41 @@ test('qtyLabel: g, ml cho món lỏng, phần', () => {
   expect(qtyLabel({ unit: 'g' })).toBe('g')
   expect(qtyLabel({ unit: 'g', liq: true })).toBe('ml')
   expect(qtyLabel({ unit: 'phần' })).toBe(' phần')
+})
+
+test('frequentFoods xếp theo số lần, bằng nhau ưu tiên món gần đây', () => {
+  const logs = [
+    { date: '2026-11-20', foodId: 1, name: 'A', unit: 'g', qty: 100 },
+    { date: '2026-11-21', foodId: 2, name: 'B', unit: 'g', qty: 120 },
+    { date: '2026-11-22', foodId: 1, name: 'A', unit: 'g', qty: 100 },
+    { date: '2026-11-23', foodId: 1, name: 'A', unit: 'g', qty: 100 },
+  ]
+  expect(frequentFoods(logs).map(({ foodId }) => foodId)).toEqual([1, 2])
+  expect(frequentFoods(logs.slice(0, 2)).map(({ foodId }) => foodId)).toEqual([2, 1])
+})
+
+test('frequentFoods lấy lượng từ lần gần nhất và lọc dòng không hợp lệ', () => {
+  const logs = [
+    { date: '2026-11-20', foodId: 1, name: 'A', unit: 'g', qty: 100 },
+    { date: '2026-11-25', foodId: 1, name: 'A', unit: 'g', qty: 150 },
+    { date: '2026-11-25', name: 'Thiếu ID', unit: 'g', qty: 50 },
+    { date: '2026-11-25', foodId: 0, name: 'ID 0', unit: 'g', qty: 50 },
+    { date: '2026-11-25', foodId: 2, name: 'Không', unit: 'g', qty: 0 },
+    { date: '2026-11-25', foodId: 3, name: 'Âm', unit: 'g', qty: -1 },
+    { date: '2026-11-25', foodId: 4, name: 'Chuỗi', unit: 'g', qty: '100' },
+  ]
+  expect(frequentFoods(logs)).toEqual([{ foodId: 1, name: 'A', unit: 'g', count: 2, qty: 150 }])
+})
+
+test('frequentFoods giới hạn n và chỉ thêm liq khi log có liq: true', () => {
+  const logs = [
+    { date: '2026-11-21', foodId: 1, name: 'Nước', unit: 'g', qty: 200, liq: true },
+    { date: '2026-11-20', foodId: 2, name: 'Cơm', unit: 'g', qty: 150 },
+    { date: '2026-11-19', foodId: 3, name: 'Trứng', unit: 'phần', qty: 2, liq: false },
+  ]
+  expect(frequentFoods(logs, 2)).toEqual([
+    { foodId: 1, name: 'Nước', unit: 'g', liq: true, count: 1, qty: 200 },
+    { foodId: 2, name: 'Cơm', unit: 'g', count: 1, qty: 150 },
+  ])
+  expect(frequentFoods([logs[2]])[0]).not.toHaveProperty('liq')
 })

@@ -42,6 +42,38 @@ export function nextKg(plan, last) {
 // Đơn vị hiển thị số lượng: món lỏng (liq) vẫn tính như gram nhưng hiện ml.
 export const qtyLabel = (l) => (l.unit === 'g' ? (l.liq ? 'ml' : 'g') : ' phần')
 
+// Món hay ăn: nhiều lần nhất trước; bằng nhau thì ưu tiên món mới ăn gần đây hơn.
+export function frequentFoods(logs, n = 8) {
+  const foods = new Map()
+  logs.forEach((log, index) => {
+    if (!log.foodId || typeof log.qty !== 'number' || !Number.isFinite(log.qty) || log.qty <= 0) return
+    const food = foods.get(log.foodId) ?? { foodId: log.foodId, count: 0, latestDate: log.date, latestIndex: index }
+    food.count++
+    if (log.date > food.latestDate || (log.date === food.latestDate && index > food.latestIndex)) {
+      food.latestDate = log.date
+      food.latestIndex = index
+      food.name = log.name
+      food.unit = log.unit
+      food.qty = log.qty
+      food.liq = log.liq
+    }
+    if (food.count === 1) {
+      food.name = log.name
+      food.unit = log.unit
+      food.qty = log.qty
+      food.liq = log.liq
+    }
+    foods.set(log.foodId, food)
+  })
+
+  return [...foods.values()]
+    .sort((a, b) => b.count - a.count || b.latestDate.localeCompare(a.latestDate) || b.latestIndex - a.latestIndex)
+    .slice(0, Math.max(0, n))
+    .map(({ foodId, name, unit, liq, count, qty }) => ({
+      foodId, name, unit, ...(liq && { liq }), count, qty,
+    }))
+}
+
 export function nutrients(food, qty) {
   const k = food.unit === 'g' ? qty / 100 : qty
   const r = (x) => Math.round((x || 0) * k * 10) / 10

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, addLog } from '../db'
-import { nutrients, addDays, sumLogs, qtyLabel } from '../calc'
+import { nutrients, addDays, sumLogs, qtyLabel, frequentFoods } from '../calc'
 import { recognize } from '../gemini'
 import Camera from '../Camera'
 import { Macros } from './Today'
@@ -147,6 +147,14 @@ export default function Eat({ day: date, setDay: setDate }) {
 
   const combos = useLiveQuery(() => db.combos.toArray()) ?? []
   const logs = useLiveQuery(() => db.logs.where('date').equals(date).toArray(), [date]) ?? []
+  const recent = useLiveQuery(() => db.logs.where('date').aboveOrEqual(addDays(date, -30)).toArray(), [date]) ?? []
+  const hay = frequentFoods(recent)
+
+  const quickAdd = async (h) => {
+    const food = await db.foods.get(h.foodId)
+    if (!food) return alert('Món này không còn trong danh sách')
+    await addLog(date, meal, food, h.qty)
+  }
 
   const applyCombo = async (c) => {
     let missing = 0
@@ -197,6 +205,16 @@ export default function Eat({ day: date, setDay: setDate }) {
           </div>
         ))}
       </section>
+
+      {hay.length > 0 && <section>
+        <h2>Hay ăn</h2>
+        <div className="quick">
+          {hay.map((h) => <button className="ghost chip" key={h.foodId} onClick={() => quickAdd(h)} aria-label={`Ghi ${h.name} ${h.qty}${qtyLabel(h)} vào bữa ${meal}`}>
+            {h.name} <small>{h.qty}{qtyLabel(h)}</small>
+          </button>)}
+        </div>
+        <p className="muted">Bấm để ghi vào bữa {meal} của ngày đang chọn.</p>
+      </section>}
 
       <PhotoLog date={date} meal={meal} />
 

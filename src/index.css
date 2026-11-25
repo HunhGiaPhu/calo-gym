@@ -121,6 +121,9 @@ button.x:active { color: var(--ink); }
 .meals { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-1); }
 .meals button { min-height: 44px; padding: var(--sp-1); }
 .meals button:not(.ghost) { box-shadow: none; }
+.quick { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.chip { flex: none; padding: 0 var(--sp-3); min-height: 44px; border-radius: 999px; font-size: var(--fs-sm); display: inline-flex; align-items: center; gap: 6px; }
+.chip small { color: var(--muted); font-weight: 500; }
 
 /* Gym: từng set */
 .set span { flex: none; width: 52px; color: var(--muted); font-size: var(--fs-sm); }
