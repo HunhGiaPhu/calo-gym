@@ -43,7 +43,7 @@ Mỗi agent làm trong worktree riêng (`scripts/new-agent-worktree.ps1`), nhán
 
 ## Tính năng đã có (đã deploy, 26/11/2026)
 - **Hôm nay:** vòng kcal + macro, xem ngày trước (state `day` ở `App.jsx`), ô cân nặng nhanh, gợi ý món đủ protein, thanh 🍬 đường x/36g (`SUGAR_LIMIT`, mức AHA cho nam, đỏ khi vượt), mục tiêu kcal đổi theo ngày tập/nghỉ (`dayAdjust` ở `calc.js`: ngày có lịch tập +`TRAIN_DELTA`=150, ngày nghỉ trừ bù để trung bình tuần = mục tiêu gốc; chưa xếp lịch thì không đổi; tab Tiến độ vẫn dùng mục tiêu gốc), nút Lưu vào Drive khi >7 ngày chưa backup.
-- **Ăn:** 📷 Chụp món, 🖼 Gửi ảnh, 🏷 Nhãn, nhắn chữ; bảng kcal/P/C/F/🍬; chat sửa món; combo theo bữa. Mọi món qua AI, khớp danh sách trước, không có thì AI tra.
+- **Ăn:** khối "Hay ăn" (`frequentFoods` ở `calc.js`: món nhiều lần nhất 30 ngày qua, lượng lần gần nhất, bấm 1 chạm ghi vào bữa đang chọn; ẩn khi chưa có log); 📷 Chụp món, 🖼 Gửi ảnh, 🏷 Nhãn, nhắn chữ; bảng kcal/P/C/F/🍬; chat sửa món; combo theo bữa. Mọi món qua AI, khớp danh sách trước, không có thì AI tra.
 - **Tập:** 5 buổi mặc định đang TRỐNG bài, người dùng tự thêm.
 - **Tiến độ:** streak, cân + TB 7 ngày + gợi ý kcal, 7 ngày qua, tiến bộ tạ (1RM Epley), hồ sơ, khoá Gemini, Backup (Drive, Khôi phục từ Drive, chia sẻ/nhập file).
 - **Dữ liệu:** Dexie version 3. Trường tuỳ chọn không cần đổi version:
