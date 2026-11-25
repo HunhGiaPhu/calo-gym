@@ -41,7 +41,7 @@ export const TABLES = ['foods', 'combos', 'logs', 'workouts', 'sessions', 'weigh
 export const setSetting = (key, value) => db.settings.put({ key, value })
 
 export const addLog = (date, meal, food, qty) =>
-  db.logs.add({ date, meal, foodId: food.id, name: food.name, unit: food.unit, qty, ...nutrients(food, qty) })
+  db.logs.add({ date, meal, foodId: food.id, name: food.name, unit: food.unit, ...(food.liq && { liq: true }), qty, ...nutrients(food, qty) })
 
 // Ghi cân cho một ngày; cân của hôm nay thì cập nhật luôn hồ sơ để mục tiêu kcal đi theo cân mới.
 export async function logWeight(kg, date = today()) {

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, addLog } from '../db'
-import { nutrients, addDays, sumLogs } from '../calc'
+import { nutrients, addDays, sumLogs, qtyLabel } from '../calc'
 import { recognize } from '../gemini'
 import Camera from '../Camera'
 import { Macros } from './Today'
@@ -15,13 +15,13 @@ const findByName = (name) => db.foods.filter((f) => f.unit === 'g' && f.name.toL
 async function foodFor(it) {
   const same = await findByName(it.name)
   if (same) {
-    if (same.s == null && it.s != null) { // món trong danh sách chưa có đường: học số AI cho lần sau
-      await db.foods.update(same.id, { s: it.s })
-      return { ...same, s: it.s }
-    }
-    return same
+    // món trong danh sách còn thiếu đường / cờ ml: học từ AI cho lần sau
+    const patch = { ...(same.s == null && it.s != null && { s: it.s }), ...(it.liq && !same.liq && { liq: true }) }
+    if (!Object.keys(patch).length) return same
+    await db.foods.update(same.id, patch)
+    return { ...same, ...patch }
   }
-  const food = { name: it.name, unit: 'g', kcal: it.kcal, p: it.p, c: it.c, f: it.f, s: it.s }
+  const food = { name: it.name, unit: 'g', kcal: it.kcal, p: it.p, c: it.c, f: it.f, s: it.s, ...(it.liq && { liq: true }) }
   return { ...food, id: await db.foods.add(food) }
 }
 
@@ -101,7 +101,7 @@ function PhotoLog({ date, meal }) {
         <>
           <p className="muted">AI chỉ ước lượng, sửa lại số gram cho đúng rồi ghi. * = số do AI tra, không có trong danh sách món.</p>
           <table className="macros">
-            <thead><tr><th>Món</th><th>Gram</th><th aria-label="Kcal" title="Kcal">🔥</th><th aria-label="Protein" title="Protein">🥩</th><th aria-label="Carb" title="Carb">🍚</th><th aria-label="Fat" title="Fat">🧈</th><th aria-label="Đường" title="Đường">🍬</th></tr></thead>
+            <thead><tr><th>Món</th><th>Gram/ml</th><th aria-label="Kcal" title="Kcal">🔥</th><th aria-label="Protein" title="Protein">🥩</th><th aria-label="Carb" title="Carb">🍚</th><th aria-label="Fat" title="Fat">🧈</th><th aria-label="Đường" title="Đường">🍬</th></tr></thead>
             <tbody>
               {items.map((it, i) => {
                 const n = nutrients({ unit: 'g', ...it }, +it.grams || 0)
@@ -110,7 +110,7 @@ function PhotoLog({ date, meal }) {
                     <td>
                       <label><input type="checkbox" checked={it.on} onChange={(e) => edit(i, { on: e.target.checked })} /> {it.name}{!it.fromList && '*'}</label>
                     </td>
-                    <td><input type="number" inputMode="decimal" value={it.grams} onChange={(e) => edit(i, { grams: e.target.value })} aria-label={`Gram ${it.name}`} /></td>
+                    <td><input type="number" inputMode="decimal" value={it.grams} onChange={(e) => edit(i, { grams: e.target.value })} aria-label={`Số lượng ${it.name}`} /><small className="muted">{it.liq ? 'ml' : 'g'}</small></td>
                     <td>{Math.round(n.kcal)}</td><td>{n.p}</td><td>{n.c}</td><td>{n.f}</td><td>{n.s ?? '–'}</td>
                   </tr>
                 )
@@ -205,7 +205,7 @@ export default function Eat({ day: date, setDay: setDate }) {
         <h2>Đã ghi ngày {date}</h2>
         {logs.map((l) => (
           <div key={l.id} className="row item">
-            <span>{l.meal} · {l.name} {l.qty}{l.unit === 'g' ? 'g' : ' phần'}<Macros l={l} /></span>
+            <span>{l.meal} · {l.name} {l.qty}{qtyLabel(l)}<Macros l={l} /></span>
             <span>{Math.round(l.kcal)} kcal <button className="x" onClick={() => db.logs.delete(l.id)}>✕</button></span>
           </div>
         ))}

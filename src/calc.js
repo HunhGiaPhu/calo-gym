@@ -39,6 +39,9 @@ export function nextKg(plan, last) {
   return top > 0 ? top + 2.5 : null
 }
 
+// Đơn vị hiển thị số lượng: món lỏng (liq) vẫn tính như gram nhưng hiện ml.
+export const qtyLabel = (l) => (l.unit === 'g' ? (l.liq ? 'ml' : 'g') : ' phần')
+
 export function nutrients(food, qty) {
   const k = food.unit === 'g' ? qty / 100 : qty
   const r = (x) => Math.round((x || 0) * k * 10) / 10

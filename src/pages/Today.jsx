@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, useSetting, addLog, logWeight } from '../db'
-import { today, addDays, sumLogs, targets, proteinPicks, SUGAR_LIMIT } from '../calc'
+import { today, addDays, sumLogs, targets, proteinPicks, qtyLabel, SUGAR_LIMIT } from '../calc'
 import { loadGis, backupToDrive } from '../drive'
 
 // Vòng tiến độ SVG: đầy dần theo value/target, đỏ khi vượt.
@@ -129,7 +129,7 @@ export default function Today({ go, day, setDay }) {
         {logs.length === 0 && <p className="muted">Chưa ghi gì.</p>}
         {logs.map((l) => (
           <div key={l.id} className="row item">
-            <span>{l.meal} · {l.name} {l.qty}{l.unit === 'g' ? 'g' : ' phần'}<Macros l={l} /></span>
+            <span>{l.meal} · {l.name} {l.qty}{qtyLabel(l)}<Macros l={l} /></span>
             <span>{Math.round(l.kcal)} kcal <button className="x" onClick={() => db.logs.delete(l.id)}>✕</button></span>
           </div>
         ))}

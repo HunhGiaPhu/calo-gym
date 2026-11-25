@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { nutrients, sumLogs, targets, parsePlan, streak, addDays, rolling7, weightAdvice, nextKg } from './calc'
+import { nutrients, sumLogs, targets, parsePlan, streak, addDays, rolling7, weightAdvice, nextKg, qtyLabel } from './calc'
 
 test('addDays qua tháng', () => {
   expect(addDays('2026-11-30', 1)).toBe('2026-12-01')
@@ -102,4 +102,10 @@ test('proteinPicks ưu tiên protein/kcal, bỏ món theo phần, giới hạn 3
   expect(proteinPicks(foods, 500)[0]).toMatchObject({ grams: 130, pAdd: 40 }) // thiếu nhiều vẫn chỉ gợi ý cỡ 1 bữa phụ
   expect(proteinPicks([{ name: 'Đậu', unit: 'g', kcal: 300, p: 10 }], 60)[0].grams).toBe(300) // tối đa 300g
   expect(proteinPicks(foods, 0)).toEqual([])
+})
+
+test('qtyLabel: g, ml cho món lỏng, phần', () => {
+  expect(qtyLabel({ unit: 'g' })).toBe('g')
+  expect(qtyLabel({ unit: 'g', liq: true })).toBe('ml')
+  expect(qtyLabel({ unit: 'phần' })).toBe(' phần')
 })

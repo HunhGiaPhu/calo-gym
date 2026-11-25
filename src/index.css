@@ -150,7 +150,9 @@ table.macros { width: 100%; border-collapse: collapse; font-size: .85rem; font-v
 .macros tr.off { opacity: .4; }
 .macros label { flex-direction: row; align-items: center; margin: 0; font-size: inherit; color: var(--ink); text-align: left; }
 .macros input[type=checkbox] { width: 18px; min-height: 18px; flex: none; }
-.macros input[type=number] { width: 60px; min-height: 38px; padding: 4px 6px; text-align: right; }
+.macros input[type=number] { width: 54px; min-height: 44px; padding: 4px 6px; text-align: right; -moz-appearance: textfield; }
+.macros input[type=number]::-webkit-inner-spin-button, .macros input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.macros td small { margin-left: 2px; font-size: .72rem; }
 
 /* Thanh tab dưới: dính sát mép, nền liền như app iPhone thường (không nổi, không che nội dung) */
 nav {

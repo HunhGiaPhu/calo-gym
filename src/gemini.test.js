@@ -25,6 +25,17 @@ test('parseItems đổi về trên 100g và lọc rác', () => {
   expect(() => parseItems('not json')).toThrow()
 })
 
+test('parseItems: unit ml thêm liq, g hoặc thiếu unit thì không có liq', () => {
+  const out = parseItems(JSON.stringify({ items: [
+    { name: 'Coca', unit: 'ml', grams: 330, kcal: 139, p: 0, c: 35, f: 0, s: 35 },
+    { name: 'Cơm', unit: 'g', grams: 100, kcal: 130, p: 2, c: 28, f: 0, s: 0 },
+    { name: 'Trứng', grams: 50, kcal: 70, p: 6, c: 0, f: 5, s: 0 },
+  ] }))
+  expect(out[0]).toEqual({ name: 'Coca', grams: 330, kcal: 42.1, p: 0, c: 10.6, f: 0, s: 10.6, liq: true })
+  expect(out[1]).not.toHaveProperty('liq')
+  expect(out[2]).not.toHaveProperty('liq')
+})
+
 test('textPrompt và fixPrompt cho lời kể: có lời kể, cắt gọn, sửa dựa trên lời kể', async () => {
   const { textPrompt, fixPrompt } = await import('./gemini')
   const t = textPrompt('  2 trứng luộc, 1 chén cơm  ' + 'y'.repeat(400))

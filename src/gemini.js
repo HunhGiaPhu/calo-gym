@@ -21,6 +21,7 @@ export const setModel = (v) => write(MODEL, v.trim())
 const PROMPT = `Ảnh là bữa ăn của một người Việt đang giảm mỡ tăng cơ.
 Liệt kê từng món/thành phần nhìn thấy, ước lượng khối lượng ăn được (gram) và dinh dưỡng CHO ĐÚNG LƯỢNG ĐÓ:
 kcal, p (protein g), c (carb g), f (fat g), s (đường g, sugars; nhãn ghi "đường"/"sugars"). Tên món bằng tiếng Việt, ngắn gọn (vd "Cơm trắng", "Ức gà luộc").
+Đồ uống/chất lỏng (nước ngọt, sữa, nước ép, trà sữa, cà phê, bia, nước canh...) đặt unit = "ml" và grams = số ml; mọi món khác unit = "g". Dinh dưỡng vẫn cho đúng lượng đó (1ml coi như 1g).
 Không thấy đồ ăn thì trả items rỗng.`
 
 const SCHEMA = {
@@ -31,10 +32,10 @@ const SCHEMA = {
       items: {
         type: 'OBJECT',
         properties: {
-          name: { type: 'STRING' }, grams: { type: 'NUMBER' },
+          name: { type: 'STRING' }, grams: { type: 'NUMBER' }, unit: { type: 'STRING' },
           kcal: { type: 'NUMBER' }, p: { type: 'NUMBER' }, c: { type: 'NUMBER' }, f: { type: 'NUMBER' }, s: { type: 'NUMBER' },
         },
-        required: ['name', 'grams', 'kcal', 'p', 'c', 'f', 's'],
+        required: ['name', 'grams', 'unit', 'kcal', 'p', 'c', 'f', 's'],
       },
     },
   },
@@ -52,7 +53,7 @@ export function parseItems(text) {
     .map((it) => {
       const g = n(it.grams)
       const per = (x) => Math.round((n(x) / g) * 1000) / 10
-      return { name: it.name.trim().slice(0, 60), grams: Math.round(g), kcal: per(it.kcal), p: per(it.p), c: per(it.c), f: per(it.f), s: per(it.s) }
+      return { name: it.name.trim().slice(0, 60), grams: Math.round(g), kcal: per(it.kcal), p: per(it.p), c: per(it.c), f: per(it.f), s: per(it.s), ...(it.unit === 'ml' && { liq: true }) }
     })
 }
 
@@ -81,14 +82,16 @@ async function toJpegBase64(file, max = 1024) {
 export const LABEL_PROMPT = `Ảnh là nhãn dinh dưỡng (Nutrition Facts / Thông tin dinh dưỡng) của một sản phẩm đóng gói.
 ĐỌC ĐÚNG số in trên nhãn, không ước lượng. Trả về đúng 1 item:
 name = tên sản phẩm ngắn gọn (giữ tên thương hiệu nếu thấy, phần mô tả bằng tiếng Việt);
-grams = khối lượng 1 khẩu phần theo nhãn (nhãn chỉ ghi "trên 100g/100ml" thì grams = 100; ml coi như gram);
+grams = khối lượng 1 khẩu phần theo nhãn (nhãn chỉ ghi "trên 100g/100ml" thì grams = 100; nhãn ghi ml thì unit = "ml" và grams là số ml, vẫn lấy số theo nhãn; còn lại unit = "g");
 kcal, p (protein g), c (carb g), f (fat g), s (đường g, sugars; nhãn ghi "đường"/"sugars", nhãn không ghi đường thì s = 0) cho ĐÚNG khẩu phần đó (nhãn ghi kJ thì đổi sang kcal: chia 4.184).
 Không thấy nhãn dinh dưỡng hoặc không đọc được số thì trả items rỗng.`
 
 // Nhắn chữ thay cho ảnh: người dùng tự kể món đã ăn.
 export const textPrompt = (desc) => `Người Việt đang giảm mỡ tăng cơ kể món đã ăn: "${desc.trim().slice(0, 300)}".
 Tách từng món/thành phần, ước lượng khối lượng ăn được (gram; không nói rõ thì lấy khẩu phần Việt Nam thường gặp, vd 1 chén cơm ~150g, 1 quả trứng ~50g)
-và dinh dưỡng CHO ĐÚNG LƯỢNG ĐÓ: kcal, p (protein g), c (carb g), f (fat g), s (đường g, sugars; nhãn ghi "đường"/"sugars"). Tên món bằng tiếng Việt, ngắn gọn. Không phải đồ ăn thì trả items rỗng.`
+và dinh dưỡng CHO ĐÚNG LƯỢNG ĐÓ: kcal, p (protein g), c (carb g), f (fat g), s (đường g, sugars; nhãn ghi "đường"/"sugars"). Tên món bằng tiếng Việt, ngắn gọn.
+Đồ uống/chất lỏng (nước ngọt, sữa, nước ép, trà sữa, cà phê, bia, nước canh...) đặt unit = "ml" và grams = số ml; mọi món khác unit = "g". Dinh dưỡng vẫn cho đúng lượng đó (1ml coi như 1g).
+Không phải đồ ăn thì trả items rỗng.`
 
 // Người dùng sửa: gửi lại ảnh/lời kể + danh sách lần trước + lời sửa, AI làm lại cả danh sách.
 export const fixPrompt = (prev, note, base = PROMPT) => `${base}
