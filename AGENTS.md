@@ -36,9 +36,9 @@ Mỗi agent làm trong worktree riêng (`scripts/new-agent-worktree.ps1`), nhán
 - **Danh sách món:** đã Việt hoá; `foods_rename.json` map tên cũ → Việt, Dexie v3 tự đổi tên trên máy đã cài. Món không khớp danh sách đánh dấu `*` = số AI tra. Chỉ khớp món tính theo gram (món "theo phần" ghi gram thì 50g thành 50 phần).
 
 ## Giao diện (người dùng đã chốt)
-- Nền đen OLED + chữ trắng + **một** màu nhấn lime `--accent`; vượt mục tiêu dùng `--bad` (đỏ). Chỉ dùng biến màu trong `src/index.css`, không viết mã màu thẳng.
+- Nền đen ngả tím (đổi từ đen + lime ngày 26/11, người dùng chọn) + chữ trắng + **một** màu nhấn tím violet `--accent` (#a78bfa); vượt mục tiêu dùng `--bad` (đỏ). Chỉ dùng biến màu trong `src/index.css`, không viết mã màu thẳng (mọi màu mới khai báo trong `:root`). Thẻ có gradient nhẹ + viền sáng + bóng; chuyển động chỉ opacity/transform, tắt khi `prefers-reduced-motion`.
 - **Giữ emoji** 🔥 kcal · 🥩 protein · 🍚 carb · 🧈 fat · 🍬 đường. Font Be Vietnam Pro.
-- Hôm nay kiểu app calo: vòng kcal lớn + 3 thẻ macro. Thanh tab dính sát đáy, nền liền (không thanh nổi); tab chọn tô chữ lime.
+- Hôm nay kiểu app calo: vòng kcal lớn + 3 thẻ macro. Thanh tab dính sát đáy, nền liền (không thanh nổi); tab chọn tô chữ tím + chấm nhỏ phía trên.
 - Chữ phụ tương phản ≥4.5:1; nút cao tối thiểu 44px.
 
 ## Tính năng đã có (đã deploy, 26/11/2026)
