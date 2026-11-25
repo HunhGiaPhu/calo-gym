@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { nutrients, sumLogs, targets, parsePlan, streak, addDays, rolling7, weightAdvice, nextKg, qtyLabel, dayAdjust, frequentFoods } from './calc'
+import { nutrients, sumLogs, targets, parsePlan, streak, addDays, rolling7, weightAdvice, nextKg, qtyLabel, dayAdjust, frequentFoods, stepsKcal, stepBonus } from './calc'
 
 test('addDays qua tháng', () => {
   expect(addDays('2026-11-30', 1)).toBe('2026-12-01')
@@ -58,6 +58,21 @@ test('dayAdjust giữ trung bình mục tiêu kcal cả tuần', () => {
   expect(dayAdjust({}, 0)).toBe(0)
   expect(dayAdjust({ 0: 1, 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1 }, 0)).toBe(0)
   expect(dayAdjust({ 1: null, 2: 5 }, 1)).toBe(-Math.round(150 / 6))
+})
+
+test('stepsKcal và stepBonus tính kcal bước đi an toàn', () => {
+  expect(stepsKcal(10000, 70)).toBe(280)
+  expect(stepBonus(10000, 70)).toBe(140)
+  expect(stepsKcal('5000', 70)).toBe(140)
+
+  for (const steps of [0, -1, NaN, undefined, 'rác']) {
+    expect(stepsKcal(steps, 70)).toBe(0)
+    expect(stepBonus(steps, 70)).toBe(0)
+  }
+  expect(stepsKcal(10000, 0)).toBe(0)
+  expect(stepsKcal(10000)).toBe(0)
+  expect(stepBonus(10000, 0)).toBe(0)
+  expect(stepBonus(10000)).toBe(0)
 })
 
 test('parsePlan', () => {

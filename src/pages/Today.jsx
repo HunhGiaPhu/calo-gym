@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { db, useSetting, addLog, logWeight } from '../db'
-import { today, addDays, sumLogs, targets, proteinPicks, qtyLabel, SUGAR_LIMIT, dayAdjust } from '../calc'
+import { db, useSetting, setSetting, addLog, logWeight } from '../db'
+import { today, addDays, sumLogs, targets, proteinPicks, qtyLabel, SUGAR_LIMIT, dayAdjust, stepsKcal, stepBonus } from '../calc'
 import { loadGis, backupToDrive } from '../drive'
 
 // Vòng tiến độ SVG: đầy dần theo value/target, đỏ khi vượt.
@@ -32,6 +32,8 @@ export default function Today({ go, day, setDay }) {
   const now = today()
   const wd = new Date(`${d}T00:00`).getDay()
   const schedule = useSetting('schedule', {})
+  const steps = useSetting('steps', {})
+  const n = steps[d] ?? 0
   const dm = `${+d.slice(8)}/${+d.slice(5, 7)}`
   const title = d === now ? 'Hôm nay' : d === addDays(now, -1) ? 'Hôm qua' : dm
   const logs = useLiveQuery(() => db.logs.where('date').equals(d).toArray(), [d]) ?? []
@@ -40,12 +42,14 @@ export default function Today({ go, day, setDay }) {
   const lastBackup = useSetting('lastBackup', null)
 
   const adj = dayAdjust(schedule, wd)
-  const t = profile ? targets({ ...profile, deficit: profile.deficit - adj }) : null
+  const sb = profile ? stepBonus(n, profile.weight) : 0
+  const t = profile ? targets({ ...profile, deficit: profile.deficit - adj - sb }) : null
   const s = sumLogs(logs)
   const w = workouts.find((x) => x.id === schedule[wd])
   const hasData = useLiveQuery(() => db.logs.count()) > 0
   const weighed = useLiveQuery(() => db.weights.get(d), [d])
   const [kg, setKg] = useState('')
+  const [stepInput, setStepInput] = useState('')
   // Chỉ gợi ý khi đang xem hôm nay và còn thiếu đáng kể (≥15g) protein.
   const needP = t && d === now ? Math.round(t.p - s.p) : 0
   const foods = useLiveQuery(() => (needP >= 15 ? db.foods.toArray() : []), [needP >= 15]) ?? []
@@ -81,7 +85,12 @@ export default function Today({ go, day, setDay }) {
           <div>Đã ăn<b>{Math.round(s.kcal)}</b></div>
           <div>Mục tiêu<b>{t?.kcal ?? '–'}</b></div>
         </div>
-        {t && adj !== 0 && <p className="day-adjust">{adj > 0 ? 'Ngày tập · +' + adj + ' kcal' : 'Ngày nghỉ · −' + -adj + ' kcal'}</p>}
+        {t && (adj !== 0 || sb > 0) && (
+          <div style={{ display: 'flex', gap: 'var(--sp-2)', justifyContent: 'center', flexWrap: 'wrap' }}>
+            {adj !== 0 && <p className="day-adjust">{adj > 0 ? 'Ngày tập · +' + adj + ' kcal' : 'Ngày nghỉ · −' + -adj + ' kcal'}</p>}
+            {sb > 0 && <p className="day-adjust">Đi bộ · +{sb} kcal</p>}
+          </div>
+        )}
       </section>
       <div className="macro-grid">
         {MACROS.map(([k, icon, name]) => {
@@ -125,6 +134,22 @@ export default function Today({ go, day, setDay }) {
             placeholder={weighed ? `Đã cân ${weighed.kg} kg` : `kg ${title.toLowerCase()}`} aria-label="Cân nặng (kg)" />
           <button disabled={!(+kg > 0)}>{weighed ? 'Sửa' : 'Ghi'}</button>
         </form>
+      </section>
+      <section>
+        <h2>Bước đi</h2>
+        <form className="row say" onSubmit={(e) => {
+          e.preventDefault()
+          if (+stepInput > 0 && +stepInput <= 100000) {
+            setSetting('steps', { ...steps, [d]: Math.round(+stepInput) })
+            setStepInput('')
+          }
+        }}>
+          <input type="number" inputMode="numeric" step="1" min="0" max="100000" value={stepInput} onChange={(e) => setStepInput(e.target.value)}
+            placeholder={n ? `Đã ghi ${n.toLocaleString('vi-VN')} bước` : `Số bước ${title.toLowerCase()}`} aria-label="Số bước đi" />
+          <button disabled={!(+stepInput > 0 && +stepInput <= 100000)}>{n ? 'Sửa' : 'Ghi'}</button>
+        </form>
+        {n > 0 && profile && <p className="muted">≈ {stepsKcal(n, profile.weight)} kcal đốt · cộng +{sb} kcal (50%) vào mục tiêu hôm đó.</p>}
+        {n > 0 && !profile && <p className="muted">Nhập chỉ số cơ thể ở tab Tiến độ để tính kcal.</p>}
       </section>
       <section>
         <h2>Đã ăn</h2>

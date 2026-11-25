@@ -102,6 +102,12 @@ export function dayAdjust(schedule, wd, delta = TRAIN_DELTA) {
   return schedule[wd] ? delta : -Math.round((delta * n) / (7 - n))
 }
 
+// Kcal đốt ước tính từ số bước (phần tăng thêm so với nghỉ): ~0.0004 kcal/bước/kg (70kg × 10.000 bước ≈ 280 kcal).
+export const stepsKcal = (steps, kg) => Math.round(Math.max(0, +steps || 0) * Math.max(0, +kg || 0) * 0.0004)
+// Chỉ cộng 50% vào mục tiêu ăn: ước lượng từ số bước hay lệch cao, và hệ số vận động đã tính sẵn một phần đi lại.
+export const STEP_EAT_BACK = 0.5
+export const stepBonus = (steps, kg) => Math.round(stepsKcal(steps, kg) * STEP_EAT_BACK)
+
 // Mifflin-St Jeor. Protein 2g/kg, fat 0.8g/kg, phần còn lại là carb.
 export function targets({ sex, age, height, weight, activity, deficit }) {
   const bmr = 10 * weight + 6.25 * height - 5 * age + (sex === 'nam' ? 5 : -161)
