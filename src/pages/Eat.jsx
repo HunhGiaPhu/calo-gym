@@ -147,6 +147,7 @@ export default function Eat({ day: date, setDay: setDate }) {
 
   const combos = useLiveQuery(() => db.combos.toArray()) ?? []
   const logs = useLiveQuery(() => db.logs.where('date').equals(date).toArray(), [date]) ?? []
+  const prevLogs = useLiveQuery(() => db.logs.where('date').equals(addDays(date, -1)).toArray(), [date]) ?? []
   const recent = useLiveQuery(() => db.logs.where('date').aboveOrEqual(addDays(date, -30)).toArray(), [date]) ?? []
   const hay = frequentFoods(recent)
 
@@ -166,11 +167,12 @@ export default function Eat({ day: date, setDay: setDate }) {
     if (missing) alert(`${missing} món trong combo không còn, đã bỏ qua`)
   }
 
-  const copyYesterday = async () => {
-    const prev = await db.logs.where('date').equals(addDays(date, -1)).toArray()
-    if (!prev.length) return alert('Hôm trước chưa ghi gì')
-    if (logs.length && !confirm(`Ngày ${date} đã có món. Vẫn chép thêm ${prev.length} món của hôm trước?`)) return
-    await db.logs.bulkAdd(prev.map(({ id: _id, ...l }) => ({ ...l, date })))
+  const copyYesterday = async (m) => {
+    const src = m ? prevLogs.filter((l) => l.meal === m) : prevLogs
+    if (!src.length) return alert(m ? `Hôm trước không có món bữa ${m}` : 'Hôm trước chưa ghi gì')
+    const have = m ? logs.filter((l) => l.meal === m).length : logs.length
+    if (have && !confirm(`${m ? `Bữa ${m}` : `Ngày ${date}`} đã có ${have} món. Vẫn chép thêm ${src.length} món của hôm trước?`)) return
+    await db.logs.bulkAdd(src.map(({ id: _id, ...l }) => ({ ...l, date })))
   }
 
   // Lưu 1 bữa (m) hoặc cả ngày (m = null) thành combo. Combo cả ngày nhớ luôn bữa của từng món.
@@ -228,7 +230,14 @@ export default function Eat({ day: date, setDay: setDate }) {
             <span>{Math.round(l.kcal)} kcal <button className="x" onClick={() => db.logs.delete(l.id)}>✕</button></span>
           </div>
         ))}
-        <button className="ghost" onClick={copyYesterday} style={{ width: '100%', marginTop: 8 }}>Ăn lại như hôm trước</button>
+        <p className="muted">Ăn lại như hôm trước:</p>
+        <div className="meals">
+          {MEALS.map((m) => {
+            const count = prevLogs.filter((l) => l.meal === m).length
+            return <button key={m} className="ghost" disabled={!count} onClick={() => copyYesterday(m)} aria-label={`Ăn lại bữa ${m} như hôm trước`}>{m} <small>{count}</small></button>
+          })}
+        </div>
+        <button className="ghost" disabled={!prevLogs.length} onClick={() => copyYesterday(null)} style={{ width: '100%', marginTop: 8 }}>Ăn lại cả ngày hôm trước</button>
         <p className="muted">Lưu thành combo:</p>
         <div className="meals">
           {MEALS.map((m) => (
