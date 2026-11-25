@@ -42,12 +42,15 @@ export function nextKg(plan, last) {
 export function nutrients(food, qty) {
   const k = food.unit === 'g' ? qty / 100 : qty
   const r = (x) => Math.round((x || 0) * k * 10) / 10
-  return { kcal: r(food.kcal), p: r(food.p), c: r(food.c), f: r(food.f) }
+  return { kcal: r(food.kcal), p: r(food.p), c: r(food.c), f: r(food.f), ...(food.s != null && { s: r(food.s) }) }
 }
 
+// AHA: nam ≤36g đường thêm vào mỗi ngày (nữ ≤25g). App 1 người dùng, nam.
+export const SUGAR_LIMIT = 36
+
 export const sumLogs = (logs) =>
-  logs.reduce((s, l) => ({ kcal: s.kcal + l.kcal, p: s.p + l.p, c: s.c + l.c, f: s.f + l.f }),
-    { kcal: 0, p: 0, c: 0, f: 0 })
+  logs.reduce((s, l) => ({ kcal: s.kcal + l.kcal, p: s.p + l.p, c: s.c + l.c, f: s.f + l.f, s: s.s + (l.s || 0) }),
+    { kcal: 0, p: 0, c: 0, f: 0, s: 0 })
 
 export const ACTIVITY = [
   [1.2, 'Ít vận động'],

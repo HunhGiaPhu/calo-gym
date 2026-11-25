@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { nutrients, targets, parsePlan, streak, addDays, rolling7, weightAdvice, nextKg } from './calc'
+import { nutrients, sumLogs, targets, parsePlan, streak, addDays, rolling7, weightAdvice, nextKg } from './calc'
 
 test('addDays qua tháng', () => {
   expect(addDays('2026-11-30', 1)).toBe('2026-12-01')
@@ -34,6 +34,13 @@ test('nextKg', () => {
 test('nutrients theo gram và theo phần', () => {
   expect(nutrients({ unit: 'g', kcal: 165, p: 31, c: 0, f: 3.6 }, 400)).toEqual({ kcal: 660, p: 124, c: 0, f: 14.4 })
   expect(nutrients({ unit: 'phần', kcal: 35, p: 1, c: 7, f: 0 }, 3).kcal).toBe(105)
+})
+
+test('nutrients và sumLogs có đường, log cũ thiếu s coi là 0', () => {
+  expect(nutrients({ unit: 'g', kcal: 0, p: 0, c: 0, f: 0, s: 10 }, 250).s).toBe(25)
+  expect('s' in nutrients({ unit: 'g', kcal: 1, p: 0, c: 0, f: 0 }, 100)).toBe(false)
+  const base = { kcal: 1, p: 1, c: 1, f: 1 }
+  expect(sumLogs([{ ...base, s: 4 }, base]).s).toBe(4)
 })
 
 test('targets: nam 70kg 175cm 21t', () => {

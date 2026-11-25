@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db, useSetting, addLog, logWeight } from '../db'
-import { today, addDays, sumLogs, targets, proteinPicks } from '../calc'
+import { today, addDays, sumLogs, targets, proteinPicks, SUGAR_LIMIT } from '../calc'
 import { loadGis, backupToDrive } from '../drive'
 
 // Vòng tiến độ SVG: đầy dần theo value/target, đỏ khi vượt.
@@ -23,7 +23,7 @@ function Ring({ value, target, size, stroke, label, children }) {
 const MACROS = [['p', '🥩', 'Protein'], ['c', '🍚', 'Carb'], ['f', '🧈', 'Fat']]
 
 // Dòng nhỏ dưới tên món: protein / carb / fat của riêng món đó (dùng chung cho tab Ăn).
-export const Macros = ({ l }) => <small className="mac">🥩 {Math.round(l.p)}g · 🍚 {Math.round(l.c)}g · 🧈 {Math.round(l.f)}g</small>
+export const Macros = ({ l }) => <small className="mac">🥩 {Math.round(l.p)}g · 🍚 {Math.round(l.c)}g · 🧈 {Math.round(l.f)}g{l.s != null && ` · 🍬 ${Math.round(l.s)}g`}</small>
 
 const WEEKDAYS = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy']
 
@@ -94,6 +94,11 @@ export default function Today({ go, day, setDay }) {
             </div>
           )
         })}
+      </div>
+      <div className={`sugar${s.s > SUGAR_LIMIT ? ' over' : ''}`} role="img" aria-label={`Đường ${Math.round(s.s)} trên ${SUGAR_LIMIT} gam`}>
+        <span>🍬 Đường</span>
+        <div className="bar" aria-hidden="true"><i style={{ width: `${Math.min(100, (s.s / SUGAR_LIMIT) * 100)}%` }} /></div>
+        <b>{Math.round(s.s)}/{SUGAR_LIMIT}g</b>
       </div>
       <section onClick={() => go('gym')}>
         <h2>Lịch tập</h2>

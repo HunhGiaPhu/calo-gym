@@ -14,8 +14,14 @@ const findByName = (name) => db.foods.filter((f) => f.unit === 'g' && f.name.toL
 // Món AI đoán: dùng lại món cùng tên nếu có, không thì thêm mới để combo dùng được.
 async function foodFor(it) {
   const same = await findByName(it.name)
-  if (same) return same
-  const food = { name: it.name, unit: 'g', kcal: it.kcal, p: it.p, c: it.c, f: it.f }
+  if (same) {
+    if (same.s == null && it.s != null) { // món trong danh sách chưa có đường: học số AI cho lần sau
+      await db.foods.update(same.id, { s: it.s })
+      return { ...same, s: it.s }
+    }
+    return same
+  }
+  const food = { name: it.name, unit: 'g', kcal: it.kcal, p: it.p, c: it.c, f: it.f, s: it.s }
   return { ...food, id: await db.foods.add(food) }
 }
 
@@ -42,7 +48,7 @@ function PhotoLog({ date, meal }) {
       // Món có trong danh sách thì lấy số của danh sách, không có thì dùng số Gemini tự tra.
       setItems(await Promise.all(found.map(async (it) => {
         const f = await findByName(it.name)
-        return { ...it, ...(f && { kcal: f.kcal, p: f.p, c: f.c, f: f.f }), fromList: !!f, on: true }
+        return { ...it, ...(f && { kcal: f.kcal, p: f.p, c: f.c, f: f.f, s: f.s ?? it.s }), fromList: !!f, on: true }
       })))
     } catch (ex) {
       setErr(ex.message)
@@ -95,7 +101,7 @@ function PhotoLog({ date, meal }) {
         <>
           <p className="muted">AI chỉ ước lượng, sửa lại số gram cho đúng rồi ghi. * = số do AI tra, không có trong danh sách món.</p>
           <table className="macros">
-            <thead><tr><th>Món</th><th>Gram</th><th aria-label="Kcal" title="Kcal">🔥</th><th aria-label="Protein" title="Protein">🥩</th><th aria-label="Carb" title="Carb">🍚</th><th aria-label="Fat" title="Fat">🧈</th></tr></thead>
+            <thead><tr><th>Món</th><th>Gram</th><th aria-label="Kcal" title="Kcal">🔥</th><th aria-label="Protein" title="Protein">🥩</th><th aria-label="Carb" title="Carb">🍚</th><th aria-label="Fat" title="Fat">🧈</th><th aria-label="Đường" title="Đường">🍬</th></tr></thead>
             <tbody>
               {items.map((it, i) => {
                 const n = nutrients({ unit: 'g', ...it }, +it.grams || 0)
@@ -105,7 +111,7 @@ function PhotoLog({ date, meal }) {
                       <label><input type="checkbox" checked={it.on} onChange={(e) => edit(i, { on: e.target.checked })} /> {it.name}{!it.fromList && '*'}</label>
                     </td>
                     <td><input type="number" inputMode="decimal" value={it.grams} onChange={(e) => edit(i, { grams: e.target.value })} aria-label={`Gram ${it.name}`} /></td>
-                    <td>{Math.round(n.kcal)}</td><td>{n.p}</td><td>{n.c}</td><td>{n.f}</td>
+                    <td>{Math.round(n.kcal)}</td><td>{n.p}</td><td>{n.c}</td><td>{n.f}</td><td>{n.s ?? '–'}</td>
                   </tr>
                 )
               })}
@@ -113,7 +119,7 @@ function PhotoLog({ date, meal }) {
             <tfoot>
               {(() => {
                 const t = sumLogs(items.filter((x) => x.on).map((it) => nutrients({ unit: 'g', ...it }, +it.grams || 0)))
-                return <tr><td>Tổng</td><td /><td>{Math.round(t.kcal)}</td><td>{Math.round(t.p)}</td><td>{Math.round(t.c)}</td><td>{Math.round(t.f)}</td></tr>
+                return <tr><td>Tổng</td><td /><td>{Math.round(t.kcal)}</td><td>{Math.round(t.p)}</td><td>{Math.round(t.c)}</td><td>{Math.round(t.f)}</td><td>{Math.round(t.s)}</td></tr>
               })()}
             </tfoot>
           </table>
