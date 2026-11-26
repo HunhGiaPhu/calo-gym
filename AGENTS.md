@@ -32,6 +32,7 @@ Mỗi agent làm trong worktree riêng (`scripts/new-agent-worktree.ps1`), nhán
 ## Bài học đã gặp
 - **Gemini "Load failed":** model mặc định `gemini-flash-lite-latest` (~10s); `gemini-flash-latest` hay treo >60s làm Safari báo "Load failed". `recognize()` tự chuyển model mặc định khi 429/500/503 hoặc >30s. Thử key thật bằng `curl`, không ghi key vào code/log.
 - **Drive backup** chỉ đăng nhập được trên origin `hunhgiaphu.github.io`. Ở localhost test bằng `window.google` + `fetch` giả. `getToken()` phải gọi ngay lúc bấm nút (không `await` trước), không thì iPhone chặn cửa sổ đăng nhập. PWA không chạy ngầm được trên iPhone nên chỉ có nhắc + nút 1 chạm.
+- **Thanh tab trôi khỏi đáy trên iPhone (26/11):** do `backdrop-filter` trên `nav` `position: fixed`, Safari/PWA iOS làm thanh trôi lên giữa khi cuộn; browser máy tính không tái hiện được. KHÔNG dùng `backdrop-filter`/làm mờ nền cho thanh tab, giữ nền liền.
 - **Test UI trên browser Claude:** khung Browser ẩn thì CSS transition/animation Recharts bị bóp, ảnh chụp sai. Chèn `*{transition:none!important}` trước khi chụp, kiểm số liệu bằng DOM. Vite đôi khi bỏ lỡ khi file ghi 2 lần liên tiếp: `touch` file đó.
 - **Danh sách món:** đã Việt hoá; `foods_rename.json` map tên cũ → Việt, Dexie v3 tự đổi tên trên máy đã cài. Món không khớp danh sách đánh dấu `*` = số AI tra. Chỉ khớp món tính theo gram (món "theo phần" ghi gram thì 50g thành 50 phần).
 
