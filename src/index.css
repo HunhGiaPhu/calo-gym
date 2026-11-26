@@ -21,7 +21,6 @@
   --ring-track: #231e2e;
   --accent-glow: #a78bfa33;
   --focus-glow: #a78bfa38;
-  --nav-glass: #08060de8;
   --shadow-card: 0 16px 36px #00000050;
   --shadow-button: 0 8px 20px #a78bfa1f;
   --fs-xs: .75rem;
@@ -210,9 +209,7 @@ nav button svg { width: 24px; height: 24px; }
 nav button.on { color: var(--accent); }
 nav button.on::before { content: ''; position: absolute; top: var(--sp-1); left: 50%; width: var(--sp-1); height: var(--sp-1); border-radius: 50%; background: var(--accent); transform: translateX(-50%); }
 nav button:active { background: var(--card-2); opacity: 1; transform: scale(.98); }
-@supports ((backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px))) {
-  nav { background: var(--nav-glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-}
+/* Không dùng backdrop-filter cho thanh tab: iPhone (Safari/PWA) làm thanh fixed trôi khỏi đáy khi cuộn. */
 
 /* Đồng hồ nghỉ nổi trên thanh tab */
 .rest {
